@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //값으로서의 함수
+        //함수는 값이 될수있다 > 변수에 함수를 담을수 있다
+
+        //변수뿐만아니라 객체에도 담길수있다
+        a = {
+            b:function(){
+                //객체의 b 라는 속성의 담겨진 값(함수)를 메소드라 한다.
+            }
+        }
+        //함수는 값이기 때문에 다른함수의 인자로 전달될수있따
+        //함수는 함수의 리턴값으로 도 사용할숭ㅆ다
+        //함수는 배열의 값으로도 사용할수있다.
+
+
+        //괄호가 나온다는것은 함수가 호출된다는것.
+
+
+        /*function name(category){
+            var product = {
+                'list':function(num1, num2){
+                    return num1+num2
+                }
+            }
+            return product[category]
+        }
+
+        alert(name('list') (1,2))*/
+
+        var name = [
+            function(num){
+                return num+2;
+            },
+            function(num){
+                return num+1;
+            }
+        ]
+        var num = 1;
+        for(var i = 0;i < name.lenght;i++){
+            num =  name[i](0);
+        }
+alert(num)
+    </script>
+</body>
+</html>

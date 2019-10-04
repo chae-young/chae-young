@@ -9,6 +9,155 @@
 </head>
 <body>
     <div id="app">
+        <p v-on:click="num = num + 1">{{ called }}</p>
+        <p v-on:click="num = num + 1">{{ called2() }}</p>
+        <p v-on:click="num = num + 1">{{ num }}</p>
+
+
+        <p v-if="5 > 6">5가 크다</p>
+        <p v-show="5 > 6">5가 크네요</p>
+
+        <input type="text" name="" id="" v-model="text">
+        <p>{{ text }}</p>
+
+        <input type="checkbox" value="바구니" name="chk" id="chk" v-model="chk">
+        <label for="chk">바구니</label>
+        <input type="checkbox" value="라탄" name="라탄" id="chk2" v-model="chk">
+        <label for="chk2">라탄</label>
+        <p>{{ chk }}</p>       
+
+        <select name="" id="" v-model="selecHoice">
+            <option v-for="options in option" >{{ options.name }}</option>
+        </select>
+        <p>{{ selecHoice }}</p>
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+    var app = new Vue({
+        el:'#app',  
+        data: {
+            num:1,
+            age:25,
+            text:'',
+            chk:[],
+            selecHoice:'',
+            option:[
+                {val:'a',name:'a'},
+                {val:'b',name:'b'},
+            ]
+        },
+        computed:{
+            called:function(){
+                console.log('computed called');
+                return '채영 ' + this.age + '살 입니다'
+            }
+        },
+        methods:{
+            called2:function(){
+                console.log('methods called2');
+                return '채영 ' + this.age + '살 입니다'
+            }
+        },
+        watch:{
+            text:function(desc2){
+                console.log(desc2)
+            }
+        }
+
+    });
+    </script>
+</body>
+<!--boy>
+    <div id="app">
+        <input type="text" name="" id="" v-model="normal">
+        <p>{{delay}}</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data: {
+                normal : '',
+                delay:'입력해주세요'
+            },
+            watch:{
+                normal:function(text){
+                    this.delay = '입력중'
+                    this.numbering( )
+                    console.log(text)
+                }
+            },
+            methods:{
+                numbering:function(){
+                    if(this.normal.length > 3){
+                        this.delay = '입력완료'
+                    }
+                }
+            }
+        })   
+    </script>
+</body-->
+<!--body>
+    <div id="app">
+        <p v-if="red == 0">나는 빨간색을 좋아해</p>
+        <p v-show="red == 0">나는 파란색을 좋아해</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+    
+        var app = new Vue({
+            el:'#app',
+            data: {
+                red : true
+            }
+        })
+
+    </script>
+</body-->
+<!--body>
+    <div id="app">
+        <ul>
+            <li v-on:click="category = '슬리퍼'">
+                   {{ userCategory }}
+            </li>
+            <li v-on:click="category = '슬리퍼'">
+                    {{ userCategory2() }}
+             </li>   
+             <li v-on:click="other ++">
+                    {{ other }}
+             </li>                     
+        </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+     var app = new Vue({
+            el:'#app',
+            data:{
+                category:'운동화',
+                other:0
+            },
+            computed:{
+                userCategory:function(){
+                    console.log('computed userCategory')
+                    return this.category == '슬리퍼' ? '카테고리는 슬리퍼입니다' : '다시 클릭해주세요';
+                }
+            },
+            methods:{
+                userCategory2:function(){
+                    console.log('methods userCategory')
+                    return this.category == '슬리퍼' ? '카테고리는 슬리퍼입니다' : '다시 클릭해주세요';
+                }
+            }
+      })
+    </script>
+</body-->
+<!--body>
+    <div id="app">
         <h1>{{ count }}</h1>
         <h1>{{ sayhello() }}</h1>
         <a v-bind:href="link">링크</a>
@@ -40,5 +189,5 @@
         })
     </script>
 
-</body>
+</body-->
 </html>
