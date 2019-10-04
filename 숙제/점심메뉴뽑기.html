@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+ <head>
+ <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+  <title>Document</title>
+ </head>
+
+ <body>
+
+<button onclick="menuRandom()">뽑기 버튼</button>
+<form action="" id="menuForm">
+    <input type="text" name="" id="inputMenu">
+    <button id="btnPlus" type="submit">추가</button>
+</form>
+
+
+ </body>
+<script>
+	var menu = ['김치찌깨','떡볶이','짜장면'];
+
+	//var menuList = '';
+	//var menuList = Math.floor(Math.random() * menu.length);	
+
+	//메뉴 랜덤
+	function menuRandom(){
+		alert(menu[Math.floor(Math.random() * menu.length)])
+	}
+	
+	var menuInput = document.getElementById('inputMenu'),
+        btn = document.getElementById('btnPlus'),
+        formM = document.getElementById('menuForm');
+
+        
+           //btn.addEventListener('click',myMenu);
+           formM.addEventListener('submit',myMenu);
+
+		   function myMenu(e){
+                e.preventDefault();
+
+                alert(menuInput.value + ' 이 추가되었습니다');
+                menu.push(menuInput.value);
+                menuInput.value = '';
+                menuInput.focus();
+		   }
+
+
+		  
+</script>
+
+</html>
+
+

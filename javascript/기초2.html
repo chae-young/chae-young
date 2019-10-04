@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+    
+        //지역변수 전역변수 (유효범위)
+        //전역변수르르 사용해야하는 경우
+(function (){ // 전역변수를 만들고 싶지않을때 , 함수를 바로 불러올때 익명함수라고 함
+        var MYAPP = {}
+        MYAPP.caluculator = {
+            'left':null,
+            'right':null
+        }
+        MYAPP.coordinate = {
+            'left':null,
+            'right':null
+        }
+        MYAPP.caluculator.left = 10;
+        MYAPP.caluculator.right = 20;
+
+        function sum (){
+            return MYAPP.caluculator.left + MYAPP.caluculator.right;
+        }
+
+        document.write(sum());
+
+    }())
+
+
+    // 유효범위의 대상 
+    // 자바스크립트에서는 함수 안에서만 있는 변수가 지역변수이다 .
+    // 사용될때가 아니라 정의될때 의 전역변수가 사용된다 > 정적유효범위 
+
+    </script>
+</body>
+</html>

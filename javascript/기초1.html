@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   
+    <script>
+        console.log('hello'); //콘솔
+        //alert(2 * 8)
+        // 1.숫자와 문자
+        // 정수 ,,-2 -1 0 1 2 실수 ,, 소수점이 존재하는 숫자 1.0 0.5 (실제로존재하는)
+        // 자바스크립트에선 정수,실수 ~ 다 사용 .
+        // Math.random(0 보다 작은수);
+
+        //alert('하이 \n 난 채영이야'); //줄바꿈의 약속 
+        
+        
+        // typeof 문자열 
+        // 1.indexOf 앞에있는 문자열에서 내가 입력한 데이터와 맞는가
+
+
+        //변수는 중요한 것이었다..
+        //변수(변하는것이 가능한 .. 그릇) 처음 지정할땐 var 그다음엔 사용 x 
+        //var 생략가능 (왜 생략가능하느냐 - ) 
+        //var a = 1, b = 2;
+        //변수는 재활용 가능함(class 같은..)
+        //변할 수 있는 영역 , 변하지 않는 영역 (좋은코드..유지보수..)
+
+
+        // 세미콜론; 명령이 끝났다 
+        // 자바스크립트는 줄이바뀌면 명령이 끝남
+        
+
+        //비교
+        //연산자 - 기호 
+        //비교연산자 = > 1 < = 2 true 
+        //동등연산자 ==, 대입연산자 =, 일치연산자 ===
+        //null > 값이없다고 의도적으로 지정 undefined > 값이 지정되지않음
+        // 1 = true 그외의값은 false
+        // null , undefined , bloone , number ,string
+        //!= 같지않다 
+
+
+        //조건문
+        //조건문 == boolean 
+        // else > 앞에 조건문이 실행되지 않았을때 (false)
+        //prompt ('')
+        //논리연산자 && || ! 
+        // && 양쪽 트루 || 한쪽만 트루 ! 트루를 펄스 펄스를 트루로
+        // !
+
+
+        //반복문(loop)
+        //while , for (~하는동안 반복을 한다)
+        //while(boolean=true인 동안) true > false 가 될때까지
+        //while 은 for 과 다르게 기준점,조건,실행 을 다르게 쓴다
+        // i++ , ++i (실행하고나서 1, 실행하기전부터 1씩 증가);
+        //iterate 의 약자 i
+        //
+        //반복문안에 조건문 조건문안에 반복문
+        //break 반복문을 종료 continue 중단됫다가 다시 돌아가서 실행(뭐 빼고싶을때)
+        //
+        //숫자와 문자가 같이 있을경우 숫자는 문자열이 된다
+
+        
+        //함수(재실행 , 재사용성, 동일한 코드가 있을때 .. 유지보수 용이 .. 가독성 .. 
+        //function 함수이름 (){}
+        //return 출력하고 나가는것
+        //입력 과 출력 
+        //arg 매개변수 (파라미터) 인자(argument)
+        //리턴값은 하나만 정의 가능하다 == 여러개의 입력을 받고 하나로 출력
+        //
+        
+
+        //배열 array (데이터를 담는 그릇 (연관된 데이터를 모아서))
+        //하나의 변수에 여러개의 데이터를 담는다
+        // var member = ['egoing','k88','soring']; <= element 원소가 순서대로 고유한 값을 가진다 > 0 1 2(index:색인)
+        // 변수에서 데이터를 꺼내올때 
+        // egoing k88 soing <- 원소
+        // 0       1   2    <- index
+        // 배열을 사용할경우 함수에서 여러개의 값을 출력할수 있다 .
+        /*
+        function members(){
+            return ['cy1','cy2','cy3'];
+        }
+        var members = members();
+        documenr.write(members[0])
+        */
+       //배열에 있는 값들을 구한다 .
+       //
+       //li.push() 배열에 추가할때 
+       //배열.
+       //li.concat() 여러개 추가할때 == 연결한다는 뜻
+       //li.unshitf() 처음에 추가할때
+       //li.splice() 낑겨넣는거 index,howmany,
+       //li.shift() 제거 앞에있는거
+       //li.pop() 뒤에서 제거
+       //li.sort() 정렬
+       //li.reverts() 역순정렬
+
+
+       //객체 (object) > 객체는 값을 담는 그릇
+       //객체와 배얄의 차이점 : 객체도 데이터를 담아내는 그릇,
+       //배열은 원소에 index가 자동으로 추가되지만 객체는 index로 내가 원하는 문자를 지정할수있다,
+       //var grade={'aa' :10,'bb':20,'cc':80}
+       //new object(); 은  var grads = {}; <-빈 객체를 만든다 같다
+       //grads{'aa'} = 10;
+       //인덱스로 값을 가져온다 ex > grade{'aa'} 또는 grade.aa
+       //배열은 순서,객체는 key와 value ()
+       //for in ~ 
+       //객체는 객체를 담을수 있다 , 함수도 담을수 잇다
+
+
+        //모듈
+        //모듈화 .. 
+        //코드를 여러개의 파일로 분리해서 사용 >재활용,
+        //호스트 환경 .. 
+        //
+
+
+    </script>
+
+    <script>
+
+        /*
+        function margin (mg1,mg2){
+            return mg1 + mg2;
+        } 
+        document.write('마진값은' + margin(50,50));
+        */
+        /*
+        var i = 0;
+        while(i < 10){
+            document.write('hehehe</br>'+ i);
+            i = i + 1;
+        }
+        */
+        /*
+       function idInput(){
+            for(var i = 0;i <= 5;i++){
+                document.write('세상은 참 신기하다<br>');
+            }
+       }
+       idInput();
+
+         function ss(){
+                return dfsdf //출력하고 나감
+        }
+
+        function dfs(arg)//변수{
+            return arg;    
+        }
+        alert(dfs(1));
+
+        numering = function(){ //함수를 변수에 대입
+            
+        }
+        numering();
+        */
+
+       //배열의 사용
+       /*
+
+       function members(){
+           return ['cy1','cy2','cy3','cy4'];
+       }
+       
+       var members = members();
+
+       for(var i = 0; i < members.length; i++){
+            document.write(members[i].toUpperCase());
+       }
+       //document.write(members[0].toUpperCase());
+
+       */
+
+       //객체의 사용
+       /*
+       var grades = {'aa':10,'bb':20,'cc':30};
+       for(key in grades){ //변수에 있는 값을 꺼내올때 변수에 담겨잇는 값의 key 값을 불러와서 실행
+           document.wrtie("key: "+key+" value : " +grades[key])
+       }*/
+       //객체지향프록래밍 (서로 연관되어있는 것끼리 그룹핑 해놓는다)
+       /*
+       var star = {
+            'list':{'egoing':10,'k884':5},
+            'show':function(){
+                for(var name in this.list){
+                    console.log(name,this.list[name]); //여기서 , 는 여러개의 값을 불러올때 붙임
+                } 
+               // alert(this.list) < this는 star 를 의미
+            }
+       }
+       //alert(star['show']()); // 함수를 불러올때
+       star.show(); // 객체에 소속되어잇는 함수를 호출
+       //alert()
+       */
+
+
+/*
+       var people = {
+           name : ['cy','mk'],
+           age : [25,21],
+           work : {'mk':'siger','cy':'student'},
+           produce : function(){
+               for(var key in this.work){
+                 console.log(key, this.work[key]);
+               }
+               
+           }
+       }
+
+       people.produce();
+
+*/
+
+       function name(nct){
+           this.nct = nct;
+           this.text = function(){
+               alert('내가 좋아하는 멤버는'+ this.nct);
+           }
+       }
+
+       var name2 = new name('mk');
+       name2.text();
+
+        
+       
+    </script>
+</body>
+</html>

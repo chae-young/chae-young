@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //정규표현식 추출,test,치환
+        //문자열에서 특정한 문자를 찾아내는 도구
+
+        //컴파일 > 패턴을 찾는다 , 실행 > 찾은 패턴에대해 작업을 구체적으로 함
+
+        //정규표햔식 리터럴
+        var pattern = /a/; // a가 찾고자 하는 대상 이다
+        //정규표햔식 객체
+        var pattern = new RegExp('a');
+
+        //정규표현식 메소드 실행
+        //
+
+
+
+
+
+        //유효범위 == 변수의 수명
+        //지역 변수 lacal 전역변수 global
+        //var 의 유무가 다르다 
+        // 똑같은 의미의 변수를 다르게 할 경우 충돌 ,, 
+
+        
+        var name = "cy";
+        function naming(){
+            name = "cy2";
+             //name = 'cy3';
+           
+        }
+        naming();
+        alert(name);
+    </script>
+</body>
+</html>

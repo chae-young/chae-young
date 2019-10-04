@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+   
+</head>
+<body>
+    <div id="app">
+        <h1>{{ count }}</h1>
+        <h1>{{ sayhello() }}</h1>
+        <a v-bind:href="link">링크</a>
+        <p v-html="name"></p>
+        <button @click="messege(2)">클릭</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app', // html 을 지정
+            data:{
+                title:'비가오네..',
+                link:'https://www.naver.com',
+                name:'<p>난 채영이야</p>',
+                count:0
+            },
+            methods:{
+              howareyou(){
+                  return '비가오니 어때?'
+              },
+              sayhello:function(){
+                  this.title = "좋아!"
+                  return this.title
+              },
+              messege:function(number){
+                this.count = this.count + number
+              } 
+            }
+        })
+    </script>
+
+</body>
+</html>
