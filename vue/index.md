@@ -141,7 +141,10 @@ var app = new Vue({
 
 1. 보간법 
     - {{Mustache(interpolation)}}
+<<<<<<< HEAD
     - data를 바인딩
+=======
+>>>>>>> 071e1dbbc8bec191a39b41da9ac4ad36816e1c03
 
 2. 디렉티브
     - html 태그안에 들어가는 특별한 속성
@@ -260,4 +263,8 @@ var app = new Vue({
         </ul>
     </div>
     
+<<<<<<< HEAD
     ````
+=======
+    ````
+>>>>>>> 071e1dbbc8bec191a39b41da9ac4ad36816e1c03
