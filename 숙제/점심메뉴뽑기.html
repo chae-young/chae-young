@@ -37,17 +37,17 @@
         formM = document.getElementById('menuForm');
 
         
-           //btn.addEventListener('click',myMenu);
-           formM.addEventListener('submit',myMenu);
+	//btn.addEventListener('click',myMenu);
+	formM.addEventListener('submit',myMenu);
 
-		   function myMenu(e){
-                e.preventDefault();
+	function myMenu(e){
+		e.preventDefault();
 
-                alert(menuInput.value + ' 이 추가되었습니다');
-                menu.push(menuInput.value);
-                menuInput.value = '';
-                menuInput.focus();
-		   }
+		alert(menuInput.value + ' 이 추가되었습니다');
+		menu.push(menuInput.value);
+		menuInput.value = '';
+		menuInput.focus();
+	}
 
 
 		  
