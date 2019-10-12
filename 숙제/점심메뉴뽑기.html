@@ -13,7 +13,7 @@
 
  <body>
 
-<button onclick="menuRandom()">뽑기 버튼</button>
+<button id="randomBtn" type="button">뽑기 버튼</button>
 <form action="" name="menuForm" id="menuForm">
     <input type="text" name="" id="inputMenu">
     <button id="btnPlus" type="submit">추가</button>
@@ -30,43 +30,38 @@
     var list = [];
     var menuInput = document.getElementById('inputMenu');
 
-	//var menuList = '';
-	//var menuList = Math.floor(Math.random() * menu.length);	
+    var rdBtn = document.getElementById('randomBtn');
 
-	//메뉴 랜덤
-	function menuRandom(){ 
-        if(menu == ''){
+    rdBtn.addEventListener('click',function(){
+        //console.log('dddd')
+        if(menu.length < 2){   
             alert('메뉴를 입력해주세요');
             menuInput.focus();
-        }else if(menu.length > 1){
+        }else{
             var menuList = Math.floor(Math.random() * menu.length);
-            //console.log(menu[menuList])
+            console.log(menu[menuList])
 	        alert(menu[menuList])           
         }
+    });
 
-	}
     
     //추가결과
 	var btn = document.getElementById('btnPlus'),
         formM = document.getElementById('menuForm'),
         menuList = document.getElementById('menuList');
-  
-        //btn.addEventListener('click',myMenu);
+
         formM.addEventListener('submit',myMenu);
 
         function myMenu(e){
             e.preventDefault();
-
-            //alert(menuInput.value + ' 이 추가되었습니다');
-            //menu.push(menuInput.value);
+            //console.log('vv')
 
             if(menu.indexOf(menuInput.value) != -1) { 
 			    alert('이미 입력되어 있습니다')
             }else{
                 alert(menuInput.value + ' 이 추가되었습니다');
-                menu.push(menuInput.value); //입력한값 넣기 
-                var li = document.createElement('li') // li를 도큐먼트에 생성
-                                                  //삭제 하기
+                menu.push(menuInput.value);
+                var li = document.createElement('li')
                 li.appendChild(document.createTextNode(menuInput.value));
                 menuList.appendChild(li);		
             }
