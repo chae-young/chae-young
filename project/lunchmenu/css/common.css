@@ -1,0 +1,261 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR|Prompt:900&display=swap');
+
+html,body{height: 100%;}
+
+#content{
+	position: relative;
+	width: 1200px;
+	height: 100%;
+	margin: 0 auto;
+}
+.lunch__box{
+	width: 960px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform:translate(-50%,-50%);
+	-webkit-transform:translate(-50%,-50%);
+	text-align: center;
+}
+
+.title{
+	font-size: 100px;
+}
+.title span{
+	display: inline-block;
+	font-family:  'Prompt';
+	letter-spacing: 0.075em;
+	animation-name:textEffect;
+	animation-iteration-count: 1;
+	animation-duration:1s;
+	animation-timing-function:ease;
+}
+.title span:nth-child(1){animation-delay:0.1s}
+.title span:nth-child(2){animation-delay:0.2s}
+.title span:nth-child(3){animation-delay:0.3s}
+.title span:nth-child(4){animation-delay:0.4s}
+.title span:nth-child(5){animation-delay:0.5s}
+.title span:nth-child(6){animation-delay:0.6s}
+.title span:nth-child(7){animation-delay:0.7s}
+.title span:nth-child(8){animation-delay:0.8s}
+.title span:nth-child(9){animation-delay:0.9s}
+.title span:nth-child(10){animation-delay:1s}
+
+.color1{color: rgb(182,145,41);}
+.color2{color: rgb(83,122,154);}
+.color3{color: rgb(124,71,137);}
+.color4{color: rgb(177,59,0);}
+.color5{color: rgb(98,132,115);}
+
+.bg1{background: rgb(182,145,41);}
+.bg2{background: rgb(83,122,154);}
+.bg3{background: rgb(124,71,137);}
+.bg4{background: rgb(177,59,0);}
+.bg5{background: rgb(98,132,115);}
+
+
+.btn-random{
+	position: relative;
+	width: 120px;
+	height: 40px;
+	margin-top: 50px;
+	overflow: hidden;
+	background: rgb(83,122,155);
+	border: 0;
+	font-size: 14px;
+	border-radius:10px;
+	color: rgb(255,255,255);
+}
+.btn-random .text{
+	position: relative;
+	z-index: 2;
+}
+.btn-random:after{
+	content: 'Click!';
+	position: relative;
+	z-index: 2;
+	display: inline-block;
+	font-size: 0;
+	transform: translate(300%);
+	-webkit-transform: translate(300%);
+	transition: transform .5s ease;
+}
+.btn-random:before{
+	content: '';
+	position: absolute;
+	z-index: 1;
+	width: 250%;
+	height: 0px;
+	padding-bottom: 250%;
+	opacity: 0;
+	background-color: rgb(219, 137, 145);
+	border-radius: 50%;
+	transform: translate(-50%, -50%) scale(0);
+	-webkit-transform: translate(-50%, -50%) scale(0);
+	transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1) 0s, opacity 1s cubic-bezier(0.19, 1, 0.22, 1) 0s;			
+}
+.btn-random:hover:before{
+	opacity: 1;
+	-webkit-transform: translate(-50%,-50%) scale(1);
+	transform: translate(-50%,-50%) scale(1);
+}
+.btn-random:hover:after{
+	font-size: 13px;
+	transform: translate(0);
+	-webkit-transform: translate(0);
+}
+
+.form__box{
+	width: 540px;
+	margin: 100px auto 0;
+}
+.form__box h2{
+	margin-bottom: 20px;
+	font-size: 20px;
+	font-weight: normal;
+}
+.form__box .inner{
+	width: 100%;
+	padding: 40px;
+	border-radius:12px;
+	border: 12px solid rgb(205,194,183);
+	box-sizing: border-box;
+}
+.menu__input{
+	width: 300px;
+	height: 40px;
+	line-height: 40px;
+	border: 0;
+	background: rgb(0,0,0);
+	border-bottom: 2px solid rgb(107,102,97);
+	color: rgb(255,255,255);
+	outline:0;
+}
+
+.btn-plus{
+	border: 0;
+	font-size: 20px;
+	font-family:  'Prompt';
+	background: rgb(0,0,0);
+	color: rgb(255,255,255);
+}
+
+
+.menu__list{
+	width: 540px;
+	margin: 40px auto 0;
+}
+.menu__list li{
+	padding: 5px 0 5px 15px;
+	text-align: left;
+	border-radius:10px;
+	font-size: 18px;
+}
+.menu__list li + li{
+	margin-top: 10px;
+}
+
+
+/*팝업*/
+#popup{
+	position: fixed;
+	left: 50%;
+	top: 500%;
+	transform:translate(-50%,-50%);
+	-webkit-transform:translate(-50%,-50%);
+	width: 400px;
+	height: 150px;
+	text-align: center;
+	border-radius:10px;
+	background: rgb(190,45,0);
+}
+.popup-inner{
+	display: table;	
+	width: 100%;
+	height: 100%;
+}
+.popup-inner p{
+	display: table-cell;
+	vertical-align: middle;
+	font-size: 20px;
+}
+
+
+/*키프레임*/
+@-webkit-keyframes textEffect {
+	0% {
+		transform: translateY(0px);
+	}
+
+	50% {
+		transform: translateY(-15px);
+	}
+
+	100% {
+		transform: translateY(0px);
+	}
+}
+@keyframes textEffect {
+	0% {
+		transform: translateY(0px);
+	}
+
+	50% {
+		transform: translateY(-15px);
+	}
+
+	100% {
+		transform: translateY(0px);
+	}
+}
+
+/*1200 이하*/
+@media all and (max-width: 1200px) {
+	#content{
+		width: 100%;
+	}
+	.lunch__box{
+		width: 100%;
+	}
+	.title{
+		font-size: 40px;
+	}
+	.btn-random{
+		width: 100px;
+		height: 30px;
+		margin-top: 20px;
+		font-size: 1.4rem;
+	}
+	.form__box{
+		width: 100%;
+		padding: 0 20px;
+		margin: 60px 0 0;
+		box-sizing: border-box;
+	}
+	.form__box .inner{
+		padding: 20px;
+		border-width: 6px;
+	}
+	.form__box h2{
+		font-size: 1.6rem;
+	}
+	.menu__input{
+		width: 80%;
+	}
+	.btn-plus{
+		font-size: 1.6rem;
+	}
+	.menu__list{
+		width: 100%;
+		padding: 0 20px;
+		box-sizing: border-box;
+	}
+	.menu__list li{
+		font-size: 1.4rem;
+	}
+	#popup{
+		width: calc(100% - 20px);
+		margin: 0 auto;
+	}
+}
