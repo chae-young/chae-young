@@ -1,0 +1,103 @@
+@chaerset 'utf-8';
+
+/*---FONT---*/
+@font-face {
+	font-family: 'Black Han Sans';
+    src: url('../font/BlackHanSans-Regular.eot');
+    src: url('../font/BlackHanSans-Regular.eot?#iefix') format('embedded-opentype'),
+         url('../font/BlackHanSans-Regular.woff') format('woff'),
+         url('../font/BlackHanSans-Regular.ttf') format('truetype'),
+         url('../font/BlackHanSans-Regular.svg#FuturaBT-Medium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/*---HADER---*/
+#header .main__title{
+	overflow: hidden;
+}
+#header .title-inner{
+	width: 1000000px;
+	overflow: hidden;
+}
+#header .title-txt{
+	float: left;
+	animation:marquee-text-animation 15s linear infinite;
+	-webkit-animation:marquee-text-animation 15s linear infinite;
+}
+#header .title-txt .bingo{
+	min-width:100%;
+	white-space:nowrap;
+}
+#header .title-txt .bingo .item{
+	display: inline-block;
+	margin-right: 85px;
+	white-space:nowrap;
+	letter-spacing: -0.02em;
+	font-size: 140px;
+	font-family: 'Raleway';
+	color: rgb(255,255,255);
+}
+
+
+table{border: 1px solid #000;border-collapse: collapse;}
+td{width: 50px;height: 50px;border: 1px solid #000;text-align: center;font-size: 12px;letter-spacing: 0.015em;color: rgb(255,255,255);background: rgb(255,255,255);}
+td.on{background: rgb(224,0,42);color: rgb(255,255,255);transition:all .5s ease;}
+td.all{background: yellow;color: rgb(0,0,0);}
+
+
+
+/*---FOOTER---*/
+#footer{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background: red;
+}
+#footer .con{
+	display: flex;
+	justify-content:center;
+}
+.choice__btn{
+	width: 55px;
+	background: rgb(255,255,255);
+}
+.choice__btn span{
+	color: rgb(0,0,0);
+}
+.ico{
+	display: block;
+	width: 100%;
+	height: 55px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: 40px;
+}
+.ico.fruits{background-image: url(../images/ico_fruits.png);}
+.ico.exercise{background-image: url(../images/ico_exercise.png);}
+.ico.ff{background-image: url(../images/ico_ff.png);}
+.ico.hint{background-image: url(../images/ico_view.png);}
+
+/*--ANIMATION---*/
+@-webkit-keyframes marquee-text-animation {
+	0% { 
+		-webkit-transform: translateX(0);
+		transform: translateX(0); 
+	}
+	100% { 
+		-webkit-transform: translateX(-100%);
+		transform: translateX(-100%); 
+	}
+}
+@keyframes marquee-text-animation {
+	0% { 
+		-webkit-transform: translateX(0);
+		transform: translateX(0); 
+	}
+	100% { 
+		-webkit-transform: translateX(-100%);
+		transform: translateX(-100%); 
+	}
+}
