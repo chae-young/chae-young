@@ -14,9 +14,10 @@
 
 
 <body>
+
 <div id="wrap">
 
-	<!--header id="header">
+	<header id="header">
 		<div class="main__title">
 			<div class="title-inner">
 				<div class="title-txt">
@@ -60,41 +61,37 @@
 				</div>
 			</div>	
 		</div>		
-	</header-->
+	</header>
 
-	<section>
-		 <table>
-			<caption style="text-indent: -9999px;">빙고테이블</caption>
+	<section class="bingo__wrap">
+		<div class="table__box">
+		 <table class="bingo__table">
+			<caption class="hidden" >빙고테이블</caption>
 			<tbody>
 				<tr></tr>
 				<tr></tr>
 				<tr></tr>	
 			</tbody>
-		 </table>
-
-
-
-
-
-		<form action="" id="form">
-			<fieldset>
-				<input type="text" name="" id="userInput"><button type="submit" id="inputBtn">입력</button>	
-			</fieldset>
-		</form>
-
-
-		<div id="bingoNum">
-
-		</div>	
-
+		 </table>		
+		</div>
+		<div class="input__box">
+			<form action="" id="form">
+				<fieldset>
+					<input type="text" name="" id="userInput" placeholder="해당 단어를 입력해주세요."><button type="submit" id="inputBtn">입력</button>					
+				</fieldset>
+			</form>	
+			<div id="bingoNum" class="num-info">
+				<p>현재 빙고 갯수 : <span id="num">0</span></p>
+			</div>				
+		</div>
 	</section>
 
 	<footer id="footer">
 		<div class="con">
-			 <button id="btnFruits" type="button" class="choice__btn"><i class="ico fruits"></i><span>Fruits</span></button>
-			 <button id="btnExercise" type="button" class="choice__btn"><i class="ico exercise"></i><span>Exercise</span></button>
-			 <button id="btnFF" type="button" class="choice__btn"><i class="ico ff"></i><span>FF</span></button>
-			 <button id="hint" type="button" class="choice__btn"><i class="ico hint"></i><span>Hint</span></button>			
+		 <button id="btnFruits" type="button" class="choice__btn"><i class="ico fruits"></i><span>Fruits</span></button>
+		 <button id="btnExercise" type="button" class="choice__btn"><i class="ico exercise"></i><span>Exercise</span></button>
+		 <button id="btnFF" type="button" class="choice__btn"><i class="ico ff"></i><span>FF</span></button>
+		 <!-- <button id="hint" type="button" class="choice__btn"><i class="ico hint"></i><span>Hint</span></button> -->			
 		</div>	
 	</footer>
 </div>

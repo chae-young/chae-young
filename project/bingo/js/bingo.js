@@ -1,3 +1,14 @@
+//하단 버튼 효과
+var FooterBtn = document.querySelectorAll('.choice__btn');
+FooterBtn.forEach(function(btn){
+	btn.addEventListener('mouseover',function(){
+		btn.classList.add('on');
+	})
+	btn.addEventListener('mouseleave',function(){
+		btn.classList.remove('on');
+	})
+})
+
 
 //주제
 var title ={
@@ -8,7 +19,7 @@ var title ={
 var hint ={
 	Fruits:['원숭이','핑크색 우유','쥬스','백설공주','영동','겨울간식','여름간식','알레르기','골든'],
 	Exercise:['월드컵','프로','라켓','서장훈','검은띠','링','100m','김연아','무한도전'],
-	FF:['맥도날드,버거킹,롯데리아','도미노','양념','햄버거 친구','심슨??','명량','편의점 대표 음식','김밥친구','서브웨이']
+	FF:['맥도날드,버거킹,롯데리아','도미노','양념','햄버거 친구','심슨??','명량','편의점 대표 음식','김밥 친구','서브웨이']
 }
 
 
@@ -28,7 +39,7 @@ form = document.getElementById('form');
 userInput = document.getElementById('userInput');
 inputBtn = document.getElementById('inputBtn');
 call = false;
-
+	
 
 	//테이블 만들기
 	for(var i = 0; i <= 2; i++){
@@ -78,145 +89,161 @@ call = false;
 	function textCheck(e){
 		e.preventDefault();
 			
-			if(call == false){
-				alert('주제 버튼을 클릭해주세요!');
+		if(call == false){
+			alert('주제 버튼을 클릭해주세요!');
 
-			}else if(call){
+		}else if(call){
 
-				//입력했을때 색칠	
-				function textHave(num){
-					if(newTitArr[num][newTitArr[num].indexOf(userInput.value)] == userInput.value){
-						tdArr[num][newTitArr[num].indexOf(userInput.value)].classList.add("on")
-					}
-					//입력한 단어 배열에 추가
-					if(inputArr.indexOf(userInput.value) == -1){
-						inputArr.push(userInput.value)
-					}
+			//입력했을때 색칠	
+			function textHave(num){
+				if(newTitArr[num][newTitArr[num].indexOf(userInput.value)] == userInput.value){
+					tdArr[num][newTitArr[num].indexOf(userInput.value)].classList.add("on")
 				}
-
-				if(newTitArr[0].indexOf(userInput.value) != -1){
-					console.log('0 중 에 입력되어있다');
-					textHave(0);
-				}else if(newTitArr[1].indexOf(userInput.value) != -1){
-					console.log('1 중 에 입력되어있다');			
-					textHave(1);
-				}else if(newTitArr[2].indexOf(userInput.value) != -1){
-					console.log('2 중 에 입력되어있다');			
-					textHave(2);			
+				//입력한 단어 배열에 추가
+				if(inputArr.indexOf(userInput.value) == -1){
+					inputArr.push(userInput.value)
 				}
-
-
-				//가로줄
-				if(
-					inputArr.includes(tdArr[0][0].textContent) &&
-					inputArr.includes(tdArr[0][1].textContent) &&
-					inputArr.includes(tdArr[0][2].textContent)
-					){
-						console.log('첫째 가로줄');
-						tdArr[0][0].classList.remove('on');
-						tdArr[0][1].classList.remove('on');
-						tdArr[0][2].classList.remove('on');
-						tdArr[0][0].classList.add('all');
-						tdArr[0][1].classList.add('all');
-						tdArr[0][2].classList.add('all');
-					}
-				if(
-					inputArr.includes(tdArr[1][0].textContent) &&
-					inputArr.includes(tdArr[1][1].textContent) &&
-					inputArr.includes(tdArr[1][2].textContent)
-					){
-						console.log('둘째 가로줄')
-						tdArr[1][0].classList.remove('on');
-						tdArr[1][1].classList.remove('on');
-						tdArr[1][2].classList.remove('on');
-						tdArr[1][0].classList.add('all');
-						tdArr[1][1].classList.add('all');
-						tdArr[1][2].classList.add('all');
-					}
-				if(
-					inputArr.includes(tdArr[2][0].textContent) &&
-					inputArr.includes(tdArr[2][1].textContent) &&
-					inputArr.includes(tdArr[2][2].textContent)
-					){
-						console.log('셋째 가로줄')
-						tdArr[2][0].classList.remove('on');
-						tdArr[2][1].classList.remove('on');
-						tdArr[2][2].classList.remove('on');
-						tdArr[2][0].classList.add('all');
-						tdArr[2][1].classList.add('all');
-						tdArr[2][2].classList.add('all');
-					}
-				//세로줄
-				if(
-					inputArr.includes(tdArr[0][0].textContent) &&
-					inputArr.includes(tdArr[1][0].textContent) &&
-					inputArr.includes(tdArr[2][0].textContent)
-					){
-						console.log('첫째 세로줄')
-						tdArr[0][0].classList.remove('on');
-						tdArr[1][0].classList.remove('on');
-						tdArr[2][0].classList.remove('on');
-						tdArr[0][0].classList.add('all');
-						tdArr[1][0].classList.add('all');
-						tdArr[2][0].classList.add('all');
-					}
-				if(
-					inputArr.includes(tdArr[0][1].textContent) &&
-					inputArr.includes(tdArr[1][1].textContent) &&
-					inputArr.includes(tdArr[2][1].textContent)
-					){
-						console.log('둘째 세로줄')
-						tdArr[0][1].classList.remove('on');
-						tdArr[1][1].classList.remove('on');
-						tdArr[2][1].classList.remove('on');
-						tdArr[0][1].classList.add('all');
-						tdArr[1][1].classList.add('all');
-						tdArr[2][1].classList.add('all');
-					}
-				if(
-					inputArr.includes(tdArr[0][2].textContent) &&
-					inputArr.includes(tdArr[1][2].textContent) &&
-					inputArr.includes(tdArr[2][2].textContent)
-					){
-						console.log('셋째 세로줄')
-						tdArr[0][2].classList.remove('on');
-						tdArr[1][2].classList.remove('on');
-						tdArr[2][2].classList.remove('on');
-						tdArr[0][2].classList.add('all');
-						tdArr[1][2].classList.add('all');
-						tdArr[2][2].classList.add('all');
-					}
-				//왼쪽위대각선
-				if(
-					inputArr.includes(tdArr[0][0].textContent) &&
-					inputArr.includes(tdArr[1][1].textContent) &&
-					inputArr.includes(tdArr[2][2].textContent)
-					){
-						console.log('왼쪽위 대각선')
-						tdArr[0][0].classList.remove('on');
-						tdArr[1][1].classList.remove('on');
-						tdArr[2][2].classList.remove('on');
-						tdArr[0][0].classList.add('all');
-						tdArr[1][1].classList.add('all');
-						tdArr[2][2].classList.add('all');
-					}
-				//오른쪽위대각선
-				if(
-					inputArr.includes(tdArr[0][2].textContent) &&
-					inputArr.includes(tdArr[1][1].textContent) &&
-					inputArr.includes(tdArr[2][0].textContent)
-					){
-						console.log('오른쪽위 대각선')
-						tdArr[0][2].classList.remove('on');
-						tdArr[1][1].classList.remove('on');
-						tdArr[2][0].classList.remove('on');
-						tdArr[0][2].classList.add('all');
-						tdArr[1][1].classList.add('all');
-						tdArr[2][0].classList.add('all');
-					}
-				userInput.value = '';				
 			}
-		}					
+
+			if(newTitArr[0].indexOf(userInput.value) != -1){
+				console.log('0 중 에 입력되어있다');
+				textHave(0);
+			}else if(newTitArr[1].indexOf(userInput.value) != -1){
+				console.log('1 중 에 입력되어있다');			
+				textHave(1);
+			}else if(newTitArr[2].indexOf(userInput.value) != -1){
+				console.log('2 중 에 입력되어있다');			
+				textHave(2);			
+			}
+
+			//빙고 갯수
+			var BingoNum = 0;
+			function numInfo(){
+				var numBox = document.getElementById('num');
+				BingoNum = BingoNum + 1;
+				numBox.innerHTML = BingoNum;
+				
+			}
+
+			//가로줄
+			if(
+				inputArr.includes(tdArr[0][0].textContent) &&
+				inputArr.includes(tdArr[0][1].textContent) &&
+				inputArr.includes(tdArr[0][2].textContent)
+				){
+					console.log('첫째 가로줄');
+					tdArr[0][0].classList.remove('on');
+					tdArr[0][1].classList.remove('on');
+					tdArr[0][2].classList.remove('on');
+					tdArr[0][0].classList.add('all');
+					tdArr[0][1].classList.add('all');
+					tdArr[0][2].classList.add('all');
+					numInfo();
+				}
+			if(
+				inputArr.includes(tdArr[1][0].textContent) &&
+				inputArr.includes(tdArr[1][1].textContent) &&
+				inputArr.includes(tdArr[1][2].textContent)
+				){
+					console.log('둘째 가로줄')
+					tdArr[1][0].classList.remove('on');
+					tdArr[1][1].classList.remove('on');
+					tdArr[1][2].classList.remove('on');
+					tdArr[1][0].classList.add('all');
+					tdArr[1][1].classList.add('all');
+					tdArr[1][2].classList.add('all');
+					numInfo();
+				}
+			if(
+				inputArr.includes(tdArr[2][0].textContent) &&
+				inputArr.includes(tdArr[2][1].textContent) &&
+				inputArr.includes(tdArr[2][2].textContent)
+				){
+					console.log('셋째 가로줄')
+					tdArr[2][0].classList.remove('on');
+					tdArr[2][1].classList.remove('on');
+					tdArr[2][2].classList.remove('on');
+					tdArr[2][0].classList.add('all');
+					tdArr[2][1].classList.add('all');
+					tdArr[2][2].classList.add('all');
+					numInfo();
+				}
+			//세로줄
+			if(
+				inputArr.includes(tdArr[0][0].textContent) &&
+				inputArr.includes(tdArr[1][0].textContent) &&
+				inputArr.includes(tdArr[2][0].textContent)
+				){
+					console.log('첫째 세로줄')
+					tdArr[0][0].classList.remove('on');
+					tdArr[1][0].classList.remove('on');
+					tdArr[2][0].classList.remove('on');
+					tdArr[0][0].classList.add('all');
+					tdArr[1][0].classList.add('all');
+					tdArr[2][0].classList.add('all');
+					numInfo();
+				}
+			if(
+				inputArr.includes(tdArr[0][1].textContent) &&
+				inputArr.includes(tdArr[1][1].textContent) &&
+				inputArr.includes(tdArr[2][1].textContent)
+				){
+					console.log('둘째 세로줄')
+					tdArr[0][1].classList.remove('on');
+					tdArr[1][1].classList.remove('on');
+					tdArr[2][1].classList.remove('on');
+					tdArr[0][1].classList.add('all');
+					tdArr[1][1].classList.add('all');
+					tdArr[2][1].classList.add('all');
+					numInfo();
+				}
+			if(
+				inputArr.includes(tdArr[0][2].textContent) &&
+				inputArr.includes(tdArr[1][2].textContent) &&
+				inputArr.includes(tdArr[2][2].textContent)
+				){
+					console.log('셋째 세로줄')
+					tdArr[0][2].classList.remove('on');
+					tdArr[1][2].classList.remove('on');
+					tdArr[2][2].classList.remove('on');
+					tdArr[0][2].classList.add('all');
+					tdArr[1][2].classList.add('all');
+					tdArr[2][2].classList.add('all');
+					numInfo();
+				}
+			//왼쪽위대각선
+			if(
+				inputArr.includes(tdArr[0][0].textContent) &&
+				inputArr.includes(tdArr[1][1].textContent) &&
+				inputArr.includes(tdArr[2][2].textContent)
+				){
+					console.log('왼쪽위 대각선')
+					tdArr[0][0].classList.remove('on');
+					tdArr[1][1].classList.remove('on');
+					tdArr[2][2].classList.remove('on');
+					tdArr[0][0].classList.add('all');
+					tdArr[1][1].classList.add('all');
+					tdArr[2][2].classList.add('all');
+					numInfo();
+				}
+			//오른쪽위대각선
+			if(
+				inputArr.includes(tdArr[0][2].textContent) &&
+				inputArr.includes(tdArr[1][1].textContent) &&
+				inputArr.includes(tdArr[2][0].textContent)
+				){
+					console.log('오른쪽위 대각선')
+					tdArr[0][2].classList.remove('on');
+					tdArr[1][1].classList.remove('on');
+					tdArr[2][0].classList.remove('on');
+					tdArr[0][2].classList.add('all');
+					tdArr[1][1].classList.add('all');
+					tdArr[2][0].classList.add('all');
+					numInfo();
+				}
+			userInput.value = '';				
+		}
+	}					
 
 
 
