@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+
+<style>
+	.rps-img__box{
+		width: 400px;
+		height: 400px;
+	}
+	.rps-img__box img{
+		width: 100%;
+	}
+</style>
+
+<body>
+	<div class="round__box">
+		<input type="radio" name="round" id="round1" value="1"><label for="round1">1</label>
+		<input type="radio" name="round" id="round2" value="3"><label for="round2">3</label>
+		<input type="radio" name="round" id="round3" value="6"><label for="round3">6</label>
+		<input type="radio" name="round" id="round4" value="9"><label for="round4">9</label>
+	</div>
+
+
+	<span id="round"></span>
+	<div id="computer" class="rps-img__box">
+	
+	</div>
+	<div id="me" class="rps-img__box">
+	
+	</div>
+	<div>
+		<button id="rock" class="btn" name="rock">바위</button>
+		<button id="scissor" class="btn" name="scissors">가위</button>
+		<button id="paper" class="btn" name="paper">보</button>
+	</div>
+	<div class="now-score">
+		<span id="computerNowScore">0</span>
+		<span id="myNowScore">0</span>
+	</div>
+	<div id="result"></div>
+</body>
+
+
+<script src="js/rack_paper_scissors.js"></script>
+</html>
