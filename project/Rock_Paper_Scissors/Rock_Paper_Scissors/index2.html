@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>가위바위보 게임!</title>
+	  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	  <meta charset="UTF-8">
+	  <meta name="Generator" content="EditPlus®">
+	  <meta name="Author" content="">
+	  <meta name="Keywords" content="">
+	  <meta name="Description" content="">
+	  <link rel="stylesheet" href="css/common.css">
+	  <link rel="stylesheet" href="css/basic.css">
+	  <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+</head>
+
+<style>
+	.rps-img__box{
+		width: 80px;
+		height: 80px;
+	}
+	.rps-img__box img{
+		width: 100%;
+	}
+</style>
+
+<body>
+	<section class="intro fix">
+		<div class="title">
+			<h1>Rock,Paper,scissors</h1>
+			<!-- <p>READY START!</p>	 -->	
+		</div>
+	</section>
+	<section class="radio-area fix">
+		<ul class="round__box con">
+			<li>
+				<input type="radio" name="round" id="round1" value="1"><label for="round1">1판</label>			
+			</li>
+			<li>
+				<input type="radio" name="round" id="round2" value="3"><label for="round2">3판</label>
+			</li>
+			<li>
+				<input type="radio" name="round" id="round3" value="6"><label for="round3">6판</label>
+			</li>
+			<li>
+				<input type="radio" name="round" id="round4" value="9"><label for="round4">9판</label>
+			</li>
+		</ul>			
+	</section>
+
+
+	<section class="rps-area fix">
+		<div class="rps__box con">
+			<!--컴퓨터-->
+			<div id="computer" class="rps-img__box">
+			
+			</div>
+			<!--나-->
+			<div id="me" class="rps-img__box">
+
+			</div>
+			<div>
+				<button id="rock" class="btn" name="rock">바위</button>
+				<button id="scissor" class="btn" name="paper">보</button>
+				<button id="paper" class="btn" name="scissors">가위</button>
+			</div>
+			<div class="now-score">
+				<span id="computerNowScore">0</span>
+				<span id="myNowScore">0</span>
+			</div>
+			<div id="result"></div>	
+			<button type="button" id="resetBtn">다시 처음으로</button>		
+		</div>
+	</section>
+</body>
+
+
+<script src="js/rock_paper_scissors2.js"></script>
+</html>
