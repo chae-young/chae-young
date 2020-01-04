@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>가위바위보 게임!</title>
+	  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	  <meta charset="UTF-8">
+	  <meta name="Generator" content="EditPlus®">
+	  <meta name="Author" content="">
+	  <meta name="Keywords" content="">
+	  <meta name="Description" content="">
+	  <link rel="stylesheet" href="css/common.css">
+	  <link rel="stylesheet" href="css/basic.css">
+	  <link href="https://fonts.googleapis.com/css?family=Kanit:900&display=swap" rel="stylesheet">
+	  <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+</head>
+
+<body>
+	<section class="intro fix">
+		<div class="title">
+			<h1>Rock,Paper,scissors</h1>
+			<!-- <p>READY START!</p>	 -->	
+		</div>
+	</section>
+	<section class="radio-area fix">
+		<div class="round__box con">
+			<h2>게임 라운드를 <span>선택</span>해주세요.</h2>
+			<ul>
+				<li>
+					<input type="radio" name="round" id="round1" value="1"><label for="round1">1판</label>			
+				</li>
+				<li>
+					<input type="radio" name="round" id="round2" value="3"><label for="round2">3판</label>
+				</li>
+				<li>
+					<input type="radio" name="round" id="round3" value="6"><label for="round3">6판</label>
+				</li>
+				<li>
+					<input type="radio" name="round" id="round4" value="9"><label for="round4">9판</label>
+				</li>
+			</ul>
+		</div>			
+	</section>
+
+
+	<section class="rps-area fix">
+		<div class="rps__box con">
+			<div class="rps--top">	
+				<h2>Let's fight the computer</h2>
+				<div class="vs">
+					<p>COMPUTER <span id="computerNowScore">0</span></p>
+					<p>ME <span id="myNowScore">0</span></p>
+				</div>
+				<div id="result"></div>
+			</div>
+
+			<div class="rps-img">
+				<!--컴퓨터-->
+				<div id="computer" class="rps-img__box">
+				
+				</div>
+				<!--나-->
+				<div id="me" class="rps-img__box">
+
+				</div>
+			</div>
+
+			<div class="rps--bottom on">	
+				<div class="btn-box">				
+					<button id="paper" class="btn" name="scissors">가위</button>
+					<button id="rock" class="btn" name="rock">바위</button>
+					<button id="scissor" class="btn" name="paper">보</button>
+				</div>
+					<button type="button" id="resetBtn">다시 처음으로</button>	
+			</div>
+		</div>
+	</section>
+</body>
+
+
+<script src="js/rock_paper_scissors2.js"></script>
+</html>
