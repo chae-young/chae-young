@@ -1,0 +1,63 @@
+h1{
+	margin: 20px 0 0 0;
+	text-align: center;
+	font-size: 62px;
+}
+.lotto-ball {
+	display: flex;
+	justify-content:space-around;
+	width: 1200px;
+	margin: 80px auto 0;
+}
+.lotto-ball li{
+	position: relative;
+	width: 180px;
+	height: 180px;
+	overflow: hidden;
+	border-radius:100%;
+	border: 1px solid rgb(0,0,0);
+}
+.lotto-ball .num {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  font-size: 56px;
+}
+.lotto-ball .num:not(.set) {
+  top: 30%;
+  animation: spin .7s ease-in-out infinite;
+}
+
+.btn-input{
+	display: block;
+	width: 180px;
+	height: 60px;
+	line-height: 60px;
+	margin: 120px auto 0;
+	text-align: center;
+	border-radius:25px;
+	font-size: 16px;
+	font-weight: 700;
+	cursor: pointer;
+	background: rgb(246,197,72);
+}
+
+@keyframes spin{
+  0%{
+    top:-150%;
+  }
+  100%{
+    top:150%;    
+  }
+}
+
+@-webkit-keyframes spin{
+  0%{
+    top:-150%;
+  }
+  100%{
+    top:150%;    
+  }
+}

@@ -1,0 +1,170 @@
+
+body{
+	background: rgb(51,130,78);
+	color: rgb(0,0,0);
+	font-family:'Noto Sans Korean';
+	font-size: 12px;
+}
+
+::-moz-selection {
+	background: #b3d4fc;
+	text-shadow: none;
+}
+
+::selection {
+	background: #b3d4fc;
+	text-shadow: none;
+}
+
+img {
+	vertical-align: middle;
+	border: 0;
+}
+
+ol, ul, li, dl, dt, dd {
+	list-style: none;
+}
+
+h1, h2, h3,h4,h5 {
+	padding: 0;
+	margin: 0;
+}
+
+body, div, dl, dt, dd, ul, li, ol, p, figure {
+	padding: 0;
+	margin: 0;
+}
+
+
+.tal{
+	text-align: left !important;
+}
+
+
+:root,
+html {
+	font-size: 10px;
+}
+
+
+button, input[type='submit'], input[type='reset'], input[type='button'] {
+	padding: 0;
+	border: 0;
+	background: none;
+	line-height: normal;
+	font: inherit;
+	color: inherit;
+	overflow: visible;
+	-webkit-box-sizing: content-box;
+	        box-sizing: content-box;
+}
+
+button {
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+	outline:0;
+}
+
+input[type='submit'], input[type='reset'], input[type='button'] {
+	-webkit-appearance: button;
+	   -moz-appearance: button;
+	        appearance: button;
+}
+input[type='radio']{
+	position: absolute;
+	width: 0;
+	height: 0;
+	margin: 0;
+}
+
+a {
+	color: inherit;
+}
+
+a:link {
+	text-decoration: none;
+}
+
+.hidden {
+	display: none;
+}
+
+.acc-hidden {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	line-height: 0;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	visibility: hidden;
+	font-size: 0;
+}
+
+fieldset {
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+
+input[type='text'], input[type='tel'], input[type='password'], textarea {
+	-webkit-appearance: none;
+	border-radius: 0;
+	margin: 0;
+	padding: 0;
+	line-height: normal;
+}
+
+button {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	     appearance: none;
+}
+
+input[type='number'] {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	     appearance: none;
+	border-radius: 0;
+}
+
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.ui-loader {
+	display: none;
+}
+
+select {
+	border-radius: none;
+	-webkit-border-radius: 0;
+}
+
+.cb {
+	clear: both;
+}
+
+a[href^=tel] {
+	color: inherit;
+}
+
+input[type="password"]{font-family: sans-serif;}
+.cf:after {
+    display: block;
+    clear: both;
+    content: '';
+}
