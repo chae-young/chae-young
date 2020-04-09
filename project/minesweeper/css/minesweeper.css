@@ -1,0 +1,235 @@
+@charset 'utf-8';
+@import url(basic.css);
+@import url(https://cdn.jsdelivr.net/npm/typeface-nanum-square@1.1.0/nanumsquare.css);
+
+@keyframes blink {
+    0% {
+      opacity: .2;
+    }
+    20% {
+      opacity: 1;
+    }
+    100% {
+      opacity: .2;
+    }
+}
+@-webkit-keyframes blink {
+    0% {
+      opacity: .2;
+    }
+    20% {
+      opacity: 1;
+    }
+    100% {
+      opacity: .2;
+    }
+}
+
+@keyframes lol {
+  0% {
+    opacity: 0;
+    transform: translateX(-300px);
+  }
+  33% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  66% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(300px);
+  }
+}
+
+@-webkit-keyframes lol {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-300px);
+  }
+  33% {
+    opacity: 1;
+    -webkit-transform: translateX(0px);
+  }
+  66% {
+    opacity: 1;
+    -webkit-transform: translateX(0px);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateX(300px);
+  }
+}
+
+
+@keyframes lol2 {
+  0% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  33% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  66% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(300px);
+  }
+}
+
+@-webkit-keyframes lol2 {
+  0% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  33% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  66% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateX(300px);
+  }
+}
+#wrap{
+	display:flex;
+	justify-content:center;
+	flex-direction: column;
+	align-items: center;
+	height: 100vh;
+}
+
+table{
+	border-collapse: collapse;
+}
+td{
+	position: relative;
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	border-width: 3px;
+	border-style: solid;
+	border-color: rgb(255,255,255) rgba(38, 35, 27, 0.44) rgba(31, 29, 24, 0.39) rgb(255,255,255);
+	font-size: 20px;
+	background: rgb(251,211,80);
+	color: rgb(255,255,255);
+	box-sizing: border-box;
+}
+td img{width: 18px;}
+td.opend {
+	border: 1px solid #b8b8b8;
+}
+td.flag {
+	background: red;
+}
+td.question {
+	background: orange;
+}
+
+.loading{
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: rgb(255,255,255);
+   -webkit-animation: lol2 5s ease-in-out;
+    animation: lol2 5s ease-in-out;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+.loading .inner{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform:translate(-50%,-50%);
+	text-align: center;
+}
+.loading img{
+	width: 330px;
+	margin-bottom: 40px;
+   -webkit-animation: lol 5s ease-in-out;
+    animation: lol 5s ease-in-out;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+.loading p{
+	opacity: 0;
+	font-size: 24px;
+    -webkit-animation: lol 5s 200ms ease-in-out;
+    animation: lol 5s 200ms ease-in-out;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+.loading p span {
+	font-size: 38px;
+    animation:blink 1.4s infinite;
+    -webkit-animation:blink 1.4s infinite;
+    animation-fill-mode: both;
+    -webkit-animation-fill-mode: both;
+}
+
+.loading p span:nth-child(2) {
+    animation-delay: .2s;
+    -webkit-animation-delay: .2s;
+}
+
+.loading p span:nth-child(3) {
+    animation-delay: .4s;
+   -webkit-animation-delay: .4s;
+}
+
+.loading .copy{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	font-size: 10px;
+}
+.input-box{
+	display:flex;
+}
+.input-box input,
+.input-box button{
+	width: 80px;
+	height: 40px;
+	line-height: 40px;
+	font-size: 14px;
+	box-sizing: border-box;
+}
+.input-box input{
+	width: 200px;
+	padding-left: 10px;
+	border: 2px solid rgb(153, 153, 153);
+}
+.input-box input + input{
+	margin-left: 10px;
+}
+.input-box button{
+	width: 100px;
+	margin-left: 10px;
+	background: rgb(255,157,0);
+	color: rgb(255,255,255);
+}
+
+#timer{
+	padding: 40px 0;
+	font-size: 46px;
+	font-weight: 700;
+}
+#result{
+	margin-top: 20px;
+	text-align: center;
+	font-size: 20px;
+}

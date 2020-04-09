@@ -3,46 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        table{
-            border-collapse: collapse;
-        }
-        td{
-            width: 20px;
-            height: 20px;
-            border: 1px solid #000;
-            background: rgb(116, 116, 116);
-            color: white;
-        }
-		td.opend {
-			background: white;
-			color: #000;
-		}
-		td.flag {
-			background: red;
-		}
-		td.question {
-			background: orange;
-		}
-    </style>
+    <title>★ 지.뢰.찾.기 ★</title>
+	<link rel="stylesheet" href="css/minesweeper.css">
 </head>
 <body>
 
-    <input id="hor" type="number" placeholder="가로" value="10">
-    <input id="ver" type="number" placeholder="세로" value="10">
-    <input id="mine" type="number" placeholder="지뢰" value="20">
-    <button id="exec">실행</button>
-    <table id="table">
-        <thead>
-            <!--tr>
-                <td><span id="timer"></span>초</td>
-            </tr-->
-        </thead>
-        <tbody>
-		</tbody>
-    </table>
-    <div id="result"></div>
+	<div id="wrap">
+		<div class="loading">
+			<div class="inner">		
+				<img src="images/bomb.png" alt="">
+				<p>지뢰를 심는 중 <span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></p>
+			</div>
+			<p class="copy">
+				Icons made by <a href="https://www.flaticon.com/<?=_('authors/')?>freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+			</p>
+		</div>
+
+		<div class="input-box">
+			<input id="hor" type="number" placeholder="가로 개수를 입력해주세요.">
+			<input id="ver" type="number" placeholder="세로 개수를 입력해주세요.">
+			<input id="mine" type="number" placeholder="지뢰 개수를 입력해주세요.">
+			<button id="exec">시작</button>
+		</div>
+
+		<div id="timer"></div>
+		
+		<div class="table-box">
+			<table id="table">
+				<thead>
+					<!--tr>
+						<td><span id="timer"></span>초</td>
+					</tr-->
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+			<div id="result"></div>
+		</div>
+	</div>
+	<a href=""></a>
 </body>
 <script src="js/newmine.js"></script>
+
 </html>
