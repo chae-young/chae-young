@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #screen {
+        width: 300px;
+        height: 200px;
+        text-align: center;
+    }
+
+    #screen.waiting {
+        background-color: aqua;
+    }
+
+    #screen.ready {
+        background-color: red;
+    }
+
+    #screen.now {
+        background-color: greenyellow;
+    }
+</style>
+
+<body>
+    <div id="screen" class="waiting">
+        클릭해서 시작하세요
+
+    </div>
+</body>
+<script>
+ 
+//비동기
+//예약어 <- 변수로 쓰지 못한다.
+
+var 스크린 = document.querySelector('#screen');
+
+var 상태 = {
+
+};
+var 시작시간;
+var 끝시간;
+var 기록 = [];
+var 타임아웃;
+
+//console.time(); console.timeEnd
+//performence.now() <- 정밀한 시간 측정할때 
+
+스크린.addEventListener('click',function(){
+//클릭하는 시간 기록
+
+
+//console.log((끝시간 - 시작시간) / 1000) //1000m 가 1초
+    if(스크린.classList.contains('waiting')){//현재 클래스 파악
+        스크린.classList.remove('waiting');
+        스크린.classList.add('ready');
+        스크린.textContent = '초록색이 되면 클릭하세요.';
+            타임아웃 = setTimeout(function(){
+            //현재시간 기록
+            시작시간 = new Date();
+            스크린.click();
+        },Math.floor(Math.random() * 1000) + 2000)//2000-3000 사이 랜덤한 시간에 클릭        
+    }else if(스크린.classList.contains('ready')){//현재 클래스 파악
+        if(!시작시간){//시작시간이 없으면 부정클릭
+            clearTimeout(타임아웃);
+            스크린.classList.remove('ready');
+            스크린.classList.add('waiting');
+            스크린.textContent = '너무 성급하시네요';            
+        }else{
+            스크린.classList.remove('ready');
+            스크린.classList.add('now');
+            스크린.textContent = '클릭하세요.';
+        }
+    }else if(스크린.classList.contains('now')){//현재 클래스 파악
+        끝시간 = new Date();//실행되는 순간에 변수를 기록
+        기록.push(끝시간 - 시작시간)
+        시작시간 = null; //초기화
+        끝시간 = null;
+        console.log(기록)
+        스크린.classList.remove('now');
+        스크린.classList.add('waiting');
+        스크린.textContent = '클릭해서 시작하세요.';
+    }
+});
+
+
+//호출스택(후입선출)
+/*
+실행하는게 중요
+실행할때마다 쌓임.
+
+함수는 자기 할일이 끝나면 사라진다.
+
+비동기는 호출되는 순간
+호출스택에 쌓였다가 할일이 다 끝나면 
+변수고 뭐고 다 날아간다.
+
+클릭할때마다 생성되는 것.
+
+
+-재귀함수일때
+계속찬다.
+호출스택은 제한적인데 계속차면 터진다.
+맥시멈콜스택이라는 에러가 뜸.
+
+비동기를 활용하자..
+settimeout
+스택이 찼다가 비워졌다가 로 호출스택이 터지는 현상을 막을수있다.
+
+} 가 기준으로 끝남
+
+*/
+</script>
+
+</html>
