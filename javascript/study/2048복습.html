@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    #table {
+        border-collapse: collapse;
+        user-select: none;
+    }
+    #table td{
+        border: 1px solid #000;
+        width: 150px;
+        height: 150px;
+        line-height: 150px;
+        font-size: 50px;
+        text-align: center;
+    }
+</style>
+<body>
+    <div id="table" class="table">
+
+    </div>
+    <div id="score"></div>
+</body>
+<script>
+
+var 테이블 = document.getElementById('table');
+var 데이터 = [];
+
+function 초기화(){
+    var fragment = document.createDocumentFragment(); //빈문서..?
+
+    [1,2,3,4].forEach(function(){
+        var 열데이터 = [];
+        데이터.push(열데이터);
+        var tr = document.createElement('tr');
+        [1,2,3,4].forEach(function(){ // 16 칸.
+            열데이터.push(0);
+            var td = document.createElement('td');
+            tr.appendChild(td);                
+        })
+        fragment.appendChild(tr)
+    })
+    테이블.appendChild(fragment)
+}
+
+//데이터 작업
+//랜덤으로 숫자생성 , 빈칸인곳만 랜덤을 생성해준다
+function 랜덤생성(){
+    var 빈칸 = [
+        //[0,0]
+        //[0,1]
+    ];
+    데이터.forEach(function(tr,i){
+        tr.forEach(function(td,j){
+            //console.log(td)
+            if(!td){//다 0으로 넣었으니 걸러주는작업
+                빈칸.push( [i,j] )
+            }
+        })
+    })
+    var 랜덤칸 = 빈칸[ Math.floor(Math.random() * 빈칸.length) ];
+    console.log(랜덤칸[0])
+    //데이터[][];
+}
+
+초기화()
+랜덤생성();
+
+
+</script>
