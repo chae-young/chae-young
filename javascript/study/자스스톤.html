@@ -10,6 +10,9 @@
             vertical-align: top;
             margin-right: 50px;    
         }
+        .turn{
+            border: 1px solid #000;
+        }
         #rival{
             vertical-align: bottom;
         }
@@ -71,7 +74,7 @@
 <body>
 <!--상대방--->
     <div id="rival">
-        <div id="rival-cost">코스트:<span>10</span></></div>
+        <div>코스트:<span id="rival-cost">10</span>/10</div>
         <div id="rival-hero">
             <!--div class="card">
                 <div class="card-name">적 영웅</div>
@@ -126,8 +129,9 @@
         </div-->        
     </div>
 <br>
+<button id="turn-btn">턴버튼</button>
 <!--나-->
-    <div id="my">
+    <div id="my" class="turn">
         <div id="my-cards" style='height:150px'>
             <!-- <div class="card">
                 <div class="card-cost">2</div>
@@ -152,7 +156,7 @@
                 <div class="card-hp">10</div>
             </div> -->
         </div>
-        <div id="my-cost">코스트:<span>10</span></></div>
+        <div">코스트:<span id="my-cost">10</span>/10</div>
     </div>
     <div id="my-deck">
         <div>덱</div>
@@ -193,5 +197,5 @@
     </div>
 </body>
 
-<script src="자스스톤.js"></script>
+<script src="js/자스스톤.js"></script>
 </html>
