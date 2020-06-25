@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+var 프로토타입 = {
+    회사업종:'it'
+}
+
+function 회사공장(name){
+    var 회사 = Object.create(프로토타입);
+    회사.name = name
+    console.log(회사)
+    //return 회사
+}
+
+console.log(회사공장('카카오'))
+
+</script>
+</html>

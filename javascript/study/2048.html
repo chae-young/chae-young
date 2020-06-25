@@ -5,118 +5,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-
 <style>
-    #table {
+    #table{
         border-collapse: collapse;
-        user-select: none;
     }
     #table td{
-        border: 1px solid #000;
+        border: 1px solid black;
         width: 150px;
         height: 150px;
         line-height: 150px;
-        font-size: 50px;
+        font-size: 80px;
+        font-weight: 700;
         text-align: center;
     }
 </style>
 <body>
-    <div id="table" class="table">
+    <table id="table">
 
-    </div>
+    </table>
     <div id="score"></div>
 </body>
+<style>
+
+
+</style>
 <script>
 
-    var 테이블 = document.getElementById('table');
-    var 데이터 = [];
+var 테이블 = document.getElementById('table');
+var 데이터 = [];
 
-    function 초기화(){
-        var fragment = document.createDocumentFragment(); //빈문서..?
+function 초기화(){
+    var fragment = document.createDocumentFragment();
+
+    [1,2,3,4].forEach(function(){
+        var 열데이터 = [];
+        데이터.push(열데이터);
+
+        var tr= document.createElement('tr');
         [1,2,3,4].forEach(function(){
-            var 열데이터 = [];
-            데이터.push(열데이터);
-            var tr = document.createElement('tr');
-            [1,2,3,4].forEach(function(){
-                열데이터.push(0);
-                var td = document.createElement('td');
-                tr.appendChild(td);
-            })
-            fragment.appendChild(tr);
+            열데이터.push(0);
+            var td = document.createElement('td');
+            tr.appendChild(td);
         })
-        테이블.appendChild(fragment)
-    }
-
-    //빈칸일때 생성해야함 주변이 빈칸인지..
-    function 랜덤생성(){
-        var 빈칸배열 = [];
-        데이터.forEach(function(열데이터,i){
-            열데이터.forEach(function(행데이터,j){
-                if(!행데이터){
-                    빈칸배열.push([i,j])
-                }
-            })
-        })                          
-        var 랜덤칸 = 빈칸배열[ Math.floor(Math.random() * 빈칸배열.length) ];
-        데이터[ 랜덤칸[0] ][ 랜덤칸[1] ] = 2;
-        console.log()
-        그리기(); //화면에 표시하는 함수
-    }
-    function 그리기(){//데이터를 그려서 화면에 뿌려주는..?
-        데이터.forEach(function(열데이터,i){
-            열데이터.forEach(function(행데이터,j){
-                if(행데이터>0){
-                    테이블.children[i].children[j].textContent = 행데이터;
-                }else{
-                    테이블.children[i].children[j].textContent = '';
-                }
-            })
-        })
-    }
-    초기화();
-    랜덤생성();
-    그리기();
-
-    //스와이프
-    var 드래그시작 = false;
-    var 드래그중 = false;//클릭했을때 바로뜨는거 막기
-    var 시작좌표;
-    var 끝좌표;
-
-    window.addEventListener('mousedown',function(이벤트){//누를때
-       // console.log('마우스다운',이벤트)
-        드래그시작 = true;
-        시작좌표 = [이벤트.clientX,이벤트.clientY]; //저장
+        fragment.appendChild(tr);
     })
-    window.addEventListener('mousemove',function(이벤트){//움직일때
-        if(드래그시작){
-            드래그중 = true;
-            //console.log('마우스무브',이벤트)
-        }
-    })
-    window.addEventListener('mouseup',function(이벤트){//땔데
-        //console.log('마우스업',이벤트)
-        끝좌표 = [이벤트.clientX,이벤트.clientY]; //저장
-        if(드래그중){
-            var 방향;
-            var x차이 = 끝좌표[0] - 시작좌표[0];
-            var y차이 = 끝좌표[1] - 시작좌표[1];
-    
-            if(x차이 < 0 && Math.abs(x차이) / Math.abs(y차이) > 1){
-                방향 = '왼쪽'
-            }else if(x차이 > 0 && Math.abs(x차이) / Math.abs(y차이) > 1){    
-                방향 = '오른쪽'
-            }else if(y차이 < 0 && Math.abs(x차이) / Math.abs(y차이) < 1){
-                방향 = '위'
-            }else if(y차이 > 0 && Math.abs(x차이) / Math.abs(y차이) < 1){
-                방향 = '아래'
+    테이블.appendChild(fragment);
+}
+
+function 랜덤생성(){
+   //빈칸일때 넣을꺼에요 숫자를!! 16칸에서 빈칸을 검사해주는 작업.
+   var 빈칸배열 = [];
+
+    데이터.forEach(function(열데이터,i){
+        열데이터.forEach(function(행데이터,j){
+            if(!행데이터){//0일때 트루(0인거만 고르는건데..false > true 로 변하는거죵)
+                빈칸배열.push( [i,j] )
             }
-            console.log(방향)
-        }
-        드래그시작 = false;    
-        드래그중 = false;    
+                
+        })
+    })    
+    var 랜덤칸 = 빈칸배열[ Math.floor(Math.random() * 빈칸배열.length) ];
+    데이터[랜덤칸[0]][랜덤칸[1]] = 2;//데이터에 놓고
+
+    그리기();//<-화면에 표시하는 함수
+}
+
+//데이터를 받아서 화면에 표시
+function 그리기(){
+    데이터.forEach(function(열데이터,i){
+        열데이터.forEach(function(행데이터,j){
+
+            if(행데이터 > 0){//0없애기
+                테이블.children[i].children[j].textContent = 행데이터;
+            }else{
+                테이블.children[i].children[j].textContent = '';
+            }
+        })
+    })
+}
+초기화();
+랜덤생성();
+그리기();
 
 
-    })        
+var 드래그시작 = false;
+var 시작좌표;
+var 끝좌표;
+//스와이프
+/*
+스크린x:모니터기준
+페이지x:스크롤포함 페이지
+클라이언트x:브라우저 화면 기준
+오프셋x:이벤트타겟기준
+*/
+window.addEventListener('mousedown',function(이벤트){//마우스 누를때
+    console.log('마우스다운',이벤트)
+    드래그시작 = true;
+    시작좌표 = [이벤트.clientX,이벤트.clientY]; //좌표저장
+})
+window.addEventListener('mousemove',function(이벤트){//마우스 움직임
+    if(드래그시작){
+        console.log('마우스무브',이벤트)
+    };
+})
+window.addEventListener('mouseup',function(이벤트){//마우스 뗄때
+    console.log('마우스업',이벤트)
+    드래그시작 = false;
+    끝좌표 = [이벤트.clientX,이벤트.clientY]; //좌표저장
+
+})
 </script>
 </html>
