@@ -8,6 +8,7 @@
 <style>
     #table{
         border-collapse: collapse;
+        user-select: none;
     }
     #table td{
         border: 1px solid black;
@@ -40,7 +41,6 @@ function 초기화(){
     [1,2,3,4].forEach(function(){
         var 열데이터 = [];
         데이터.push(열데이터);
-
         var tr= document.createElement('tr');
         [1,2,3,4].forEach(function(){
             열데이터.push(0);
@@ -89,6 +89,7 @@ function 그리기(){
 
 
 var 드래그시작 = false;
+var 드래그중 = false;
 var 시작좌표;
 var 끝좌표;
 //스와이프
@@ -99,19 +100,92 @@ var 끝좌표;
 오프셋x:이벤트타겟기준
 */
 window.addEventListener('mousedown',function(이벤트){//마우스 누를때
-    console.log('마우스다운',이벤트)
+    //console.log('마우스다운',이벤트)
     드래그시작 = true;
     시작좌표 = [이벤트.clientX,이벤트.clientY]; //좌표저장
 })
 window.addEventListener('mousemove',function(이벤트){//마우스 움직임
     if(드래그시작){
-        console.log('마우스무브',이벤트)
+        //console.log('마우스무브',이벤트)
+        드래그중 = true;
     };
 })
 window.addEventListener('mouseup',function(이벤트){//마우스 뗄때
-    console.log('마우스업',이벤트)
-    드래그시작 = false;
+    //console.log('마우스업',이벤트)
     끝좌표 = [이벤트.clientX,이벤트.clientY]; //좌표저장
+
+    if(드래그중){
+        var 방향;
+        var x차이 = 끝좌표[0] - 시작좌표[0];
+        var y차이 = 끝좌표[1] - 시작좌표[1];
+
+        if(x차이 < 0 && Math.abs(x차이) / Math.abs(y차이) > 1){
+            방향 = '왼쪽';
+        }else if(x차이 > 0 && Math.abs(x차이) / Math.abs(y차이) > 1){
+            방향 = '오른쪽';
+        }else if(y차이 > 0 && Math.abs(x차이) / Math.abs(y차이) < 1){
+            방향 = '아래';
+        }else if(y차이 < 0 && Math.abs(x차이) / Math.abs(y차이) < 1){
+            방향 = '위';
+        }
+    }
+    드래그시작 = false;
+    드래그중 = false;
+
+    switch (방향){
+        case '왼쪽':
+        break;
+        case '오른쪽':
+        break;
+        case '위':
+        var 새데이터 = [
+            [],
+            [],
+            [],
+            []
+        ];
+        데이터.forEach(function(열데이터,i){
+            열데이터.forEach(function(행데이터,j){//행데이터의 j는 바로 행데이의 인덱스죠
+                if(행데이터){//행데이터가 숫자면!!! 트루라면??!!! *행데이터는 칸안에 숫자다..기억해라..자꾸까먹어헷갈려~~
+                    새데이터[j].push(행데이터);//새데이터를 돌아가며 행데이터를 넣는다는거죠 `
+                }
+                
+            })
+        });   
+        //console.log(새데이터)
+        [1,2,3,4].forEach(function(행데이터,i){
+            [1,2,3,4].forEach(function(열데이터,j){
+                console.log(데이터[j][i]   )
+               데이터[j][i] = 새데이터[i][j] || 0;
+            })
+        })     
+        break;
+        case '아래':
+        var 새데이터 = [
+            [],
+            [],
+            [],
+            []
+        ];
+        데이터.forEach(function(열데이터,i){
+            열데이터.forEach(function(행데이터,j){//행데이터의 j는 바로 행데이의 인덱스죠
+                if(행데이터){//행데이터가 숫자면!!! 트루라면??!!! *행데이터는 칸안에 숫자다..기억해라..자꾸까먹어헷갈려~~
+                    새데이터[j].unshift(행데이터);//새데이터를 돌아가며 행데이터를 넣는다는거죠 `
+                }
+                
+            })
+        });   
+        //console.log(새데이터)
+        [1,2,3,4].forEach(function(행데이터,i){
+            [1,2,3,4].forEach(function(열데이터,j){
+                console.log(데이터[j][i]   )
+               데이터[3 - j][i] = 새데이터[i][j] || 0; // 아래서부터라서 3
+            })
+        })                 
+        break;
+    }
+    그리기()
+    랜덤생성()
 
 })
 </script>
