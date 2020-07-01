@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+    var kim = {
+        name:'kim',
+        first:10,
+        second:20,
+        sum:function(){
+            return this.first + this.second;
+        }
+    }
+
+    var lee = {
+        name:'kim',
+        first:10,
+        second:10,
+        sum:function(){
+            return this.first + this.second;
+        }
+    }    
+
+
+//이런형식의 객체를 찍어내는 공장을 만듬.
+//객체를 양산하기.
+//공장을 만들자. 
+
+function Person(){
+    this.name='kim',
+    this.first=10,
+    this.second=20,
+    this.sum=function(){
+        return this.first + this.second;
+    }  
+}
+console.log(Person())//그냥 불러오면 리턴안됨
+console.log(new Person()) //new를 붙이면 생성자함수가 된다.
+
+var kim = new Person();
+var lee = new Person();
+
+//kim lee 내부적으로 같은 구조를 가지고 있다.
+/*
+
+생성자 함수를 쓰면
+new를 사용함으로써 실행할때마다 객체가 양산된다.
+안에 내용을 바꾸면 
+생성자 함수를 쓰는 모든 객체가 한번에 바뀐다!!!!
+
+*/
+
+
+</script>
+</html>

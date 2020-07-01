@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+/*this*/
+//함수에서 자기 자신을 가르킨다 .. !!!
+//굉장히 중요하다!!!!
+//
+/*
+this 를 써야하는 이유.
+1.    sum:function(f,s){
+        return f+s;
+    }
+위와같은 식이면 인자값을 계속 호출해줘야함.
+2.    sum:function(f,s){
+        return kim.first + kim.second;
+    }
+위와같은 식이면 객체의 변수가 바뀐다면?? 실행하지 않는다.
+어떤 이름을 갖게될지 논리적이지 않는다.
+
+객체에 함수가 있으면
+그 메소드가 자신이 속해있는 객체를 가르키는 특수한 키워드를 만들기로 약속한다.
+한국말로 나는 저는 !!! 이런것처럼 
+그것이 바로 this 다
+this는 자신히 속한 메소드의 메소드가 속한 객체를 가르키도록 약속된 특수한 예약어다..
+
+*/
+
+var kim = {
+    name : 'kim',
+    first : 10,
+    second : 20,
+    sum:function(f,s){
+        return this.first+this.second; //<-함수에서 참조됨.
+    }
+}
+
+console.log( kim.sum(kim.first,kim.second) )
+
+
+</script>
+</html>

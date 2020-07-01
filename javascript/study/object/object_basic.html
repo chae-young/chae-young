@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*객체의 기본*/
+    //조직의 멤버를 목록화 시키고 싶다.
+    var memberArray = ['egoing','grf','lec'];
+    
+    //객체는 이름이 있는 값을 정리할때 사용한다.
+    //각각의 데이터를 설명하는 정보가 필요
+    var memeberobject = {
+        manger:'egoing',
+        dv:'grf',
+        ds:'lec'
+    }
+    /*
+    memeberobject.manger = 'cy'//수정
+    delete memeberobject.manger //삭제
+    */
+
+    //읽기
+    //console.log(memeberobject['ds']) > 객체는 배열로도 접근가능
+    //수정
+    //console.log(memeberobject)
+    //삭제
+    //console.log(memeberobject)
+    
+    
+
+    /*객체와 반복문*/
+    //in 앞에는 객체가 반복되면서 키네임값이 주입될 변수가온다.
+    //원소의 값을 불러올때는 배열처럼 괄호를 써준다. name이 변수가 된것이니까
+    console.group('object loop')
+    for(var name in memeberobject){
+        console.log(name,memeberobject[name])
+    }
+    console.groupEnd('object loop')
+
+
+    /*객체는 언제쓰나요 ???
+    파이...? 애플파이??
+    중요한것은 자바스크립트만든사람이 쉽게 개발하라고 수학적인것을 제공했다.
+    수학적인거 쓰라고 정리한것..객체처럼
+    자바스크립트는 객체지향프로그래핑 ~
+    우리는 객체를 쓰고 있었다.
+    */
+    console.log(Math.PI,Math.random(),Math.floor(Math.random()))
+
+</script>
+</html>
