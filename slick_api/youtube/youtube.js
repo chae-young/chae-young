@@ -7,6 +7,8 @@
 	  autoplaySpeed: 2000,
    });
 	
+
+
   var basicSpeed = slider.get(0).slick.options.autoplaySpeed;
 
   var tag = document.createElement('script');
@@ -17,6 +19,7 @@
   var player;
   var n = 0;
   var playerOB = {};
+
 
 
 function onYouTubeIframeAPIReady() {
@@ -44,7 +47,7 @@ var et
 function onPlayerReady(event) { //처음 로드시
 	console.log(event.target.getVideoData())
 	et = event.target;
-	console.log('로드검열')
+	//console.log('로드검열')
 	playerOB[$(player.f).attr('id')] = 1;
 	player.mute()//유튜브음소거 필수
 
@@ -69,8 +72,9 @@ function onPlayerStateChange(event) {
 		break;
 
 		case 0:
-			slider.slick('slickSetOption', 'autoplaySpeed', basicSpeed);
+			slider.slick('slickSetOption', 'autoplaySpeed', 0);
 			slider.slick('slickPlay');
+			//slider.slick('slickSetOption', 'autoplaySpeed', basicSpeed);
 		break;
 	}
 	playerState = event.data;
@@ -79,16 +83,19 @@ function onPlayerStateChange(event) {
 
 
 slider.on('beforeChange', function(event, slick, currentSlide) {
-	console.log('슬릭비포')
+	//console.log('슬릭비포')
 	if( $(slick.$slides.get(currentSlide)).find('iframe').length ){
 	    playerOB[$(player.f).attr('id')] = 2;
 		if(playerState == 1){
 			et.pauseVideo();
 		}
+		if(playerState == YT.PlayerState.ENDED){
+			slider.slick('slickSetOption', 'autoplaySpeed', basicSpeed);
+		}
 	}
 })
 slider.on('afterChange', function(event, slick, currentSlide) {
-	console.log('슬릭애프터')
+	//console.log('슬릭애프터')
 	if( $(slick.$slides.get(currentSlide)).find('iframe').length ){
 		onYouTubeIframeAPIReady()
 
@@ -101,7 +108,10 @@ slider.on('afterChange', function(event, slick, currentSlide) {
 				}
 			}
 
-	}	
+	}else{
+		console.log('슬라이더없음')
+		slider.slick('slickPlay');
+	}
 })
 
 //로드검열중일때는 재생되면 안됨.
