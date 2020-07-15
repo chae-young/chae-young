@@ -14,6 +14,30 @@
         width: 20px;
         height: 20px;
     }
+    td.white{
+        background-color: white;
+    }
+    td.red {
+        background-color: red;
+    }
+    td.blue {
+        background-color: blue;
+    }
+    td.orange {
+        background-color: orange;
+    }
+    td.skyblue {
+        background-color: skyblue;
+    }
+    td.yellowgreen {
+        background-color: yellowgreen;
+    }
+    td.pink {
+        background-color: pink;
+    }
+    td.yellow {
+        background-color: yellow;
+    }                        
 </style>
 <body>
     <table id='tetris'>
@@ -53,6 +77,7 @@ var blockArr = [
     ]],
 ];
 var blockDict = {
+    0:['white',false,[]],
     1:['red',true,[
         [1,1], 
         [1,1],
@@ -82,11 +107,11 @@ var blockDict = {
     ]],
     10:['red',false,[]],//열배가 된애들은 움직일 수 없다
     20:['blue',false,[]],
-    30:['blue',false,[]],
-    40:['blue',false,[]],
-    50:['blue',false,[]],
-    60:['blue',false,[]],
-    70:['blue',false,[]],
+    30:['orange',false,[]],
+    40:['skyblue',false,[]],
+    50:['yellowgreen',false,[]],
+    60:['pink',false,[]],
+    70:['yellow',false,[]],
 }
 var tetrisData = [
 
@@ -109,7 +134,30 @@ function 칸만들기(){
     tetris.appendChild(fragment)
 }
 
+function 화면그리기(){
+    tetrisData.forEach(function(tr,i){//줄
+        tr.forEach(function(td,j){//칸
+           // console.log(td)
+            tetris.children[i].children[j].className = blockDict[td][0] 
+        })
+    })
+}
+
+function 블록생성기(){
+    var 블록 = blockArr[Math.floor(Math.random()*7)][2];//두번째거 테트리스 모양
+    블록.forEach(function(tr,i){//줄
+        tr.forEach(function(td,j){//칸
+            tetrisData[i][j + 3] = td; //3번째칸 부터 채워줄려면 + 3
+        })
+    })    
+    console.log(tetrisData)
+    화면그리기();
+    console.log(블록,블록[0][0],블록[0][1],블록[0][2])
+}
+
 칸만들기();
+블록생성기();
+
 
 window.addEventListener('keydown',function(e){
     console.log(e)
