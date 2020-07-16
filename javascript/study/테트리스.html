@@ -116,6 +116,7 @@ var blockDict = {
 var tetrisData = [
 
 ];
+var stopDown = false;
 
 function 칸만들기(){
     var fragment = document.createDocumentFragment(); //fragmen 화면에 직접 추가하는게 아니라.메모리임.메모리에 먼저 조작하고 화면에 붙이는 것.
@@ -143,21 +144,42 @@ function 화면그리기(){
     })
 }
 
+function 블록내리기(){
+    for(var i = tetrisData.length - 1; i >= 0; i --){//아래서부터 반복문돔.
+        tetrisData[i].forEach(function(td,j){   
+            if(td > 0 && td < 10){//td가 0보다 크고 10보다 작다 <-딕셔너리 번호말하는것
+                if(tetrisData[i + 1] && !stopDown){ //밑에 내려갈때까지 존재하면,,색갈이 안차있으면
+                    tetrisData[i + 1][j] = td; //한줄아래로 td를 보낸다
+                    tetrisData[i][j] = 0; //지금 현재칸은 빈칸으로.
+                }else{//끝에 도달한 경우
+                    stopDown = true;
+                    tetrisData[i][j] = td * 10; //데이터가 3,3,3일경우 10 곱하면 30이 된다.(딕셔너리)
+                }
+            }
+        })
+    }
+    if(stopDown){//땅끝에 도달하면 새로운 블럭생성
+        블록생성기()
+    }
+    화면그리기() //데이터와 화면 일치시켜야됩니다.
+}
+
 function 블록생성기(){
     var 블록 = blockArr[Math.floor(Math.random()*7)][2];//두번째거 테트리스 모양
     블록.forEach(function(tr,i){//줄
         tr.forEach(function(td,j){//칸
+
+            //todo:블록 생성할때 이미 차있으면 게임오버
             tetrisData[i][j + 3] = td; //3번째칸 부터 채워줄려면 + 3
         })
     })    
-    console.log(tetrisData)
     화면그리기();
-    console.log(블록,블록[0][0],블록[0][1],블록[0][2])
 }
 
 칸만들기();
 블록생성기();
 
+setInterval(블록내리기,100);   
 
 window.addEventListener('keydown',function(e){
     console.log(e)
