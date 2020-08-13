@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="con"></div>
+</body>
+<script>
+const data = [
+    {
+        name:"coffee-bean",
+        order:true,
+        items:["아메리카노","우유","그린티"],
+    },
+    {
+        name:"starbucks",
+        order:false,
+    },
+    {
+        name:"coffee-king",
+        order:true,
+        items:['아메리카노','라떼']
+    }    
+]
+//json으로 응답을 받고,
+//자바스크립트 object로 변환한 후 어떠한 데이터 초리 조작을 한 후에 dom에 추가
+//데이터 + html문자열의 결합이 필요하기 때문에..
+
+//$안에 변수값을 넣는,,
+//백틱문자 사용해야함..
+//const template = `<div>welcome ${data[0].name}`; //data의 0번째 변수
+//console.log(template)
+
+
+//tagged template literals
+function fn(tags,name,items){//배열,name,items
+    //console.log(tags);
+    if(typeof items === 'undefined'){//첫번째배열은 아이템없음
+        items = '<span style="color:red">주문가능한 상품이 없습니다</span>'
+    }
+    return tags[0] + name + tags[1] + items + tags[2];
+}
+
+//foreach도 가능
+data.forEach((v) =>{
+    const template = fn`<div>welcome ${v.name}!!</div>
+    <h2>주문가능항목</h2><div>${v.items}</div>`;
+    //console.log(template)
+    document.querySelector('#con').innerHTML += template
+})
+
+//const template = fn`<div>welcome ${data[0].name}!!</div>
+//<h2>주문가능항목</h2><div>${data[0].items}</div>`;
+//> 이것을 조작할필요가 있다 그럴때 펑션을 사용
+//console.log(template)
+</script>
+</html>
