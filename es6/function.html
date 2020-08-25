@@ -121,5 +121,20 @@ function checkNum(...argArray){//아규먼트를 배열로 만들어준다 이�
 const result = checkNum(10,2,'dd')
 
 
+
+<pre>	
+<code class="js">
+
+const wset = new WeakSet();
+
+let a = {num:1}  // 객체생성
+wset.add(a) //a 객체의  참조값 추가
+
+a = null; // a 객체 값 지우기
+
+wset.has(a) //false
+
+</code>
+</pre>
 </script>
 </html>
