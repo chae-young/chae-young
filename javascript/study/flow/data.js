@@ -10,4 +10,15 @@
 기본형 - 값을 그대로 할당.
 참조형 - 값이 저장된 주소값을 할당.
 
+자바스크립트 데이터 종류
+
+기본형(primitive type) :  값을 그대로 할당
+
+number ,string, boolean, null, undefined
+
+참조형(reference type) : 값이 저장된 주소값을 할당
+
+object ( array, function,regExp)
+
+
 */
