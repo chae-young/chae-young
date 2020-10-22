@@ -20,5 +20,15 @@ number ,string, boolean, null, undefined
 
 object ( array, function,regExp)
 
+<pre>	
+<code class="js">
 
+var obj = {
+    a = 1
+}
+
+</code>
+</pre>
 */
+
+var a = b
