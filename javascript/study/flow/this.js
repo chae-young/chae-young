@@ -26,3 +26,32 @@ call,applu,bind  사용해 this바인딩 가능.
 
 
 */
+/*내부함수에서 this 우회법 (스코프체인)*/
+var a = 10;
+var obj = {
+    a:20,
+    b:function(){
+        var self = this.a;
+        console.log(this.a);//20
+        function c(){
+            console.log(self.a)//10 
+        }
+    }
+}
+
+
+/* call apply bind */
+
+function a(x,y,z){
+    console.log(this,x,y,z);
+}
+var b = {
+    c:2
+}
+var c = a(b); //bind 는 새로운 함수 생성 호출하지 않음.
+c(1,2,3)// 그래서 변수에 담아줌. 매개변수 넣기.
+
+// 또는 
+
+var c = a(b,1,2)//미리 ths랑 매개변수 담아놓고,
+c(3)// 끝에 매개변수만 넣어주기.
