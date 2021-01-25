@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <p>my div</p>
+
+</body>
+<script>
+
+//1.arrow function
+//function 지우고 화살표쓰자!
+setTimeout( () =>{
+    //console.log('settimeout');
+},1000)
+
+//콜백이 너무 길다
+/*
+
+let newArr = [1,2,3,4].map(function(value,index,object){
+    return value * 2;
+})
+
+->
+
+let newArr = [1,2,3,4].map( (v) =>{
+    return v * 2;
+})
+
+
+//이안에는 콜백함수야..! 리턴을 없앤다 그대로 반환한다. 리턴을 의미..
+let newArr = [1,2,3,4].map( (v) => v * 2 )
+
+console.log(newArr)
+*/
+
+//2.arrow 함수의 thiscontext (실행컨텍스트)
+
+/*
+
+const myobj = {
+    //es6에서 키,밸루 없이 만들수 있다.
+    runtimeout(){
+        setTimeout(function(){
+            this.printData();//그냥 부르면 this가 윈도우니까 bind 함수로 감싸준다 obj를 바라보도록
+            console.log(this === window);
+        }.bind(this),200);
+    },
+    printData(){
+        console.log('hi');
+    }
+}
+myobj.runtimeout();
+
+*/
+//arrow 함수일경우
+//bind 안써줘도 실행컨텍스트에 유지됨다,,
+const myobj = {
+    //es6에서 키,밸루 없이 만들수 있다.
+    runtimeout(){
+        setTimeout( ()=> {
+            this.printData();//그냥 부르면 this가 윈도우니까 bind 함수로 감싸준다 obj를 바라보도록
+            console.log(this === window);
+        },200);
+    },
+    printData(){
+        console.log('hi');
+    }
+}
+myobj.runtimeout();
+
+
+const el = document.querySelector('p');
+
+const obj = {
+    register(){
+        el.addEventListener('click', (evt) => {
+            this.printData();
+        })
+    },
+    printData(){
+        console.log('click')
+    }
+}
+obj.register();
+
+
+//this가 선언된걸 기준으로 결정이된다.
+
+
+//3.default prameters 기본매개변수
+
+function sum(val,size=1){//<=디폴트정해주기
+   // size = size || 1; //디폴트값 정해주기
+    return val * size;
+}
+
+console.log(sum(3,2))
+
+function sum(val,size={value:1}){//<=디폴트정해주기
+   // size = size || 1; //디폴트값 정해주기
+    return val * size.value;
+}
+sum(3,{value:3})
+
+
+//4.rest prameters
+//argumets 가변으로 변할수 있는 아규먼트르 처리할때
+//매개변수에 ...이 들어감으로써 배열로변환,,
+
+
+function checkNum(...argArray){//아규먼트를 배열로 만들어준다 이것을 REST 파라미터.
+  //const argArray = Array.prototype.slice.call(arguments);
+    const result = argArray.every( (v) => typeof v == 'Number');
+    console.log(result)
+}
+const result = checkNum(10,2,'dd')
+
+
+
+<pre>	
+<code class="js">
+
+const wset = new WeakSet();
+
+let a = {num:1}  // 객체생성
+wset.add(a) //a 객체의  참조값 추가
+
+a = null; // a 객체 값 지우기
+
+wset.has(a) //false
+
+</code>
+</pre>
+</script>
+</html>

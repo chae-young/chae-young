@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+/*
+   상속!
+
+*/
+
+//클래스는 객체를 만드는 공장이다.
+    class Person {
+        constructor(name,first){//약속된 언어. 객체가 만들어지면서 자동으로 호출.
+            this.name = name;
+            this.first = first;
+        }
+        sum(){
+            return 'prototype : ' +(this.name + this.first) 
+        }
+        // avg(){
+        //     return (this.name + this.first)/2
+        // }
+    }
+    var kim = new Person('채영',1);
+    console.log(kim)
+
+
+
+
+</script>
+</html>

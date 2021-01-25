@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #tetris{
+        border-collapse: collapse;
+    }
+    #tetris td{
+        border: 1px solid black;
+        width: 20px;
+        height: 20px;
+    }
+    td.white{
+        background-color: white;
+    }
+    td.red {
+        background-color: red;
+    }
+    td.blue {
+        background-color: blue;
+    }
+    td.orange {
+        background-color: orange;
+    }
+    td.skyblue {
+        background-color: skyblue;
+    }
+    td.yellowgreen {
+        background-color: yellowgreen;
+    }
+    td.pink {
+        background-color: pink;
+    }
+    td.yellow {
+        background-color: yellow;
+    }                        
+</style>
+<body>
+    <table id='tetris'>
+
+    </table>
+</body>
+<script>
+
+var tetris = document.querySelector('#tetris');
+var blockArr = [
+    ['red',true,[
+        [1,1], 
+        [1,1],
+    ]], 
+    ['blue',true,[
+        [0,2,0],
+        [2,2,2],
+    ]],   
+    ['orange',true,[
+        [2,2,0],
+        [0,2,2],
+    ]],
+    ['skyblue',true,[
+        [0,3,3],
+        [3,3,0],        
+    ]],
+    ['yellowgreen',true,[
+        [4,4,4],
+        [4,0,0],
+    ]],
+    ['pink',true,[
+        [5,5,5],
+        [0,0,5],
+    ]],
+    ['yellow',true,[
+        [6,6,6,6],
+    ]],
+];
+var blockDict = {
+    0:['white',false,[]],
+    1:['red',true,[
+        [1,1], 
+        [1,1],
+    ]], //도형색,도형움직임여부,실제 블럭모양
+    2:['blue',true,[
+        [0,1,0],
+        [1,1,1],
+    ]],
+    3:['orange',true,[
+        [1,1,0],
+        [0,1,1],
+    ]],
+    4:['skyblue',true,[
+        [0,1,1],
+        [1,1,0],        
+    ]],
+    5:['yellowgreen',true,[
+        [1,1,1],
+        [1,0,0],
+    ]],
+    6:['pink',true,[
+        [1,1,1],
+        [0,0,1],
+    ]],
+    7:['yellow',true,[
+        [1,1,1,1],
+    ]],
+    10:['red',false,[]],//열배가 된애들은 움직일 수 없다
+    20:['blue',false,[]],
+    30:['orange',false,[]],
+    40:['skyblue',false,[]],
+    50:['yellowgreen',false,[]],
+    60:['pink',false,[]],
+    70:['yellow',false,[]],
+}
+var tetrisData = [
+
+];
+var stopDown = false;
+
+function 칸만들기(){
+    var fragment = document.createDocumentFragment(); //fragmen 화면에 직접 추가하는게 아니라.메모리임.메모리에 먼저 조작하고 화면에 붙이는 것.
+    for(var i = 0; i < 20; i++){
+        var tr = document.createElement('tr');
+        var arr = [];
+        tetrisData.push(arr)
+        fragment.appendChild(tr);
+        for(var j = 0; j < 10; j++){
+            var td = document.createElement('td');
+            tr.appendChild(td);
+            arr.push(0)
+        }        
+    }
+    console.log(tetrisData)
+    tetris.appendChild(fragment)
+}
+
+function 화면그리기(){
+    tetrisData.forEach(function(tr,i){//줄
+        tr.forEach(function(td,j){//칸
+           // console.log(td)
+            tetris.children[i].children[j].className = blockDict[td][0] 
+        })
+    })
+}
+
+function 블록내리기(){
+    for(var i = tetrisData.length - 1; i >= 0; i --){//아래서부터 반복문돔.
+        tetrisData[i].forEach(function(td,j){   
+            if(td > 0 && td < 10){//td가 0보다 크고 10보다 작다 <-딕셔너리 번호말하는것
+                if(tetrisData[i + 1] && !stopDown){ //밑에 내려갈때까지 존재하면,,색갈이 안차있으면
+                    tetrisData[i + 1][j] = td; //한줄아래로 td를 보낸다
+                    tetrisData[i][j] = 0; //지금 현재칸은 빈칸으로.
+                }else{//끝에 도달한 경우
+                    stopDown = true;
+                    tetrisData[i][j] = td * 10; //데이터가 3,3,3일경우 10 곱하면 30이 된다.(딕셔너리)
+                }
+            }
+        })
+    }
+    if(stopDown){//땅끝에 도달하면 새로운 블럭생성
+        블록생성기()
+    }
+    화면그리기() //데이터와 화면 일치시켜야됩니다.
+}
+
+function 블록생성기(){
+    stopDown = false; //내려가지 못하는걸 풀어준다
+    var 블록 = blockArr[Math.floor(Math.random()*7)][2];//두번째거 테트리스 모양
+    블록.forEach(function(tr,i){//줄
+        tr.forEach(function(td,j){//칸
+
+            //todo:블록 생성할때 이미 차있으면 게임오버
+            tetrisData[i][j + 3] = td; //3번째칸 부터 채워줄려면 + 3
+        })
+    })    
+    화면그리기();
+}
+
+칸만들기();
+블록생성기();
+
+setInterval(블록내리기,100);   
+
+window.addEventListener('keydown',function(e){
+    console.log(e)
+    //모든 비교대상이 같을때 스위치문을 씀
+    /*if(e.code === 'Space'){//한방에 내리기
+
+    }else if(e.code === 'ArrowRight'){//오른쪽
+        
+    }else if(e.code === 'ArrowLeft'){//왼쪽
+        
+    }else if(e.code === 'ArrowDown'){//아래쪽
+        
+    }else if(e.code === 'ArrowUp'){//방향전환
+        
+    }*/
+    switch (e.code){//한방에 내리기
+        case 'ArrowRight' :
+        console.log('arr rigth')
+            break;
+        case 'ArrowLeft' :
+        console.log('arr left')
+            break;
+        case 'ArrowDown':
+        console.log('down')
+            break;
+        default: //else 를 대신함.
+            break;
+    }  
+})
+
+window.addEventListener('keyup',function(e){
+    switch (e.code){//한방에 내리기
+        case 'Space' :
+        console.log('space')
+            break;
+        case 'ArrowUp':
+        console.log('arr up')
+            break;
+        default: //else 를 대신함.
+            break;
+    }  
+})
+
+
+
+//이벤트루프와 호출스택
+/*
+호출스택:나중에 온게 먼저 나가는
+호출된 순서에 따라 쌓이는,,
+
+백그라운드 노드(내부엔진동작) : 우리가 관여할수 없다,,
+
+setinterval 이 호출스택에
+인터벌 함수가 백그라운드에,,(호출된게 아님.)
+그래서 2초마다 그 함수를 호출스택에 넣어준다.
+
+태스크 큐>
+백그라운드에서 보낸 콜백들이 대기중.
+
+백그라운드에서 막 보내면 안되니까
+그 콜백함수들의 수너를 정해준다..
+그게 이벤트 루프,,/?
+
+백그라운드에 있는 콜백함수를
+태스크큐로 보낸다.
+이벤트루프는 태스크큐에 있는 함수들을
+호출스택에 옮겨준다.
+
+태스크큐는 여러개다.
+그래서 그들 사이에서
+우선순위를 정해서 순위가 높은 애들을 호출스택에 옮겨준다.
+*/
+</script>
+</html>

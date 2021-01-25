@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+</body>
+<script>
+let mySet = new Set();
+
+//set : 중복없이 유일한 값을 저장하려고 할때, 이미 존재하는지 체크할때 유용.
+//쩐다..!!
+
+mySet.add('crong');
+mySet.add('hary');
+mySet.add('crong');
+
+//크롱값이 있는지 체크.
+console.log( mySet.has('crong') )
+
+mySet.delete('crong');
+
+mySet.forEach(function(v){
+    console.log(v)
+})
+
+/*
+/////////참조////////
+1.복제
+var a= 1
+var b = a 
+b = 2
+
+복사한거 ~ 
+원시데이터..면 복제가되는데,,
+객체일경우..그객체를 참조한다,
+한마디로 공유한다는거?
+그래서 다른변수가 프로퍼티 값을 바꾸면
+객체는 참조된다.
+
+2.참조
+
+var a = {id:1}
+var b = a;
+b = {id:2}
+console.log(a.id) //1
+b는 객체를 생성한거기 때문에 참조되지 않는다.
+데이터를 만든것!
+
+
+
+*/
+
+
+//weakSet
+//참조를 가지고 있는 객체만 저장이 가능하다.
+//객체형태를 중복없이 저장하려고 할때 유용하다,
+//참조를 모니터링함
+/*객체가 null이되거나 필요가 없어지면
+가비지 컬렉션(Garbage Collection, GC) 대상이됨      
+
+메모리 관리 기법 중 하나로 프로그램이 동적으로 할당했던 메모리 영역 중에서 필요없게 된 영역을 해제하는 기능이다. 
+즉, 동적 할당된 메모리 영역 가운데 어떤 변수도 가리키지 않는 메모리 영역을 탐지하여 자동으로 해제하는 기법이다. 
+
+그래서 weakset 에서도 없어지게된다
+즉.
+형태에서는 갖고있는것처럼 보이지만..
+has를 통해 알아보면 갖고있지 않다.
+
+객체형태를 중복없이..저장하려고 할때 유용하다..!
+
+*/
+let arr = [1,2,3,4];
+let ws = new WeakSet();
+
+ws.add(arr)
+//ws.add(111)
+//ws.add(null)
+//ws.add(function(){})
+
+
+console.log(ws)
+
+</script>
+</html>
