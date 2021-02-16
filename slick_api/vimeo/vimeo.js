@@ -30,12 +30,12 @@
 		for(var i = 0;i < slider.find('iframe').length;i++){
 			(function allRemove(j){
 				//src 오류로 다시 재할당
-				src = $(Iframe[j]).attr('src'),
-				start = src.indexOf("o/") + 1,
-				end = src.indexOf("?", start+1),
-				num = src.substring(start+1, end);
+				//src = $(Iframe[j]).attr('src'),
+				//start = src.indexOf("o/") + 1,
+				//end = src.indexOf("?", start+1),
+				//num = src.substring(start+1, end);
 				
-				$(Iframe[j]).attr('src','https://player.vimeo.com/video/' + num + '?autoplay=0&api=1&player_id=player1&title=0&byline=0&portrait=0&loop=0&playsinline=1');
+				//$(Iframe[j]).attr('src','https://player.vimeo.com/video/' + num + '?autoplay=0&api=1&player_id=player1&title=0&byline=0&portrait=0&loop=0&playsinline=1');
 				player = new Vimeo.Player($(Iframe[j]));
 
 			})(i)
@@ -43,10 +43,11 @@
 	
 		function playerSet(status,play,slick,currentSlide){
 			var elt = status ? slick.$slides.get(currentSlide) : null;
-			var turn = status ? $(elt).find('iframe').length : $('.main_slider .slick-current').find('iframe').length;
+			var turn = status ? $(elt).find('iframe').length : slider.find('.slick-current').find('iframe').length;
+
 			if(turn){
 				play ? slider.slick('slickPause') : null;
-				var currentIframe =  status ? $(elt).find('iframe') : $('.main_slider .slick-current').find('iframe');
+				var currentIframe =  status ? $(elt).find('iframe') : slider.find('.slick-current').find('iframe');
 				 
 				player = new Vimeo.Player($(currentIframe));
 				play ? player.play() : player.pause();
