@@ -12,7 +12,7 @@ const x = ()=> {
 }
 
 const y = x();
-console.log(y)
+//console.log(y)
 
 //Reflect.ownkeys(y)로 접근가능.
 
@@ -42,17 +42,57 @@ const suzy ={
     [GENDER]:'여자',
     age:20
 }
-console.log(iu[NAME],suzy)
+//console.log(iu[NAME],suzy)
 
 //열거되지않는다.
 for(const prop in iu){
-    console.log(prop,iu[prop])
+    //console.log(prop,iu[prop])
 }
 //객체안에있는 심볼들만 열거해주는 메소드
 Object.getOwnPropertySymbols(iu).forEach( el =>{
-    console.log(el,iu[el])
+    //console.log(el,iu[el])
 })
 //객체안에있는 심볼포함해서 모두
 Reflect.ownKeys(iu).forEach( el =>{
-    console.log(el,iu[el])
+    //console.log(el,iu[el])
 })
+
+
+
+//private member for,object.keys,getpropertynames~ 열거되지 않음
+const obj2 = (()=>{
+    const _privateMember1 = Symbol('private1');
+    const _privateMember2 = Symbol('private1');
+    return{
+        [_privateMember1]:'외부에선 보이지만 접근x',
+        [_privateMember2]:10,
+        publicMember1:20,
+        publicMember2:30,
+    }
+})()
+
+//console.log(obj2)
+//console.log(obj2[Symbol('private1')])//새로운 심볼을 만든것
+//console.log(obj2[_privateMember1])//스코프에의해 접근x
+
+
+//symbol.for 공유심볼
+const c = Symbol.for('a')//문자열 을 생략했을때 undefined 반환
+const f = Symbol.for('a')
+console.log(c===f)//문자열만 가지고 판단. 만약 위에서 선언하고 다시 선언할경우 이미 가지고 있는걸 가져와서 할당
+
+const obj3 = (()=>{
+    const COMMON1 = Symbol.for('공유심볼')
+    return{
+        [COMMON1] : '안뇽?'
+    }
+})()
+console.log(obj3)
+console.log(obj3[Symbol.for('공유심볼')])//common1변수로는 스코프땜에 접근이 안되지만 공유심볼의 문자열을 알고 있으면 어디선 접근가능
+
+
+ const com1 = Symbol.for('공유심볼2')
+ const UNCOMMON = Symbol('비공유심볼')
+ const commonSymbolKey1 = Symbol.keyFor(com1)//변수에서 ..? 심볼 for값을 출력해줌
+ const commonSymbolKey2 = Symbol.keyFor(UNCOMMON)
+ console.log(commonSymbolKey2)//그냥 심볼은 출력안됨
