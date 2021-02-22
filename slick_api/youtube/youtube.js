@@ -1,4 +1,26 @@
-  var slider = $('.autoplay');
+var slider = [$('.autoplay'),$('.m-autoplay')]
+var device;
+for(var i = 0;i < slider.length;i++){
+	if(slider[i].length > 0) {
+		device = i
+		slider = slider[i]
+	}
+}
+sliderCall(slider,device)
+function sliderCall(slider,device){
+   slider.slick({
+	  slidesToShow: 1,
+	  slidesToScroll: 1,
+	  autoplay: true,
+	  arrows: device ? true : false,
+	  autoplaySpeed: 2000,
+   });
+}
+
+
+
+//============기존
+ /* var slider = $('.autoplay');
 
    slider.slick({
 	  slidesToShow: 1,
@@ -6,7 +28,7 @@
 	  autoplay: true,
 	  autoplaySpeed: 2000,
    });
-	
+	*/
 
 
   var basicSpeed = slider.get(0).slick.options.autoplaySpeed;
