@@ -2,12 +2,13 @@
     <head>
         <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
         <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     </head>
     <body>
         <div id="root"></div>
-        <script>
+        <script type="text/babel">
 
-            const e = React.createElement; //태그 만드는 함수
+            //const e = React.createElement; //태그 만드는 함수
 
             class LikeButton extends React.Component{
                 constructor(props){//데이터==상태
@@ -19,17 +20,25 @@
                 //화면
                 render(){ // 메서드
                     // return e('button',null,'Like'); //버튼태그 만들겠다
+                    //컨텐츠안에 중괄호를 감싸주면 js 가능
+                    return <button type="submit" onClick={ () => { this.setState({liked:true}) } }>
+                        {this.state.liked ? 'Liked' : 'Like'} 
+                        </button>//이렇게 쓸경우 e 필요없음
+                    //JSX 자바스크립트 + xml
+                    /*
                     return e('button',{ 
                         onClick: () => { this.setState({liked:true}) },type: 'submit'},
                         this.state.liked === true ? 'Liked' : 'Like'); //html 속성 넣는자리 : 객체형태
                     //<button onclick="()" type='submit'>like</button>
+                    */
                 }
             }
         </script>
-        <script>
+        <script type="text/babel">
             //웹상에 렌더링 해주는 것 
             //render 메서드
-            ReactDOM.render(e(LikeButton),document.querySelector('#root'))//불러오는것
+           // ReactDOM.render(e(LikeButton),document.querySelector('#root'))//불러오는것
+            ReactDOM.render(<div><LikeButton/><LikeButton/><LikeButton/></div>,document.querySelector('#root'))//불러오는것
         </script>
     </body>
 </html>
