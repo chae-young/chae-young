@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+
+            //함수형 컴포넌트 > setstate ref 안사용할경우
+            /*const GuGudan = () =>{
+                return <div>hello</div>
+            }*/
+            //react hooks ->함수형에 state들어간거
+            const GuGudan = () =>{
+                const [first,setFirst] = React.useState(Math.ceil(Math.random()*9));
+                const [second,setSecond] = React.useState(Math.ceil(Math.random()*9));
+                const [value,setValue] = React.useState();//초깃값
+                const [result,setResult] = React.useState();
+                const inputRef = React.useRef();
+
+                const onChangeInput = (e) => {
+                    setValue(e.target.value);
+                }
+
+                const onSubmitForms = (e) => {
+                    e.preventDefault();
+                    if(parseInt(value) === first * second){
+                        setResult('정답:' + value);
+                        setFirst(Math.ceil(Math.random()*9));
+                        setSecond(Math.ceil(Math.random()*9));
+                        setValue('');
+                        inputRef.current.focus()
+                    }else{
+                        setResult('땡');
+                        setValue('');
+                        inputRef.current.focus()
+                    }
+                }
+
+                return (
+                <>
+                    <div>{first}곱하기{second}는?</div>
+                    <form onSubmit={onSubmitForms}>
+                        <input ref={inputRef} onChange={onChangeInput} type="text" value={value}/>
+                        <button>입력</button>
+                    </form>
+                    <div id="result">{result}</div>
+                </>    
+                )
+            }
+
+        </script>      
+        <script type="text/babel">
+        ReactDOM.render(<GuGudan/>,document.querySelector('#root'))
+        </script>            
+    </body>
+</html>
