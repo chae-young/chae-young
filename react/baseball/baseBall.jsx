@@ -1,6 +1,6 @@
 
-const { Component } = require('react');
 const React = require('react');
+const { PureComponent ,createRef } = require('react');
 const Try = require('./try');
 
 //this 안쓰면 밖에 뺀다
@@ -13,7 +13,7 @@ function getNumber(){//숫자 4개를 랜덤하게 겹치치않게 뽑는 함수
     return [...num].sort()
 }
 console.log(getNumber())
-class NumberBaseball extends Component{
+class NumberBaseball extends PureComponent{
     state = {
         result:'',
         value:'',
@@ -36,7 +36,8 @@ class NumberBaseball extends Component{
                 value:'',
                 answer:getNumber(),
                 tries:[],                    
-            })            
+            })     
+            this.input.current.focus();     
         }else{
             const answerArr = value.split('').map((v)=>{return parseInt(v)})
 
@@ -52,6 +53,7 @@ class NumberBaseball extends Component{
                     answer:getNumber(),
                     tries:[],                    
                 })
+                this.input.current.focus();     
             }else{//열번 이하
                 for(let i =0;i<4;i++){
                     if(answerArr[i] === answer[i]){
@@ -66,6 +68,7 @@ class NumberBaseball extends Component{
                         value:'',
                     }
                 })
+                this.input.current.focus();     
             }
         }
     }
@@ -80,14 +83,17 @@ class NumberBaseball extends Component{
         {fruits:'사과',taste:'빨갛다'},
         {fruits:'바나나',taste:'노랗다'},
         {fruits:'사과',taste:'빠알갛다'}
-    ]    
+    ]   
+    
+    input = createRef();
+    //onInputRef = (c) =>{ this.input = c}
     render(){//state 바뀔때마다 재실행
         const {result,value,tries} = this.state;
         return(
             <>
                 <h1>{result}</h1>
                 <form onSubmit={this.onSubmitForm}>
-                    <input type="text" maxLength={4} value={value} onChange={this.onChangeInput}/>
+                    <input ref={this.input} type="text" maxLength={4} value={value} onChange={this.onChangeInput}/>
                     <button>입력</button>
                 </form>
                 <div>시도:{tries.length}</div>
