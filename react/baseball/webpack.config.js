@@ -1,8 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
+//rocess.env.NODE_ENV = 'production'; 배포시 환경설정
 
 module.exports = {
-    mode:'development',
+    mode:'development', //배포: production
     devtool:'eval',
     resolve:{
         extensions:['.jsx','.js']
