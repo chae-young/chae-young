@@ -1,7 +1,7 @@
 const React = require('react');
-const {Component} = React;
+const {PureComponent} = React;
 
-class ResponsiveCheck extends Component{
+class ResponsiveCheck extends PureComponent{
     state={
         state:'waiting',
         message:'클릭해서 시작하세요',
@@ -42,10 +42,16 @@ class ResponsiveCheck extends Component{
         }
     }
 
+    onReset = () =>{
+        this.setState({
+            result:[]
+        })
+    }
+
     renderAverage = () =>{
         //reduce가 빈배열이면 안먹기때문에 false일경우 처리 
         return this.state.result.length === 0 ? 
-        null : <div>평균시간:{this.state.result.reduce( (a,b)=> a+b ) / this.state.result.length}</div>            
+        null : <><div>평균시간:{this.state.result.reduce( (a,b)=> a+b ) / this.state.result.length}</div><button onClick={this.onReset}>리셋</button></>
         
     }
 
