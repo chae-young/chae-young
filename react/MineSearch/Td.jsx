@@ -1,7 +1,7 @@
-import React,{useCallback, useContext} from 'react';
+import React,{useCallback, useContext,memo, useMemo} from 'react';
 import { TableContext,CODE, OPEN_CELL,CLICK_MINE,FLAG_CELL,QUESTION_CELL,NORMALIZE_CELL } from './MineSearch';
 
-const Td = ( {rowIndex,cellIndex} ) =>{
+const Td = memo(( {rowIndex,cellIndex} ) =>{
     const {tableData,disapath,halted} = useContext(TableContext);
 
 
@@ -49,7 +49,7 @@ const Td = ( {rowIndex,cellIndex} ) =>{
             case CODE.QUESTION:
                 return '?';
             default:
-                return '';
+                return code || '';
         }
     }
 
@@ -99,9 +99,9 @@ const Td = ( {rowIndex,cellIndex} ) =>{
 
     },[tableData[rowIndex][cellIndex],halted])
 
-    return(
+    return useMemo(()=>(//값 기억 (클릭한 셀에대해선 한번만 실행..데이터 콘솔찍어보기)
         <td onClick={onClickTd} onContextMenu={onRightClickTd} style={getTdStyle(tableData[rowIndex][cellIndex])}>{getTdText(tableData[rowIndex][cellIndex])}</td>
-    )
-}
+    ),[tableData[rowIndex][cellIndex]])
+})
 
 export default Td;

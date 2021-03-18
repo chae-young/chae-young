@@ -22,9 +22,15 @@ export const TableContext = createContext({
 
 const initialState = {
     tableData:[],
+    data:{
+        row:0,
+        cell:0,
+        mine:0
+    },
     timer:0,
     result:'',
-    halted:true //게임상태
+    halted:true, //게임상태
+    opendCount:0
 }
 
 const plantMine = (row,cell,mine) =>{
@@ -65,16 +71,107 @@ const reducer = (state,action) => {
         case START_GAME:
             return{
                 ...state,
+                data:{
+                    row:action.row,
+                    cell:action.cell,
+                    mine:action.mine
+                },
                 tableData:plantMine(action.row,action.cell,action.mine),
                 halted:false
             }
         case OPEN_CELL:{
             const tableData = [...state.tableData];
-            tableData[action.row] = [...state.tableData[action.row]];
-            tableData[action.row][action.cell] = CODE.OPEND
+            //tableData[action.row] = [...state.tableData[action.row]];
+            //모든칸들을 복사
+            tableData.forEach((row,i)=>{
+                tableData[i]=[...row]
+            })
+            
+            const checked =[];
+            let opendCount = 0;
+            //주변칸들은 검사하는 함수
+            const checkAround = (row,cell) =>{
+                //이미열린칸,지뢰는 열리지 않게
+                if([CODE.OPEND,CODE.FLAG_MINE,CODE.QUESTION_MINE,CODE.QUESTION].includes(tableData[row][cell])){
+                    return;
+                }
+                if(row<0 || row>tableData.length || cell<0 || cell>tableData[0].length){//상하좌우필터링
+                    return
+                }
+                if(checked.includes(row+','+'cell')){//이미 검사한 칸이면(재귀방지)
+                    return;
+                }else{
+                    checked.push(row+','+'cell')
+                }
+
+
+                opendCount+=1
+                //주변칸 지뢰개수 검사
+                let around=[
+                    tableData[row][cell-1],
+                    tableData[row][cell+1]                    
+                ];
+                if(tableData[row-1]){
+                    around = around.concat(
+                        tableData[row-1][cell-1],
+                        tableData[row-1][cell],
+                        tableData[row-1][cell+1]
+                    )
+                }
+                around = around.concat(
+                    tableData[row][cell-1],
+                    tableData[row][cell+1]
+                )    
+                if(tableData[row-1]){
+                    around = around.concat(
+                        tableData[row+1][cell-1],
+                        tableData[row+1][cell],
+                        tableData[row+1][cell+1]
+                    )
+                }    
+                //주변킨증에 지뢰있는칸 개수담기
+                const count = around.filter((v)=>[CODE.MINE,CODE.FLAG_MINE,CODE.QUESTION_MINE].includes(v)).length;    
+                tableData[row][cell] = count;
+                
+                //클릭한 내가 지뢰0이면 주변 모두검사해서 클릭
+                if(count===0){
+                    const near = [];
+                    if(row-1>-1){//클릭한 칸의 젤 맨위 없애줌
+                        near.push([row-1,cell-1]);
+                        near.push([row-1,cell]);
+                        near.push([row-1,cell+1]);
+                    }
+                    near.push([row,cell-1])
+                    near.push([row,cell+1])
+                    if(row+1>tableData.length){//젤아래칸
+                        near.push([row+1,cell-1]);
+                        near.push([row+1,cell]);
+                        near.push([row+1,cell+1]);                        
+                    }
+                    near.forEach((n)=>{//있는 칸들만 주변을 클릭
+                        console.log(tableData[n[0]])
+                        if(tableData[n[0]][n[1]] !== CODE.OPEND){//내가 클릭을하고 주변칸이 닫혀있는 경우에만
+                            checkAround(n[0],n[1])
+                        }
+                    })
+                }else{
+
+                }
+            }
+            //tableData[action.row][action.cell] = CODE.OPEND;
+            checkAround(action.row,action.cell)
+            let halted = false;
+            let result = '';
+            if(state.row*state.cell-state.mine === state.opendCount + opendCount){//승리(지뢰뺴고 열면 승리..)
+                halted = true;
+                result = '승리!'
+            }
             return{
                 ...state,
-                tableData
+                tableData,
+                opendCount:state.opendCount+count,
+                halted,
+                result
             }
         }
         case CLICK_MINE:{
