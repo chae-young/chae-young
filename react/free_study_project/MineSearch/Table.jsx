@@ -3,7 +3,7 @@ import { TableContext } from './MineSearch';
 import Tr from './Tr';
 
 const Table = memo(() =>{
-    const {tableData} = useContext(TableContext) //value.tableData
+    const {tableData,dispatch} = useContext(TableContext) //value.tableData
 
     return(
         <table>

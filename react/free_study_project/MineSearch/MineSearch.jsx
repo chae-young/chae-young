@@ -1,4 +1,4 @@
-import React , {useReducer,createContext,useMemo} from 'react';
+import React , {useReducer,createContext,useMemo,useEffect} from 'react';
 import Form from './Form'
 import Table from './Table'
 
@@ -17,7 +17,7 @@ export const TableContext = createContext({
     //초기값
     tableData:[],
     halted:true,
-    disapath:()=>{}
+    dispatch:()=>{}
 });
 
 const initialState = {
@@ -30,7 +30,7 @@ const initialState = {
     timer:0,
     result:'',
     halted:true, //게임상태
-    opendCount:0
+    openedCount:0
 }
 
 const plantMine = (row,cell,mine) =>{
@@ -65,6 +65,7 @@ export const CLICK_MINE = 'CLICK_MINE';
 export const FLAG_CELL = 'FLAG_CELL';
 export const QUESTION_CELL = 'QUESTION_CELL';
 export const NORMALIZE_CELL = 'NORMALIZE_CELL';
+export const INCREMENT_TIMER = 'INCREMENT_TIMER';
 
 const reducer = (state,action) => {
     switch(action.type){
@@ -76,8 +77,10 @@ const reducer = (state,action) => {
                     cell:action.cell,
                     mine:action.mine
                 },
+                openedCount:0,
                 tableData:plantMine(action.row,action.cell,action.mine),
-                halted:false
+                halted:false,
+                timer: 0,
             }
         case OPEN_CELL:{
             const tableData = [...state.tableData];
@@ -88,24 +91,24 @@ const reducer = (state,action) => {
             })
             
             const checked =[];
-            let opendCount = 0;
+            let openedCount = 0;
             //주변칸들은 검사하는 함수
             const checkAround = (row,cell) =>{
                 //이미열린칸,지뢰는 열리지 않게
-                if([CODE.OPEND,CODE.FLAG_MINE,CODE.QUESTION_MINE,CODE.QUESTION].includes(tableData[row][cell])){
+                if (row < 0 || row >= tableData.length || cell < 0 || cell >= tableData[0].length) {//상하좌우필터링
+                    return;
+                  }                
+                if([CODE.OPENED, CODE.FLAG, CODE.FLAG_MINE, CODE.QUESTION_MINE, CODE.QUESTION].includes(tableData[row][cell])){
                     return;
                 }
-                if(row<0 || row>tableData.length || cell<0 || cell>tableData[0].length){//상하좌우필터링
-                    return
-                }
-                if(checked.includes(row+','+'cell')){//이미 검사한 칸이면(재귀방지)
+                if (checked.includes(row + '/' + cell)){//이미 검사한 칸이면(재귀방지)
                     return;
                 }else{
-                    checked.push(row+','+'cell')
+                    checked.push(row + '/' + cell);
                 }
 
 
-                opendCount+=1
+                //opendCount+=1
                 //주변칸 지뢰개수 검사
                 let around=[
                     tableData[row][cell-1],
@@ -117,12 +120,8 @@ const reducer = (state,action) => {
                         tableData[row-1][cell],
                         tableData[row-1][cell+1]
                     )
-                }
-                around = around.concat(
-                    tableData[row][cell-1],
-                    tableData[row][cell+1]
-                )    
-                if(tableData[row-1]){
+                }  
+                if(tableData[row+1]){
                     around = around.concat(
                         tableData[row+1][cell-1],
                         tableData[row+1][cell],
@@ -130,46 +129,49 @@ const reducer = (state,action) => {
                     )
                 }    
                 //주변킨증에 지뢰있는칸 개수담기
-                const count = around.filter((v)=>[CODE.MINE,CODE.FLAG_MINE,CODE.QUESTION_MINE].includes(v)).length;    
-                tableData[row][cell] = count;
+                const count = around.filter((v)=>[CODE.MINE,CODE.FLAG_MINE,CODE.QUESTION_MINE].includes(v)).length;
                 
                 //클릭한 내가 지뢰0이면 주변 모두검사해서 클릭
                 if(count===0){
-                    const near = [];
-                    if(row-1>-1){//클릭한 칸의 젤 맨위 없애줌
-                        near.push([row-1,cell-1]);
-                        near.push([row-1,cell]);
-                        near.push([row-1,cell+1]);
-                    }
-                    near.push([row,cell-1])
-                    near.push([row,cell+1])
-                    if(row+1>tableData.length){//젤아래칸
-                        near.push([row+1,cell-1]);
-                        near.push([row+1,cell]);
-                        near.push([row+1,cell+1]);                        
-                    }
-                    near.forEach((n)=>{//있는 칸들만 주변을 클릭
-                        console.log(tableData[n[0]])
-                        if(tableData[n[0]][n[1]] !== CODE.OPEND){//내가 클릭을하고 주변칸이 닫혀있는 경우에만
-                            checkAround(n[0],n[1])
+                    if (row > -1) {//클릭한 칸의 젤 맨위 없애줌
+                        const near = [];
+                        if (row - 1 > -1) {
+                          near.push([row -1, cell - 1]);
+                          near.push([row -1, cell]);
+                          near.push([row -1, cell + 1]);
                         }
-                    })
-                }else{
-
+                        near.push([row, cell - 1]);
+                        near.push([row, cell + 1]);
+                        if (row + 1 < tableData.length) {//젤아래칸
+                          near.push([row + 1, cell - 1]);
+                          near.push([row + 1, cell]);
+                          near.push([row + 1, cell + 1]);
+                        }
+                        near.forEach((n) => {//있는 칸들만 주변을 클릭
+                          if (tableData[n[0]][n[1]] !== CODE.OPENED) {
+                            checkAround(n[0], n[1]);
+                          }
+                        })
+                    } 
                 }
+                if (tableData[row][cell] === CODE.NORMAL) { // 내 칸이 닫힌 칸이면 카운트 증가
+                    openedCount += 1;
+                }
+                tableData[row][cell] = count;                
             }
             //tableData[action.row][action.cell] = CODE.OPEND;
             checkAround(action.row,action.cell)
+
             let halted = false;
             let result = '';
-            if(state.row*state.cell-state.mine === state.opendCount + opendCount){//승리(지뢰뺴고 열면 승리..)
+            if(state.data.row * state.data.cell - state.data.mine === state.openedCount + openedCount){//승리(지뢰뺴고 열면 승리..)
                 halted = true;
                 result = '승리!'
             }
             return{
                 ...state,
                 tableData,
-                opendCount:state.opendCount+count,
+                openedCount: state.openedCount + openedCount,
                 halted,
                 result
             }
@@ -222,26 +224,51 @@ const reducer = (state,action) => {
                 ...state,
                 tableData,
             }
-        }                                
+        }
+        case INCREMENT_TIMER: {
+            return {
+              ...state,
+              timer: state.timer + 1,
+            }
+          }                                       
         default:
             return
     }
 }
+const MineSearch = () => {
+    const [state, dispatch] = useReducer(reducer, initialState);
+    const { tableData, halted, timer, result } = state;
 
-const MineSearch = () =>{
-    const [state,disapath] = useReducer(reducer,initialState);
-
-    const value = useMemo( ()=> ({tableData:state.tableData,halted:state.halted,disapath}),[state.tableData,state.halted])//inline에 쓰면 매번렌더링되기 때문에 memo로 기억
-
-    return(
+    const value = useMemo(() => {
+        console.log(tableData == state.tableData)
+        return { 
+            tableData, halted, dispatch 
+        }
+        }, [tableData, halted]
+    );
+  
+    useEffect(() => {
+      let timer;
+      if (halted === false) {
+        timer = setInterval(() => {
+          dispatch({ type: INCREMENT_TIMER });
+        }, 1000);
+      }
+      return () => {
+        clearInterval(timer);
+      }
+    }, [halted]);
+  
+    return (
         /*provider로 묶어줘야 그 아래 컴포넌트에 접근가능 */
-        <TableContext.Provider value={ value }>
-            <Form/>
-            <div>{state.timer}</div>
-            <Table/>
-            <div>{state.result}</div>
-        </TableContext.Provider>
-    )
-}
+      <TableContext.Provider value={value}>
+        <Form />
+        <div>{timer}</div>
+        <Table />
+        <div>{result}</div>
+      </TableContext.Provider>
+    );
+};
+
 
 export default MineSearch;

@@ -5,7 +5,7 @@ const Form = memo(() =>{
     const [row,setRow] = useState(10);
     const [cell,setCell] = useState(10);
     const [mine,setMine] = useState(20);
-    const {disapath} = useContext(TableContext);//api 가져오기
+    const {dispatch} = useContext(TableContext);//api 가져오기
 
     const onChangeRow = useCallback((e)=>{
         setRow(e.target.value);
@@ -18,7 +18,7 @@ const Form = memo(() =>{
     },[])
 
     const onClickBtn = useCallback((e)=>{
-        disapath({type:START_GAME,row,cell,mine})
+        dispatch({type:START_GAME,row,cell,mine})
     },[row,cell,mine])
 
     return(
