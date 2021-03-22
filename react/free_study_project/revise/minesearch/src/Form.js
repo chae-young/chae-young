@@ -3,17 +3,17 @@ import { START_GAME } from './App';
 import {TableContextApi} from './App';
 
 const Form = () =>{
-    const [row,setRow] = useState();
-    const [cell,setCell] = useState();
-    const [mine,setMine] = useState();
-    //const {dispatch} = useContext(TableContextApi);
-    console.log(TableContextApi)
+    const [row,setRow] = useState(10);
+    const [cell,setCell] = useState(10);
+    const [mine,setMine] = useState(20);
+    const {dispatch} = useContext(TableContextApi);
+
     const onChangeRow = ({target}) =>{setRow(target.value);}
     const onChangeCell = ({target}) =>{setCell(target.value);}
     const onChangeMine = ({target}) =>{setMine(target.value);}
 
     const onClickBtn = () =>{
-        //dispatch({type:START_GAME,row,cell,mine})
+        dispatch({type:START_GAME,row,cell,mine})
     }
 
     return(
