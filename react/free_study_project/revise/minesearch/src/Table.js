@@ -1,13 +1,13 @@
 import React, { useState,useContext } from 'react';
-import TableContextApi from './App'
+import {TableContextApi} from './App';
 import Tr from './Tr'
 
 const Table = () =>{
-    //const {dispatch} = useContext(TableContextApi);
+    const {dispatch,tableData} = useContext(TableContextApi);
 
     return(
         <table>
-            <Tr/>
+            { Array(tableData.length).fill().map((tr,i)=><Tr trIndex={i}/>) }
         </table>
     )
 }

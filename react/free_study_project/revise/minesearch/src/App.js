@@ -4,6 +4,7 @@ import Table from './Table'
 import './App.css';
 
 
+
 export const TableContextApi = createContext({
   tableData:[],
 });
@@ -27,7 +28,7 @@ const MakeAtable = (row,cell,mine) =>{
     const put = table.splice( Math.floor(Math.random()*table.length),1 )[0];
     mineArr.push(put)
   }
-  //기본값
+  //기본값 집어넣기
   const data = [];
   for(let i = 0;i<row;i++){
       const rowData=[];
@@ -42,12 +43,13 @@ const MakeAtable = (row,cell,mine) =>{
     const her = mineArr[i]%cell;
     data[ver][her] = CODE.MINE
   }
-  console.log(data)
+  return data
 }  
 
 
 //reducer 
 export const START_GAME = 'START_GAME';
+export const OPEN_CELL = 'OPEN_CELL';
 const reducer = (state,action) =>{
   switch(action.type){
     case START_GAME:
@@ -55,6 +57,14 @@ const reducer = (state,action) =>{
         ...state,
         tableData:MakeAtable(action.row,action.cell,action.mine)
       }
+    case OPEN_CELL:{
+      const copyTableData = [...state.tableData]
+      console.log(copyTableData,state)
+      return{
+        ...state,
+        copyTableData
+      }
+    }
   }
 }
 
