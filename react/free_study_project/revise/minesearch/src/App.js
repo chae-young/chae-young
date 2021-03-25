@@ -78,7 +78,17 @@ const initialState = {
 const App = () =>{
   const [state,dispatch] = useReducer(reducer,initialState);
   const {tableData} = state;
-
+  useEffect(() => {
+    let timer;
+    if (halted === false) {
+      timer = setInterval(() => {
+        dispatch({ type: INCREMENT_TIMER });
+      }, 1000);
+    }
+    return () => {
+      clearInterval(timer);
+    }
+  }, [halted]);
   return(
     <TableContextApi.Provider value={{tableData,dispatch}}>
       <Form/>
