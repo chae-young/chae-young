@@ -1,0 +1,20 @@
+import {useMemo} from 'react';
+import {Form,Input} from 'antd';
+
+const NicknameEditForm = () =>{
+    const style = useMemo(()=>(
+        {
+            marginBottom:20,
+            border:'1px solid #000',
+            padding:10
+        }
+    ),[])
+
+    return(
+        <Form style={style}>
+            <Input.Search addonBefore="닉네임" enterButton="수정"/>
+        </Form>
+    )
+}
+
+export default NicknameEditForm;
