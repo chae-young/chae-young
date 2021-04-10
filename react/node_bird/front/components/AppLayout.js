@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Link from 'next/link';
 import {Menu,Input,Row,Col} from 'antd';
 import styled from 'styled-components';
+import {useSelector} from 'react-redux';
+
 
 import UseerProfile from '../components/UserProfile';
 import LoginForm from '../components/LoginForm';
@@ -13,7 +15,10 @@ const SearchInput = styled(Input.Search)`
 
 //일부가 공통인것들은 여기!
 const AppLayout = ( {children} ) =>{
-    const [isLogined,setIsLogined] = useState(false) //로그인 더미데이터
+    //const [isLogined,setIsLogined] = useState(false) //로그인 더미데이터
+    //isloggedin이 바뀌면 컴포넌트가 리렌더링됨
+    const {isLoggedin} = useSelector((state)=>state.user)
+
 
     return(
         <div>
@@ -25,7 +30,7 @@ const AppLayout = ( {children} ) =>{
             </Menu>
             <Row gutter={8}>{/*간격*/}
                 <Col xs={24} md={6}>
-                    {isLogined ? <UseerProfile setIsLogined={setIsLogined}/> : <LoginForm setIsLogined={setIsLogined}/>}
+                    {isLoggedin ? <UseerProfile/> : <LoginForm/>}
                 </Col>
                 <Col xs={24} md={12}>{ children }</Col>
                 <Col xs={24} md={6}>

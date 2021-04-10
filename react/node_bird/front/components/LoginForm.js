@@ -4,6 +4,8 @@ import {Form,Input,Button} from 'antd';
 import Link from 'next/link';
 import styled from 'styled-components';
 import useInput from '../hooks/useInput';
+import {useDispatch} from 'react-redux';
+import {loginAction} from '../reducers/user'
 
 //const style = useMemo(()=>( {marginTop:10} ),[])
 //스타일컴포넌트 (인라인으로 할경우 리렌더링됨.) or usememo
@@ -14,12 +16,14 @@ const FormWrapper = styled(Form)`
     padding:10px;
 `
 
-const LoginForm = ( {setIsLogined} ) =>{
+const LoginForm = ( ) =>{
+    const dispatch = useDispatch();
     const [id,onChangeId] = useInput('');
     const [password,onChangePassword] = useInput('');
 
     const onSubmitForm = useCallback(()=>{
-        setIsLogined(true)
+        //setIsLogined(true)
+        dispatch(loginAction({id,password}))
     },[id,password])
 
     return(
@@ -45,8 +49,5 @@ const LoginForm = ( {setIsLogined} ) =>{
     )   
 }
 
-LoginForm.propTypes = {
-    setIsLogined:PropTypes.func.isRequired,
-}
 
 export default LoginForm;
