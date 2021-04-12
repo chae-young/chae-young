@@ -1,0 +1,64 @@
+import {useCallback,useState} from 'react';
+import { Card,Popover,Button,Avatar } from "antd";
+import PropTypes from 'prop-types';
+import {RetweetOutlined,HeartOutlined,HeartTwoTone,MessageOutlined,EllipsisOutlined} from '@ant-design/icons';
+//import ButtonGroup from "antd/lib/button/button-group";
+import { useSelector } from "react-redux";
+import PostImages from './PostImages';
+
+const PostCard = ({post}) =>{
+    //const me = useSelector((state)=>state.user);
+    //const id = me?.id //옵셔널체이닝->me.id가 있으면 값들어가고 없으면 undefined 
+    const [liked,setLiked] = useState(false);
+    const [commentFormOpend,setcommentFormOpend] = useState(false);
+    const onToggleLike = useCallback(()=>{
+        setLiked((prev)=>!prev)//false-->true 로 
+    },[])
+    const onToggleComment = useCallback(()=>{
+        setcommentFormOpend((prev)=>!prev)//false-->true 로 
+    },[])    
+    const id = useSelector((state)=>state.user.me?.id);
+
+    return (
+        <>
+            <Card 
+                cover={post.Images[0]&&<PostImages images={post.images}/>}
+                actions={[
+                    <RetweetOutlined key="retweet"/>,
+                    liked 
+                        ? <HeartTwoTone twoToneColor="red" key="heart" onClick={onToggleLike}/> 
+                        : <HeartOutlined key="heart" onClick={onToggleLike}/>,
+                    <MessageOutlined key="comment" onClick={onToggleComment}/>,  
+                    <Popover key="more " 
+                        content={(
+                            <Button.Group>
+                                {id && 
+                                post.User.id === id ? (<><Button>수정</Button><Button type="danger">삭제</Button></>) :
+                                <Button>신고</Button>}       
+                            </Button.Group>
+                        )}>
+                        <EllipsisOutlined />
+                    </Popover>,
+                ]}
+            >
+                <Card.Meta description={post.content} title={post.User.nickname} avatar={<Avatar>post.User.nickname[0]</Avatar>}/>
+            
+            </Card>
+            {commentFormOpend && (<div>댓글부문</div>)}
+            {/* {<CommentForm/>} */}
+            {/* {<Comments/>} */}
+        </>
+    )
+}
+
+PostCard.propTypes = {
+    post:PropTypes.shape({
+        id:PropTypes.number,
+        User:PropTypes.object,
+        content:PropTypes.string,
+        createdAt:PropTypes.object,
+        Comments:PropTypes.arrayOf(PropTypes.object),
+        Images:PropTypes.arrayOf(PropTypes.object),
+    }).isRequired
+}
+export default PostCard;
