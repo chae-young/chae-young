@@ -5,10 +5,10 @@ export const initialState = {
             id:1,
             nickname:'2chaeng',
         },
-        content:'??',
+        content:'첫번째',
         Images:[
             {src:'http://t1.daumcdn.net/friends/prod/editor/dc8b3d02-a15a-4afa-a88b-989cf2a50476.jpg'},
-            {src:'https://t1.daumcdn.net/cfile/tistory/994BEF355CD0313D05'}
+            {src:'https://t1.daumcdn.net/cfile/tistory/994BEF355CD0313D05'},
         ],
         Comments:[
             {

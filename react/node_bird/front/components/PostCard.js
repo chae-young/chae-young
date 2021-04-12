@@ -1,10 +1,11 @@
 import {useCallback,useState} from 'react';
-import { Card,Popover,Button,Avatar } from "antd";
+import { Card,Popover,Button,Avatar,List,Comment } from "antd";
 import PropTypes from 'prop-types';
 import {RetweetOutlined,HeartOutlined,HeartTwoTone,MessageOutlined,EllipsisOutlined} from '@ant-design/icons';
 //import ButtonGroup from "antd/lib/button/button-group";
 import { useSelector } from "react-redux";
 import PostImages from './PostImages';
+import CommentForm from './CommentForm';
 
 const PostCard = ({post}) =>{
     //const me = useSelector((state)=>state.user);
@@ -22,7 +23,7 @@ const PostCard = ({post}) =>{
     return (
         <>
             <Card 
-                cover={post.Images[0]&&<PostImages images={post.images}/>}
+                cover={post.Images[0]&&<PostImages images={post.Images}/>}
                 actions={[
                     <RetweetOutlined key="retweet"/>,
                     liked 
@@ -44,7 +45,25 @@ const PostCard = ({post}) =>{
                 <Card.Meta description={post.content} title={post.User.nickname} avatar={<Avatar>post.User.nickname[0]</Avatar>}/>
             
             </Card>
-            {commentFormOpend && (<div>댓글부문</div>)}
+            {commentFormOpend && 
+                (<div>
+                    <CommentForm post={post}/>
+                    <List
+                        header={`${post.Comments.length} 개의 댓글`}
+                        itemLayout="horizontal"
+                        dataSource={post.Comments}
+                        renderItem={(item)=>(
+                            <li>
+                                <Comment
+                                    author={item.User.nickname}
+                                    avatar={<Avatar>{item.User.nickname[0]}</Avatar>}
+                                    content={item.content}
+                                />
+                            </li>
+                        )}
+                    />
+                </div>)
+            }
             {/* {<CommentForm/>} */}
             {/* {<Comments/>} */}
         </>
