@@ -5,7 +5,7 @@ export const initialState = {
             id:1,
             nickname:'2chaeng',
         },
-        content:'첫번째',
+        content:'첫번째 #감성 #맞팔 #좋아요',
         Images:[
             {src:'http://t1.daumcdn.net/friends/prod/editor/dc8b3d02-a15a-4afa-a88b-989cf2a50476.jpg'},
             {src:'https://t1.daumcdn.net/cfile/tistory/994BEF355CD0313D05'},
