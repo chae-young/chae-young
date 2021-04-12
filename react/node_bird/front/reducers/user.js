@@ -1,6 +1,6 @@
 export const initialState = {
     isLoggedin:false,
-    user:null,
+    me:null,
     signUpData:{},
     loginData:{},
 }
@@ -11,18 +11,19 @@ const reducer = (state=initialState,action)=>{
             return{
                 ...state,
                 isLoggedin:true,
-                user:action.data,
+                me:action.data,
             }
         case 'LOG_OUT':
             return{
                 ...state,
                 isLoggedin:false,
-                user:null,
+                me:null,
             }      
         default:
             return state
     }
 }
+//동적액션객체
 export const loginAction = (data) =>{
     return {
         type:'LOG_IN',
