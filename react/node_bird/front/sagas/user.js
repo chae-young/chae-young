@@ -82,7 +82,7 @@ function* watchLogOut(){
     yield takeLatest(LOG_OUT_REQUEST,logOut);
 }
 function* watchSignUp(){
-    yield takeLatest(SINGUP_REQUEST,signUp);
+    yield takeLatest(SIGN_UP_REQUEST,signUp);
 }
 
 

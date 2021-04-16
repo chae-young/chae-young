@@ -17,7 +17,7 @@ const SearchInput = styled(Input.Search)`
 const AppLayout = ( {children} ) =>{
     //const [isLogined,setIsLogined] = useState(false) //로그인 더미데이터
     //isloggedin이 바뀌면 컴포넌트가 리렌더링됨
-    const {isLoggedin} = useSelector((state)=>state.user)
+    const {me} = useSelector((state)=>state.user)
 
 
     return(
@@ -30,7 +30,7 @@ const AppLayout = ( {children} ) =>{
             </Menu>
             <Row gutter={8}>{/*간격*/}
                 <Col xs={24} md={6}>
-                    {isLoggedin ? <UseerProfile/> : <LoginForm/>}
+                    {me ? <UseerProfile/> : <LoginForm/>}
                 </Col>
                 <Col xs={24} md={12}>{ children }</Col>
                 <Col xs={24} md={6}>
