@@ -12,7 +12,7 @@ const loggerMiddleware = ({ dispatch, getState }) => (next) => (action) => {
 
 //store=> state,reducer 포함된것
 const  configureStore = () =>{
-    const sagaMiddleware = createSagaMiddleware;
+    const sagaMiddleware = createSagaMiddleware();
     const middelewears = [sagaMiddleware,loggerMiddleware];
     const enhancer = process.env.NODE_ENV === 'production'
     ? compose(applyMiddleware(...middelewears))//배포용일때 연결안하고
