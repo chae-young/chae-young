@@ -1,3 +1,5 @@
+import produce from 'immer';
+
 export const initialState = {
     loginLoading:false,//로그인 시도중
     loginDone:false,
@@ -88,6 +90,74 @@ export const logOutRequestAction = () =>{
 // }
 
 const reducer = (state=initialState,action)=>{
+    return produce(state,(draft)=>{
+        switch(action.type){
+            case LOG_IN_REQUEST:
+                draft.loginLoading=true;
+                draft.loginDone=false;
+                draft.loginError=null;
+                break;
+            case LOG_IN_SUCCESS:
+                draft.loginLoading=false;
+                draft.isLoggedin=true;
+                draft.loginDone=true;
+                draft.me=dummyUser(action.data);
+                break;
+            case LOG_IN_FAIL:
+                draft.loginLoading=false;
+                draft.loginError=action.error
+                break;                                      
+            case LOG_OUT_REQUEST:
+                draft.logOutLoading=true;//로그아웃 시도중
+                draft.logOutDone=false;
+                draft.logOutError=null;
+                break;
+            case LOG_OUT_SUCCESS:
+                draft.logOutLoading=false;//로그아웃 시도중
+                draft.logOutDone=true;
+                draft.me=null;
+                break;
+            case LOG_OUT_FAIL:
+                draft.logOutLoading=false;
+                draft.logOutError=action.error;
+                break; 
+            case SIGN_UP_REQUEST:
+                draft.signUpLoading=true;//로그아웃 시도중
+                draft.signUpDone=false;
+                draft.signUpError=null;
+                break;
+            case SIGN_UP_SUCCESS:
+                draft.signUpLoading=false;//로그아웃 시도중
+                draft.signUpDone=true;
+                break;
+            case SIGN_UP_FAIL:
+                draft.signUpLoading=false;
+                draft.signUpError=action.error;
+                break;
+            case CHANGE_NICKNAME_REQUEST:
+                draft.changeNicknameLoading=true;//로그아웃 시도중
+                draft.changeNicknameDone=false;
+                draft.changeNicknameError=null;
+                break;
+            case CHANGE_NICKNAME_SUCCESS:
+                draft.changeNicknameLoading=false;
+                draft.changeNicknameDone=true;
+                break;
+            case CHANGE_NICKNAME_FAIL:
+                draft.changeNicknameLoading=false;
+                draft.changeNicknameError=action.error;
+                break;
+            case ADD_POST_TO_ME:
+                draft.me.Posts.unshift({id:action.data})     
+                break;
+            case REMOVE_POST_OF_ME:
+                draft.me.Posts=draft.me.Posts.filter(v=>v.id !== action.date);
+                break;                                                             
+            default:
+                break;
+        }
+    })    
+    /*
     switch(action.type){
         case LOG_IN_REQUEST:
             return{
@@ -191,7 +261,7 @@ const reducer = (state=initialState,action)=>{
             }                                                                 
         default:
             return state
-    }
+    }*/
 }
 //동적액션객체
 // export const loginAction = (data) =>{

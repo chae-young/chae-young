@@ -1,4 +1,5 @@
 import shortid from 'shortid';
+import produce from 'immer';
 
 export const initialState = {
     mainPosts:[{
@@ -72,7 +73,64 @@ const dummyComment = (data)=> ({
     content:data,
 })
 
+//이전상태를 액션을통해 다음상태로 만들어내는 함수
 const reducer = (state=initialState,action)=>{
+    //state가 draft로 바뀜
+    return produce(state,(draft)=>{
+        switch(action.type){
+            case ADD_POST_REQUEST:
+                draft.addPostLoading=true;    
+                draft.addPostDone=false;    
+                draft.addPostError=null;
+                break;
+            case ADD_POST_SUCCESS:
+                draft.mainPosts.unshift(dummyPost(action.data));
+                draft.addPostLoading=false;   
+                draft.addPostDone=true;  
+                break;
+            case ADD_POST_FAIL:
+                draft.addPostLoading=false;
+                draft.addPostError=action.error;
+                break;
+            case REMOVE_POST_REQUEST:
+                draft.removePostLoading=true;    
+                draft.removePostDone=false;    
+                draft.removePostError=null;    
+                break;
+            case REMOVE_POST_SUCCESS:
+                draft.mainPosts=draft.mainPosts.filter(v=>v.id!==action.data);
+                draft.removePostLoading=false;
+                draft.removePostDone=true;
+                break;
+            case REMOVE_POST_FAIL:
+                draft.removePostLoading=false;
+                draft.removePostError=action.error;  
+                break;
+            case ADD_COMMENT_REQUEST:
+                draft.addCommentLoading=true;   
+                draft.addCommentDone=false;   
+                draft.addCommentError=null;   
+                break;
+            case ADD_COMMENT_SUCCESS:{
+                //불변성은 바뀌는 것만바뀌고 안바뀌는 건 참조유지
+                //action.data.content,action.data.postid,action.data.userid
+                //해당게시글의 댓글에 접근하기위해 id를 찾는다
+                const post = draft.mainPosts.findIndex(v=>v.id===action.data.postId);
+                post.Comments.unshift(dummyComment(action.data.content))
+                draft.addCommentLoading=false;    
+                draft.addCommentDone=true;
+                break;                
+            }
+            case ADD_COMMENT_FAIL:
+                draft.addCommentLoading=false;
+                draft.addCommentError=action.error;
+                break;
+            default:
+                break;
+        }
+    })
+
+    /*
     switch(action.type){
         case ADD_POST_REQUEST:
             return{
@@ -147,7 +205,7 @@ const reducer = (state=initialState,action)=>{
             }            
         default:
             return state
-    }
+    }*/
 }
 
 export default reducer;
