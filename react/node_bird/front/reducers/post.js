@@ -1,27 +1,34 @@
 import shortid from 'shortid';
 import produce from 'immer';
+import faker from 'faker';
 
 export const initialState = {
-    mainPosts:[{
-        id:1,
-        User:{
-            id:1,
-            nickname:'2chaeng',
-        },
-        content:'첫번째 #감성 #맞팔 #좋아요',
-        Images:[ 
-            {id:shortid.generate(),src:'http://t1.daumcdn.net/friends/prod/editor/dc8b3d02-a15a-4afa-a88b-989cf2a50476.jpg'},
-            {id:shortid.generate(),src:'https://t1.daumcdn.net/cfile/tistory/994BEF355CD0313D05'},
-        ],
-        Comments:[
-            {
-                id:shortid.generate(),
-                User:{id:shortid.generate(),nickname:'cy'},
-                content:'우와..'
-            }
-        ],
-    }],
+    mainPosts:[
+        // {
+        //     id:1,
+        //     User:{
+        //         id:1,
+        //         nickname:'2chaeng',
+        //     },
+        //     content:'첫번째 #감성 #맞팔 #좋아요',
+        //     Images:[ 
+        //         {id:shortid.generate(),src:'http://t1.daumcdn.net/friends/prod/editor/dc8b3d02-a15a-4afa-a88b-989cf2a50476.jpg'},
+        //         {id:shortid.generate(),src:'https://t1.daumcdn.net/cfile/tistory/994BEF355CD0313D05'},
+        //     ],
+        //     Comments:[
+        //         {
+        //             id:shortid.generate(),
+        //             User:{id:shortid.generate(),nickname:'cy'},
+        //             content:'우와..'
+        //         }
+        //     ],
+        // }
+    ],
     imagePaths:[],
+    hasMorePost:true,
+    loadPostsLoading:false,    
+    loadPostsDone:false,    
+    loadPostsError:null,       
     addPostLoading:false,    
     addPostDone:false,    
     addPostError:null,    
@@ -32,6 +39,34 @@ export const initialState = {
     addCommentDone:false,    
     addCommentError:null,      
 }
+export const generateDummyPost = (number) => Array(number).fill().map(()=>{
+    return{
+            id:shortid.generate(),
+            User:{
+                id:shortid.generate(),
+                nickname:faker.name.findName(),
+            },
+            content:faker.lorem.paragraph(),
+            Images:[{src:faker.image.image()}],
+            Comments:[
+                {
+                    User:{
+                        id:shortid.generate(),
+                        nickname:faker.name.findName(),
+                    },
+                    content:faker.lorem.sentence(),                  
+                }                
+            ],     
+    }
+}) 
+
+// initialState.mainPosts = initialState.mainPosts.concat(
+//     generateDummyPost()
+// );
+
+export const LOAD_POSTS_REQUEST = 'LOAD_POSTS_REQUEST';
+export const LOAD_POSTS_SUCCESS = 'LOAD_POSTS_SUCCESS';
+export const LOAD_POSTS_FAIL = 'LOAD_POSTS_FAIL';
 
 export const ADD_POST_REQUEST = 'ADD_POST_REQUEST';
 export const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS';
@@ -78,6 +113,21 @@ const reducer = (state=initialState,action)=>{
     //state가 draft로 바뀜
     return produce(state,(draft)=>{
         switch(action.type){
+            case LOAD_POSTS_REQUEST:
+                draft.loadPostsLoading=true;    
+                draft.loadPostsDone=false;    
+                draft.loadPostsError=null;
+                break;
+            case LOAD_POSTS_SUCCESS:
+                draft.mainPosts = action.data.concat(draft.mainPosts);
+                draft.loadPostsLoading=false;   
+                draft.loadPostsDone=true;  
+                draft.hasMorePost = draft.mainPosts.length < 50;
+                break;
+            case LOAD_POSTS_FAIL:
+                draft.loadPostsLoading=false;
+                draft.loadPostsError=action.error;
+                break;            
             case ADD_POST_REQUEST:
                 draft.addPostLoading=true;    
                 draft.addPostDone=false;    
