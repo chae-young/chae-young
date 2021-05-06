@@ -6,9 +6,11 @@ module.exports = (sequelize,DataTypes)=>{
         },
     },{
         //model setting
-        charset:'utf-8',
-        collate:'utf-8_general_ci'//이모티콘까지
+        charset:'utf8',
+        collate:'utf8_general_ci'//이모티콘까지
     })
-    Image.associate=(db)=>{};
+    Image.associate=(db)=>{
+        db.Image.belongsTo(db.Post);        
+    };
     return Image;
 }

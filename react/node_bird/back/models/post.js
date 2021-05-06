@@ -6,9 +6,16 @@ module.exports = (sequelize,DataTypes)=>{
         },
     },{
         //model setting
-        charset:'utf-8mb4',
-        collate:'utf-8mb4_general_ci'//이모티콘까지
+        charset:'utf8mb4',
+        collate:'utf8mb4_general_ci'//이모티콘까지
     })
-    Post.associate=(db)=>{};
+    Post.associate=(db)=>{
+        db.Post.belongsTo(db.User);//post가 user에 속해있다 1대다 관계
+        db.Post.belongsToMany(db.Hashtag,{through:'PostHashtag'})//다대다관계
+        db.Post.hasMany(db.Comment);//1 post에 댓글여러개 1대다 관계
+        db.Post.hasMany(db.Image); 
+        db.Post.belongsTo(db.Post,{as:'Retweet'})     
+        db.Post.belongsToMany(db.User,{through:'Like',as:'Likers'});//사용자 좋아요,좋아요 누른 사람들
+    };
     return Post;
 }
