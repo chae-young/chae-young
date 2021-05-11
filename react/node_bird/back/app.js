@@ -19,6 +19,7 @@ const postRouter = require('./routes/post');
 const userRouter = require('./routes/user');
 const db = require('./models');
 const app = express();
+const passportConfig = require('passport');
 
 db.sequelize.sync()
     .then(()=>{
@@ -29,6 +30,7 @@ db.sequelize.sync()
 app.use(cors({
     origin:'*',
 }));
+passportConfig();
 //front에서 받아온 data를 해석해서 req.body로 받아옴
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
