@@ -14,8 +14,9 @@
 // });
 
 const express = require('express');
+const cors = require('cors');
 const postRouter = require('./routes/post');
-const userRouter = require('./routes/post');
+const userRouter = require('./routes/user');
 const db = require('./models');
 const app = express();
 
@@ -25,6 +26,9 @@ db.sequelize.sync()
     })
     .catch(console.error);
 
+app.use(cors({
+    origin:'*',
+}));
 //front에서 받아온 data를 해석해서 req.body로 받아옴
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
