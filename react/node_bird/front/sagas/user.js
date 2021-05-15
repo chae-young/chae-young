@@ -56,19 +56,19 @@ function* unfollow(action){
 }
 function logInAPI(data){
     //데이터받아와서
-    return axios.post('/api/login',data)
+    return axios.post('/user/login',data)
 }
 function* logIn(action){
     try{
         //결과값받기 (받을때까지 기다림 그래서 call 사용)
         //logInAPT를 호출하여 action.data 값 보내기
-        //const result = yield call(logInAPI,action.data);
-        yield delay(1000);
+        const result = yield call(logInAPI,action.data);
+        //yield delay(1000);
         //결과값 받으면..
         yield put({//액션을 디스패치한다
             type:LOG_IN_SUCCESS,
             //data:result.data,
-            data:action.data,
+            data:result.data,
         })
     }catch(err){
         yield put({
@@ -79,7 +79,7 @@ function* logIn(action){
 }
 function logOutAPI(){
     //데이터받아와서
-    return axios.post('/api/logout')
+    return axios.post('/user/logout')
 }
 function* logOut(){
     try{
@@ -100,7 +100,7 @@ function* logOut(){
 }
 function signUpAPI(data){
     //데이터받아와서
-    return axios.post('http://localhost:3065/user',data)//{email,password,nick}
+    return axios.post('/user',data)//{email,password,nick}
 }
 function* signUp(action){
     try{

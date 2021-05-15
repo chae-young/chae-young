@@ -1,6 +1,7 @@
 import {all,call,fork,take,put,takeLatest, delay} from 'redux-saga/effects';
 import userSaga from './user';
 import postSaga from './post';
+import axios from 'axios';
 
 /*
 all : 배열을 받고 그 안에들어있는 것들을 한번에 실행 
@@ -12,7 +13,7 @@ tekeLatest:마지막실행만 받는다
 put : dispatch역할
 */
 
-
+axios.defaults.baseURL = "http://localhosr:3065";
 
 export default function* rootSaga(){
     yield all([
