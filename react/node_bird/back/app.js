@@ -19,7 +19,11 @@ const postRouter = require('./routes/post');
 const userRouter = require('./routes/user');
 const db = require('./models');
 const app = express();
-const passportConfig = require('passport');
+const passport = require('passport');    
+const passportConfig = require('./passport');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
+const dotenv = require('dotenv');
 
 db.sequelize.sync()
     .then(()=>{
@@ -30,9 +34,21 @@ db.sequelize.sync()
 app.use(cors({
     origin:'*',
 }));
+
+dotenv.config();
 passportConfig();
 //front에서 받아온 data를 해석해서 req.body로 받아옴
 app.use(express.json());
+
+app.use(cookieParser(process.env.COOKIE_SECRET));
+app.use(session({
+    saveUninitialized:false,
+    resave:false,
+    secret:process.env.COOKIE_SECRET
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(express.urlencoded({extended:true}));
 
 app.get('/',(req,res)=>{

@@ -1,7 +1,7 @@
 const passport = require('passport');
 const {Strategy:LocalStrategy} = require('passport-local');
 const bcrypt = require('bcrypt');
-const User = require('../models');
+const {User} = require('../models');
 
 module.exports=()=>{
     passport.use(new LocalStrategy({
@@ -20,7 +20,7 @@ module.exports=()=>{
             //이메일검사완료후 패스워드비교
             const result = await bcrypt.compare(password,user.password)//db 비번과 비교
             if(result){
-                return done(null.user)
+                return done(null,user)
             }
             return done(null,false,{reason:'비밀번호가 틀렸습니다'})
         }catch(error){
