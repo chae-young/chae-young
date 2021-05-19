@@ -16,6 +16,7 @@
 const express = require('express');
 const cors = require('cors');
 const postRouter = require('./routes/post');
+const postsRouter = require('./routes/posts');
 const userRouter = require('./routes/user');
 const db = require('./models');
 const app = express();
@@ -24,6 +25,7 @@ const passportConfig = require('./passport');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
+const morgan = require('morgan');
 
 db.sequelize.sync()
     .then(()=>{
@@ -32,11 +34,14 @@ db.sequelize.sync()
     .catch(console.error);
 
 app.use(cors({
-    origin:'*',
+    //origin:'*',
+    origin:'http://localhost:3000',//쿠키전달시 정확한 주소전달 or true
+    credentials:true,//쿠키전달()
 }));
 
 dotenv.config();
 passportConfig();
+app.use(morgan('dev'));
 //front에서 받아온 data를 해석해서 req.body로 받아옴
 app.use(express.json());
 
@@ -57,15 +62,10 @@ app.get('/',(req,res)=>{
 app.get('/',(req,res)=>{
     res.send('hello api')
 })
-app.get('/posts',(req,res)=>{
-    res.json([//데이터
-        {id:'1',content:'text'},
-        {id:'1',content:'text'},
-        {id:'1',content:'text'},
-    ])
-})
+
 
 app.use('/post',postRouter)
+app.use('/posts',postsRouter)
 app.use('/user',userRouter)
 
 app.listen(3065,()=>{

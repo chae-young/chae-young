@@ -5,6 +5,39 @@ const {User, Post} = require('../models');
 const router = express.Router();
 const {isLoggedIn,isNotLoggedIn} = require('./middlewares');
 
+router.get('/',async (req,res,next)=>{
+    try{
+        if(req.user){
+            const fullUserWithoutPassword = await User.findOne({
+                where:{id:req.user.id},
+                //비번만 제외
+                attributes:{
+                    exclude:['password']
+                },
+                include:[{
+                    model:Post,
+                    attributes:['id'],
+                },{
+                    model:User,
+                    as:'Followers',
+                    attributes:['id'],
+                },
+                {
+                    model:User,
+                    as:'Followings',
+                    attributes:['id'],
+                }]
+            })            
+            res.status(200).json(fullUserWithoutPassword);
+        }else{
+            res.status(200).json(null);
+        }
+    }catch(error){
+        console.error(error);
+        next(error);
+    }
+})
+
 //미들웨어 확장
 //done이 매개변수로 전달
 router.post('/login',isNotLoggedIn,(req,res,next)=>{
@@ -29,13 +62,16 @@ router.post('/login',isNotLoggedIn,(req,res,next)=>{
                 },
                 include:[{
                     model:Post,
+                    attributes:['id'],                    
                 },{
                     model:User,
-                    as:'Followers'
+                    as:'Followers',
+                    attributes:['id'],                    
                 },
                 {
                     model:User,
-                    as:'Followings'
+                    as:'Followings',
+                    attributes:['id'],                    
                 }]
             })
             return res.status(200).json(fullUserWithoutPassword);  
