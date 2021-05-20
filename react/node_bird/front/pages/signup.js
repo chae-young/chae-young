@@ -14,8 +14,15 @@ const errerMsg = styled.div`
 
 const Signup = () => {
     const dispatch = useDispatch();
-    const {signUpLoading,signUpDone,signUpError} = useSelector((state)=>state.user);
+    const {signUpLoading,signUpDone,signUpError,me} = useSelector((state)=>state.user);
 
+    useEffect(()=>{
+        if(me&&me.id){//로그인성공하면
+            Router.replace('/');
+        }
+    },[me&&me.id])
+
+    
     useEffect(()=>{
         if(signUpDone){
             Router.push('/');

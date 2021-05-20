@@ -21,6 +21,10 @@ router.get('/', async (req,res,next)=>{ // /posts
                     model:User,
                     attributes:['id','nickname']
                 }]
+            },{
+                model:User,//좋아요작성자
+                as:'Likers',
+                attributes:['id'] 
             }]
         })
         res.status(200).json(posts);

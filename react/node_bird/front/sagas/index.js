@@ -13,7 +13,8 @@ tekeLatest:마지막실행만 받는다
 put : dispatch역할
 */
 
-axios.defaults.baseURL = "http://localhosr:3065";
+axios.defaults.baseURL = "http://localhost:3065";
+axios.defaults.withCredentials = true;
 
 export default function* rootSaga(){
     yield all([

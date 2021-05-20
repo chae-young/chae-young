@@ -108,4 +108,18 @@ router.post('/logout',isLoggedIn,(req,res)=>{
     res.send('ok');
 })
 
+router.patch('/nickname',isLoggedIn,async (req,res,next)=>{
+    console.log(req.body.nickname)
+    try{
+        await User.update({//내 아이디의 닉네임을 프론트에서 받은 닉네임으로 수정
+            nickname:req.body.nickname,
+        },{//조건
+            where:{id:req.user.id}
+        })
+    res.status(200).json({nickname:req.body.nickname})
+    }catch(error){
+        console.error(error);
+        next(error)
+    }
+})
 module.exports = router;

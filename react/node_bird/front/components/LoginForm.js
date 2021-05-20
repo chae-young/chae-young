@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import {useState,useCallback} from 'react';
+import {useState,useCallback,useEffect } from 'react';
 import {Form,Input,Button} from 'antd';
 import Link from 'next/link';
 import styled from 'styled-components';
@@ -19,9 +19,15 @@ const FormWrapper = styled(Form)`
 const LoginForm = ( ) =>{
     const dispatch = useDispatch();
 
-    const {logInLoading} = useSelector((state)=>state.user);
+    const {loginLoading,loginError} = useSelector((state)=>state.user);
     const [email,onChangeEmail] = useInput('');
     const [password,onChangePassword] = useInput('');
+
+    useEffect(()=>{
+        if(loginError){
+            alert(loginError)
+        }
+    },[loginError])
 
     const onSubmitForm = useCallback(()=>{
         //setIsLogined(true)
@@ -44,7 +50,7 @@ const LoginForm = ( ) =>{
                 required/>                
             </div>
             <ButtonWrapper>
-                <Button Button type="primary" htmlType="submit" loading={logInLoading}>로그인</Button>
+                <Button Button type="primary" htmlType="submit" loading={loginLoading}>로그인</Button>
                 <Link href="/singup"><a><Button>회원가입</Button></a></Link>
             </ButtonWrapper>
         </FormWrapper>

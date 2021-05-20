@@ -17,6 +17,10 @@ const FollowButton = ({post})=>{
         }
     },[isFollowing])
 
+    if(post.User.id === me.id){//포스트아이디랑 내아이디랑 같으면 팔로우버튼 안보이게
+        return null
+    }
+    
     return(
         <Button onClick={onClickButton}>{isFollowing ? '언팔로우':'팔로우'}</Button>
     )

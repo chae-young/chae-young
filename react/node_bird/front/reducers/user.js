@@ -1,6 +1,9 @@
 import produce from 'immer';
 
 export const initialState = {
+    loadUserLoading:false,//유저정보 시도중
+    loadUserDone:false,
+    loadUserError:null,    
     followLoading:false,//팔로우 시도중
     followDone:false,
     followError:null,
@@ -23,7 +26,9 @@ export const initialState = {
     signUpData:{},
     loginData:{},
 }
-
+export const LOAD_USER_REQUEST = 'LOAD_USER_REQUEST';
+export const LOAD_USER_SUCCESS = 'LOAD_USER_SUCCESS';
+export const LOAD_USER_FAIL = 'LOAD_USER_FAIL';
 
 export const LOG_IN_REQUEST = 'LOG_IN_REQUEST';
 export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
@@ -98,6 +103,20 @@ export const logOutRequestAction = () =>{
 const reducer = (state=initialState,action)=>{
     return produce(state,(draft)=>{
         switch(action.type){
+            case LOAD_USER_REQUEST:
+                draft.loadUserLoading=true;
+                draft.loadUserDone=false;
+                draft.loadUserError=null;
+                break;
+            case LOAD_USER_SUCCESS:
+                draft.loadUserLoading=false;
+                draft.loadUserDone=true;
+                draft.me = action.data;
+                break;
+            case LOAD_USER_FAIL:
+                draft.loadUserLoading=false;
+                draft.loadUserError=action.error
+                break;             
             case FOLLOW_REQUEST:
                 draft.followLoading=true;
                 draft.followDone=false;
@@ -137,7 +156,7 @@ const reducer = (state=initialState,action)=>{
                 draft.loginLoading=false;
                 draft.isLoggedin=true;
                 draft.loginDone=true;
-                draft.me=dummyUser(action.data);
+                draft.me=action.data;
                 break;
             case LOG_IN_FAIL:
                 draft.loginLoading=false;
@@ -176,6 +195,7 @@ const reducer = (state=initialState,action)=>{
                 draft.changeNicknameError=null;
                 break;
             case CHANGE_NICKNAME_SUCCESS:
+                draft.me.nickname = action.data.nickname;
                 draft.changeNicknameLoading=false;
                 draft.changeNicknameDone=true;
                 break;
