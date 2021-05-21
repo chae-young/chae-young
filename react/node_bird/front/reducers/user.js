@@ -22,6 +22,15 @@ export const initialState = {
     changeNicknameLoading:false,//닉네임변경 시도중
     changeNicknameDone:false,
     changeNicknameError:null,      
+    loadFollowersLoading:false,
+    loadFollowersDone:false,
+    loadFollowersError:null,  
+    loadFollowingsLoading:false,
+    loadFollowingsDone:false,
+    loadFollowingsError:null,    
+    removeFollowerLoading:false,
+    removeFollowerDone:false,
+    removeFollowerError:null,             
     me:null,
     signUpData:{},
     loginData:{},
@@ -50,9 +59,21 @@ export const FOLLOW_REQUEST = 'FOLLOW_REQUEST';
 export const FOLLOW_SUCCESS = 'FOLLOW_SUCCESS';
 export const FOLLOW_FAIL = 'FOLLOW_FAIL';
 
+export const REMOVE_FOLLOWER_REQUEST = 'REMOVE_FOLLOWER_REQUEST';
+export const REMOVE_FOLLOWER_SUCCESS = 'REMOVE_FOLLOWER_SUCCESS';
+export const REMOVE_FOLLOWER_FAIL = 'REMOVE_FOLLOWER_FAIL';
+
 export const UNFOLLOW_REQUEST = 'UNFOLLOW_REQUEST';
 export const UNFOLLOW_SUCCESS = 'UNFOLLOW_SUCCESS';
 export const UNFOLLOW_FAIL = 'UNFOLLOW_FAIL';
+
+export const LOAD_FOLLOWERS_REQUEST = 'LOAD_FOLLOWERS_REQUEST';
+export const LOAD_FOLLOWERS_SUCCESS = 'LOAD_FOLLOWERS_SUCCESS';
+export const LOAD_FOLLOWERS_FAIL = 'LOAD_FOLLOWERS_FAIL';
+
+export const LOAD_FOLLOWINGS_REQUEST = 'LOAD_FOLLOWINGS_REQUEST';
+export const LOAD_FOLLOWINGS_SUCCESS = 'LOAD_FOLLOWINGS_SUCCESS';
+export const LOAD_FOLLOWINGS_FAIL = 'LOAD_FOLLOWINGS_FAIL';
 
 export const ADD_POST_TO_ME = 'ADD_POST_TO_ME';
 export const REMOVE_POST_OF_ME = 'REMOVE_POST_OF_ME';
@@ -103,6 +124,48 @@ export const logOutRequestAction = () =>{
 const reducer = (state=initialState,action)=>{
     return produce(state,(draft)=>{
         switch(action.type){
+            case REMOVE_FOLLOWER_REQUEST:
+                draft.removeFollowerLoading=true;
+                draft.removeFollowerDone=false;
+                draft.removeFollowerError=null;
+                break;
+            case REMOVE_FOLLOWER_SUCCESS:
+                draft.removeFollowerLoading=false;
+                draft.removeFollowerDone=true;
+                draft.me.Followers = draft.me.followers.filter((v)=>v.id !== action.data.UserId);
+                break;
+            case REMOVE_FOLLOWER_FAIL:
+                draft.removeFollowerLoading=false;
+                draft.removeFollowerError=action.error
+                break;             
+            case LOAD_FOLLOWERS_REQUEST:
+                draft.loadFollowersLoading=true;
+                draft.loadFollowersDone=false;
+                draft.loadFollowersError=null;
+                break;
+            case LOAD_FOLLOWERS_SUCCESS:
+                draft.loadFollowersLoading=false;
+                draft.loadFollowersDone=true;
+                draft.me.Followers = action.data;
+                break;
+            case LOAD_FOLLOWERS_FAIL:
+                draft.loadFollowersLoading=false;
+                draft.loadFollowersError=action.error
+                break;  
+            case LOAD_FOLLOWINGS_REQUEST:
+                draft.loadFollowingsLoading=true;
+                draft.loadFollowingsDone=false;
+                draft.loadFollowingsError=null;
+                break;
+            case LOAD_FOLLOWINGS_SUCCESS:
+                draft.loadFollowingsLoading=false;
+                draft.loadFollowingsDone=true;
+                draft.me.Followings = action.data;
+                break;
+            case LOAD_FOLLOWINGS_FAIL:
+                draft.loadFollowingsLoading=false;
+                draft.loadFollowingsError=action.error
+                break;                  
             case LOAD_USER_REQUEST:
                 draft.loadUserLoading=true;
                 draft.loadUserDone=false;
@@ -126,7 +189,7 @@ const reducer = (state=initialState,action)=>{
                 draft.followLoading=false;
                 draft.isLoggedin=true;
                 draft.followDone=true;
-                draft.me.Followings.push({id:action.data});
+                draft.me.Followings.push({id:action.data.UserId});
                 break;
             case FOLLOW_FAIL:
                 draft.followLoading=false;
@@ -141,7 +204,7 @@ const reducer = (state=initialState,action)=>{
                 draft.unfollowLoading=false;
                 draft.isLoggedin=true;
                 draft.unfollowDone=true;
-                draft.me.Followings = draft.me.Followings.filter(v=>v.id!==action.data)
+                draft.me.Followings = draft.me.Followings.filter(v=>v.id!==action.data.UserId)
                 break;
             case UNFOLLOW_FAIL:
                 draft.unfollowLoading=false;

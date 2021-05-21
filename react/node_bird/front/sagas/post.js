@@ -5,12 +5,33 @@ import {
     REMOVE_POST_REQUEST,REMOVE_POST_SUCCESS,REMOVE_POST_FAIL,
     LIKE_POST_REQUEST,LIKE_POST_SUCCESS,LIKE_POST_FAIL,
     UNLIKE_POST_REQUEST,UNLIKE_POST_SUCCESS,UNLIKE_POST_FAIL,
-    ADD_COMMENT_FAIL,ADD_COMMENT_REQUEST,ADD_COMMENT_SUCCESS, generateDummyPost
+    ADD_COMMENT_FAIL,ADD_COMMENT_REQUEST,ADD_COMMENT_SUCCESS, generateDummyPost, 
+    UPLOAD_IMAGES_REQUEST,UPLOAD_IMAGES_SUCCESS,UPLOAD_IMAGES_FAIL
 } from '../reducers/post'
 import axios from 'axios';
 import { ADD_POST_TO_ME ,REMOVE_POST_OF_ME} from '../reducers/user';
 import shortId from 'shortid';
 
+function uploadImagesAPI(data){
+    //데이터받아와서
+    return axios.post('/post/images',data)//imageFormData
+}
+function* uploadImages(action){
+    try{
+        const result = yield call(uploadImagesAPI,action.data);
+        console.log(result)
+        yield put({//액션을 디스패치한다
+            type:UPLOAD_IMAGES_SUCCESS,
+            //data:{id,content:action.data}
+            data:result.data,
+        })
+    }catch(err){
+        yield put({
+            type:UPLOAD_IMAGES_FAIL,
+            error:err.response.data,
+        })
+    }
+}
 function addPostAPI(data){
     //데이터받아와서
     return axios.post('/post',{content:data})//req.body 이름
@@ -144,6 +165,9 @@ function* unlikePost(action){
     }
 }
 
+function* watchUploadImages(){
+    yield takeLatest(UPLOAD_IMAGES_REQUEST,uploadImages);
+}
 function* watchLikePost(){
     yield takeLatest(LIKE_POST_REQUEST,likePost);
 }
@@ -165,6 +189,7 @@ function* watchAddComment(){
 
 export default function* postSaga(){
     yield all([
+        fork(watchUploadImages),   
         fork(watchLikePost),   
         fork(watchUnLikePost),   
         fork(watchAddPost),   

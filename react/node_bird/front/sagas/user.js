@@ -6,10 +6,70 @@ import {
     LOG_OUT_FAIL,LOG_OUT_SUCCESS,LOG_OUT_REQUEST,
     SIGN_UP_FAIL,SIGN_UP_SUCCESS,SIGN_UP_REQUEST,
     LOAD_USER_REQUEST,LOAD_USER_SUCCESS,LOAD_USER_FAIL,
-    CHANGE_NICKNAME_REQUEST,CHANGE_NICKNAME_SUCCESS,CHANGE_NICKNAME_FAIL
+    CHANGE_NICKNAME_REQUEST,CHANGE_NICKNAME_SUCCESS,CHANGE_NICKNAME_FAIL,
+    LOAD_FOLLOWERS_REQUEST,LOAD_FOLLOWERS_SUCCESS,LOAD_FOLLOWERS_FAIL,
+    LOAD_FOLLOWINGS_REQUEST,LOAD_FOLLOWINGS_SUCCESS,LOAD_FOLLOWINGS_FAIL,
+    REMOVE_FOLLOWER_REQUEST,REMOVE_FOLLOWER_SUCCESS,REMOVE_FOLLOWER_FAIL
 } from '../reducers/user';
 import axios from 'axios';
 
+function removeFollowerAPI(data){
+    //데이터받아와서
+    return axios.delete(`/user/follower/${data}`)
+}
+function* removeFollower(action){
+    try{
+        const result = yield call(removeFollowerAPI,action.data);
+        //결과값 받으면..
+        yield put({//액션을 디스패치한다
+            type:REMOVE_FOLLOWER_SUCCESS,
+            data:result.data,
+        })
+    }catch(err){
+        yield put({
+            type:REMOVE_FOLLOWER_FAIL,
+            error:err.response.data,
+        })
+    }
+}
+function loadFollowersAPI(data){
+    //데이터받아와서
+    return axios.get('/user/followers',data)
+}
+function* loadFollowers(action){
+    try{
+        const result = yield call(loadFollowersAPI,action.data);
+        //결과값 받으면..
+        yield put({//액션을 디스패치한다
+            type:LOAD_FOLLOWERS_SUCCESS,
+            data:result.data,
+        })
+    }catch(err){
+        yield put({
+            type:LOAD_FOLLOWERS_FAIL,
+            error:err.response.data,
+        })
+    }
+}
+function loadFollowingsAPI(data){
+    //데이터받아와서
+    return axios.get('/user/followings',data)
+}
+function* loadFollowings(action){
+    try{
+        const result = yield call(loadFollowingsAPI,action.data);
+        //결과값 받으면..
+        yield put({//액션을 디스패치한다
+            type:LOAD_FOLLOWINGS_SUCCESS,
+            data:result.data,
+        })
+    }catch(err){
+        yield put({
+            type:LOAD_FOLLOWINGS_FAIL,
+            error:err.response.data,
+        })
+    }
+}
 function loadUserAPI(){
     //데이터받아와서
     return axios.get('/user')
@@ -31,19 +91,16 @@ function* loadUser(action){
 }
 function followAPI(data){
     //데이터받아와서
-    return axios.post('/user/login',data)
+    return axios.patch(`/user/${data}/follow`)
 }
 function* follow(action){
     try{
-        //결과값받기 (받을때까지 기다림 그래서 call 사용)
-        //logInAPT를 호출하여 action.data 값 보내기
-        //const result = yield call(logInAPI,action.data);
-        yield delay(1000);
+        const result = yield call(followAPI,action.data)
         //결과값 받으면..
         yield put({//액션을 디스패치한다
             type:FOLLOW_SUCCESS,
             //data:result.data,
-            data:action.data,
+            data:result.data,
         })
     }catch(err){
         yield put({
@@ -54,19 +111,15 @@ function* follow(action){
 }
 function unfollowAPI(data){
     //데이터받아와서
-    return axios.post('/user/login',data)
+    return axios.delete(`/user/${data}/follow`)
 }
 function* unfollow(action){
     try{
-        //결과값받기 (받을때까지 기다림 그래서 call 사용)
-        //logInAPT를 호출하여 action.data 값 보내기
-        //const result = yield call(logInAPI,action.data);
-        yield delay(1000);
-        //결과값 받으면..
+        const result = yield call(unfollowAPI,action.data)
         yield put({//액션을 디스패치한다
             type:UNFOLLOW_SUCCESS,
             //data:result.data,
-            data:action.data,
+            data:result.data,
         })
     }catch(err){
         yield put({
@@ -161,7 +214,15 @@ function* changeNickname(action){
         })
     }
 }
-
+function* watchRemoveFollower(){
+    yield takeLatest(REMOVE_FOLLOWER_REQUEST,removeFollower);
+}
+function* watchLoadFollowers(){
+    yield takeLatest(LOAD_FOLLOWERS_REQUEST,loadFollowers);
+}
+function* watchLoadFollowings(){
+    yield takeLatest(LOAD_FOLLOWINGS_REQUEST,loadFollowings);
+}
 function* watchLoadUser(){
     yield takeLatest(LOAD_USER_REQUEST,loadUser);
 }
@@ -186,6 +247,9 @@ function* watchChangeNickname(){
 
 export default function* userSaga(){
     yield all([
+        fork(watchRemoveFollower),
+        fork(watchLoadFollowers),
+        fork(watchLoadFollowings),
         fork(watchChangeNickname),
         fork(watchLoadUser),
         fork(watchFollow),
