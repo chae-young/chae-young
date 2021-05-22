@@ -34,7 +34,7 @@ function* uploadImages(action){
 }
 function addPostAPI(data){
     //데이터받아와서
-    return axios.post('/post',{content:data})//req.body 이름
+    return axios.post('/post',data)//req.body 이름
 }
 function* addPost(action){
     try{

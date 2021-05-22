@@ -97,6 +97,8 @@ export const ADD_COMMENT_REQUEST = 'ADD_COMMENT_REQUEST';
 export const ADD_COMMENT_SUCCESS = 'ADD_COMMENT_SUCCESS';
 export const ADD_COMMENT_FAIL = 'ADD_COMMENT_FAIL';
 
+export const REMOVE_IMAGE = 'REMOVE_IMAGE';
+
 export const addPost = (data)=>({
     type:ADD_POST_REQUEST,
     data,
@@ -130,6 +132,9 @@ const reducer = (state=initialState,action)=>{
     //state가 draft로 바뀜
     return produce(state,(draft)=>{
         switch(action.type){
+            case REMOVE_IMAGE:
+                draft.imagePaths = draft.imagePaths.filter((v,i)=>i!==action.data);
+                break;
             case UPLOAD_IMAGES_REQUEST:
                 draft.uploadImagesLoading=true;    
                 draft.uploadImagesDone=false;    
