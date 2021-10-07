@@ -13,7 +13,7 @@ try{
     fs.mkdirSync('uploads');
 }
 
-router.post('/', isLoggedIn ,async (req,res,next)=>{// /post
+router.post('/', isLoggedIn ,upload.none(),async (req,res,next)=>{// /post
     try{
         const post = await Post.create({
             content:req.body.content,
@@ -133,7 +133,7 @@ const upload = multer({
             const ext = path.extname(file.originalname)// 확장자 추출 .png
             const basename = path.basename(file.originalname,ext)//이채영
 
-            done(null,basename + new Date().getTime() + ext)
+            done(null,basename + '_' + new Date().getTime() + ext)
         }
     })
 })

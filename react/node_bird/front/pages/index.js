@@ -9,6 +9,7 @@ import {LOAD_USER_REQUEST} from '../reducers/user';
 const HOME = () => {
     const {me} = useSelector((state)=>state.user);
     const {mainPosts,hasMorePost,loadPostsLoading} = useSelector((state)=>state.post);
+    const {imagePaths} = useSelector((state)=>state.post);
     const dispatch = useDispatch();
     useEffect(()=>{
         dispatch({type:LOAD_USER_REQUEST})
@@ -35,6 +36,7 @@ const HOME = () => {
     },[hasMorePost,loadPostsLoading])
     return (
         <AppLayout>
+            {console.log(useSelector((state)=>state.post))}
             {me && <PostForm/>}
             {mainPosts.map((post,index)=><PostCard key={post.id} post={post}/>)}
             

@@ -20,6 +20,7 @@ const postsRouter = require('./routes/posts');
 const userRouter = require('./routes/user');
 const db = require('./models');
 const app = express();
+const path = require('path');
 const passport = require('passport');    
 const passportConfig = require('./passport');
 const session = require('express-session');
@@ -44,7 +45,8 @@ passportConfig();
 app.use(morgan('dev'));
 //front에서 받아온 data를 해석해서 req.body로 받아옴
 app.use(express.json());
-
+//express가 업로드폴더를 express에 제공 /-> localhost
+app.use('/',express.static(path.join(__dirname,'uploads')))
 app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(session({
     saveUninitialized:false,
