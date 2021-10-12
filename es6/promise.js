@@ -67,3 +67,35 @@ const thenable = {
     },
 };
 const testPromise4 = Promise.resolve(thenable);
+
+/*
+프로미스체이닝
+
+then catch 안에서 
+return 하면 promise 객체에 리턴값이 반환된다(resolve 상태로 변환)
+새 promise 인스턴스 이면 그 프로미스가 리턴됨
+
+
+retrun 을 하면 resolve 상태가 되기 때문에 값이 넘어가고
+return 안하면  undefined
+
+*/
+
+new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve("첫번째 프라미스");
+    }, 1000);
+})
+    .then((res) => {
+        console.log(res);
+        return "성공";
+    })
+    .then((res) => {
+        return console.log("두번째 값");
+    })
+    .catch((err) => {
+        return new Error("에러입니다"); // 일반 값 리턴
+    })
+    .then((res) => {
+        throw new Error("두번째 에러"); // 중단시키고 에러메세지 띄어라
+    });
