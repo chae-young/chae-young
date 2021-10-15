@@ -1,20 +1,18 @@
-import { combineReducers } from "redux";
-
 const initState = {
     // state의 초기값
-    title: "",
+    num: "",
     content: "",
 };
 
 //액션
-const ADD_POST = "ADD_POST";
+export const ADD_NUM = "ADD_NUM";
 
 const reducer = (state = initState, action) => {
     switch (action.type) {
-        case ADD_POST:
+        case ADD_NUM:
             return {
                 ...state,
-                title: action.data.title,
+                num: action.data,
             };
         //기본값
         default:

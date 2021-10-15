@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { useDispatch } from "react-redux";
+import { ADD_NUM } from "./reducer";
+import { useState } from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [value, setValue] = useState(0);
+    const dispatch = useDispatch();
+
+    const onClickAddNum = () => {
+        setValue((prev) => prev + 1);
+        dispatch({
+            type: ADD_NUM,
+            data: value,
+        });
+    };
+
+    return (
+        <div className="App">
+            <p>{value}</p>
+            <button type="button" onClick={onClickAddNum}>
+                클릭
+            </button>
+        </div>
+    );
 }
 
 export default App;
