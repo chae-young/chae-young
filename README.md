@@ -1,6 +1,6 @@
 ![header](https://capsule-render.vercel.app/api?type=waving&text=LeeChaeng!Github&height=180&fontColor=fff&color=57ff23)
 
-<div style="text-align:center;">
+<div align="center">
 <h2>🫶🏻 I'm Lee chaeng</h2>
 <a href="https://chaeyoung2.tistory.com/" target="_blank"><img src="https://img.shields.io/badge/blog-fd384a?style=flat-square&logo=Blogger&logoColor=white"/></a>
 <a href="mailto:cycy8527@gmail.com" target="_blank"><img src="https://img.shields.io/badge/mail-000?style=flat-square&logo=gmail&logoColor=white"/></a>
@@ -30,7 +30,7 @@
 </div>
 <br/>
 <br/>
-<div style="text-align:center">
+<div align="center">
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=chae-young&layout=compact&theme=dark)](https://github.com/anuraghazra/github-readme-stats)
 
