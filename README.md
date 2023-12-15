@@ -1,4 +1,4 @@
-![header](https://capsule-render.vercel.app/api?type=venom&text=LeeChaeng!Github&height=180&fontColor=fff&color=#d26fed)
+![header](https://capsule-render.vercel.app/api?type=venom&text=LeeChaeng!Github&height=180&fontColor=000&color=00ff73)
 
 <div align="center">
 <h3>📍 C o n t a c t 📍</h3>
