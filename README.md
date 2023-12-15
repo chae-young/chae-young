@@ -26,9 +26,11 @@
 <br/>
 <br/>
 <h3>I n t e r e s t i n g..❤️ </h3>
-<img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"">
+<a href="https://fixed-rubidium-143.notion.site/a5ecc887af2d412589d290957ee8332d?pvs=4" target="_blank"><img src="https://img.shields.io/badge/figma(보러가기)-fd384a?style=flat-square&logo=Figma&logoColor=white"/></a>
+
 
 </div>
+
 <br/>
 <br/>
 <div align="center">
