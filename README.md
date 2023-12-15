@@ -1,6 +1,8 @@
 ![header](https://capsule-render.vercel.app/api?type=venom&text=LeeChaeng!Github&height=180&fontColor=000&color=00ff73)
 
 <div align="center">
+<p>간zl..⭑나게 개발하자!</p>
+<br/>
 <h3>📍 C o n t a c t 📍</h3>
 <a href="https://chaeyoung2.tistory.com/" target="_blank"><img src="https://img.shields.io/badge/blog-fd384a?style=flat-square&logo=Blogger&logoColor=white"/></a>
 <a href="mailto:cycy8527@gmail.com" target="_blank"><img src="https://img.shields.io/badge/mail-000?style=flat-square&logo=gmail&logoColor=white"/></a>
