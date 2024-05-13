@@ -1,4 +1,4 @@
-![header](https://capsule-render.vercel.app/api?type=wave&text=LeeChaeng!&height=250&fontColor=FFF&color=0:FFCEFF,100:ADCDFF&fontAlignY=30)
+![header](https://capsule-render.vercel.app/api?type=wave&text=LeeChaeng!&height=250&fontColor=FFF&color=0:FFCEFF,100:ADCDFF&fontAlignY=35&fontSize=100)
 
 Hello my friend 🤍  
 I am frontend developer.
