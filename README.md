@@ -3,7 +3,7 @@
 Hello my friend 🤍  
 I am frontend developer.
 - I have experience in interactive publishing on agency and commerce platforms
-- I like running and my specialty is traveling alone
+- I like running and my specialty is traveling alone 🏃🏻‍♀️ 🎒
 - I like new challenges 🤜🏻 🤛🏻
 - You can check various contents on my blog
 
