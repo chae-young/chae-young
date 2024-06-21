@@ -67,9 +67,8 @@ for idx, feed in enumerate(RSS_FEED['entries']):
         break
     else:
         feed_date = feed['published_parsed']
-        markdown_text += f"[{time.strftime('%Y/%m/%d', feed_date)} - {feed['title']}]({feed['link']}) <br/>\n"
-        markdown_text += '![header](https://capsule-render.vercel.app/api?type=wave&height=250&fontColor=FFF&color=0:FFCEFF,100:ADCDFF&section=footer)'
-        
+        markdown_text += f"[{time.strftime('%Y/%m/%d', feed_date)} - {feed['title']}]({feed['link']}) <br/>\n"        
 f = open("README.md", mode="w", encoding="utf-8")
+markdown_text += '![header](https://capsule-render.vercel.app/api?type=wave&height=250&fontColor=FFF&color=0:FFCEFF,100:ADCDFF&section=footer)'
 f.write(markdown_text)
 f.close()
