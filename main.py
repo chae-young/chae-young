@@ -2,7 +2,7 @@ import feedparser, time
 
 URL = "https://chaeyoung2.tistory.com/rss"
 RSS_FEED = feedparser.parse(URL)
-MAX_POST = 5
+MAX_POST = 3
 
 blog_text = ""
 markdown_text = """
@@ -51,14 +51,10 @@ I am frontend developer.
 <br/>
 <br/>
 <div>
-
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=chae-young&layout=compact&theme=dark)](https://github.com/anuraghazra/github-readme-stats)
-
-## ✅ Latest Blog Post
-
 </div>
 
-
+<h4>ᴄᴏɴᴛʟᴀᴛᴇꜱᴛ ʙʟᴏɢ ᴘᴏꜱᴛ</h4>
 
 """  # list of blog posts will be appended here
 
