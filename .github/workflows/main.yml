@@ -10,7 +10,7 @@ on:
     branches: [ "main" ]
     # 1시간에 1번씩
   schedule:
-      - cron: "0 */1 * * *"
+    - cron: "0 10 * * *"
 
 jobs:
   build:

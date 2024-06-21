@@ -50,9 +50,10 @@ I am frontend developer.
 
 <br/>
 <br/>
-<div>
+
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=chae-young&layout=compact&theme=dark)](https://github.com/anuraghazra/github-readme-stats)
-</div>
+
+<br/>
 
 <h4>ᴄᴏɴᴛʟᴀᴛᴇꜱᴛ ʙʟᴏɢ ᴘᴏꜱᴛ</h4>
 
