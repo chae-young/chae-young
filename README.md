@@ -48,7 +48,7 @@ I am frontend developer.
 
 <br/>
 
-<h4>ᴄᴏɴᴛʟᴀᴛᴇꜱᴛ ʙʟᴏɢ ᴘᴏꜱᴛ</h4>
+<h4>ʟᴀᴛᴇꜱᴛ ʙʟᴏɢ ᴘᴏꜱᴛ</h4>
 
 [2024/06/18 - 로그인시 접근 가능한 라우팅 구현(react guard route)](https://chaeyoung2.tistory.com/142) <br/>
 [2024/06/07 - 비전공자 찐 수료생이 쓰는 제로베이스 프론트엔드 스쿨 후기](https://chaeyoung2.tistory.com/141) <br/>
