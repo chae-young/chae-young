@@ -55,7 +55,7 @@ I am frontend developer.
 
 <br/>
 
-<h4>ᴄᴏɴᴛʟᴀᴛᴇꜱᴛ ʙʟᴏɢ ᴘᴏꜱᴛ</h4>
+<h4>ʟᴀᴛᴇꜱᴛ ʙʟᴏɢ ᴘᴏꜱᴛ</h4>
 
 """  # list of blog posts will be appended here
 
