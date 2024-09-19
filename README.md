@@ -50,8 +50,8 @@ I am frontend developer.
 
 <h4>ʟᴀᴛᴇꜱᴛ ʙʟᴏɢ ᴘᴏꜱᴛ</h4>
 
+[2024/09/19 - 리액트로 마우스 드래그 가로 스크롤 구현하기 (+합성 컴포넌트로 재사용 높이기)](https://chaeyoung2.tistory.com/145) <br/>
 [2024/07/26 - 리액트로 리뷰 별점(Rating) 구현하기(소수점,클릭했을때)](https://chaeyoung2.tistory.com/144) <br/>
 [2024/06/18 - 로그인시 접근 가능한 라우팅 구현(react guard route)](https://chaeyoung2.tistory.com/142) <br/>
 [2024/06/07 - 비전공자 찐 수료생이 쓰는 제로베이스 프론트엔드 스쿨 후기](https://chaeyoung2.tistory.com/141) <br/>
-[2024/05/10 - [프로그래머스] javascript | Level1 햄버거 만들기](https://chaeyoung2.tistory.com/140) <br/>
 ![header](https://capsule-render.vercel.app/api?type=wave&height=250&fontColor=FFF&color=0:FFCEFF,100:ADCDFF&section=footer)
