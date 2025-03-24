@@ -50,8 +50,8 @@ I am frontend developer.
 
 <h4>ʟᴀᴛᴇꜱᴛ ʙʟᴏɢ ᴘᴏꜱᴛ</h4>
 
+[2025/03/24 - 어댑터 패턴으로 타입 호환하기](https://chaeyoung2.tistory.com/147) <br/>
 [2024/12/31 - HotReload이슈❗️ Cannot update a component (HotReload) while rendering a different component (Unknown).To locate the bad setState() call inside Unknown, follow the stack trace as described in https://reactjs.org/link/setstate-in-render Error Component Stack](https://chaeyoung2.tistory.com/146) <br/>
 [2024/09/19 - 리액트로 마우스 드래그 가로 스크롤 구현하기 (+합성 컴포넌트로 재사용 높이기)](https://chaeyoung2.tistory.com/145) <br/>
 [2024/07/26 - 리액트로 리뷰 별점(Rating) 구현하기(소수점,클릭했을때)](https://chaeyoung2.tistory.com/144) <br/>
-[2024/06/18 - 로그인시 접근 가능한 라우팅 구현(react guard route)](https://chaeyoung2.tistory.com/142) <br/>
 ![header](https://capsule-render.vercel.app/api?type=wave&height=250&fontColor=FFF&color=0:FFCEFF,100:ADCDFF&section=footer)
