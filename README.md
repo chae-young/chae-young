@@ -1,12 +1,12 @@
 
 <!-- ![header](https://capsule-render.vercel.app/api?type=waving&height=100&fontColor=FFF&color=0:A5D6A7,100:4CAF50&fontAlignY=35&fontSize=100) -->
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Roboto+Mono&weight=500&size=40&letterSpacing=0.2rem&pause=1000&color=4CAF50&vCenter=true&width=900&height=100&lines=Leechaeng!)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Roboto+Mono&weight=500&size=40&letterSpacing=0.2rem&pause=1000&color=7BFF77&vCenter=true&width=900&height=100&lines=Leechaeng!)](https://git.io/typing-svg)
 
-Hello my friend 🤍  
+Hello my friend 🤍 🍀  
 I am frontend developer.
 - I have experience in interactive publishing on agency and commerce platforms
-- I like running and my specialty is traveling alone 🏃🏻‍♀️ 🎒
+- I like running and my specialty is traveling alone 🏃🏻‍♀️🎒
 - I like new challenges 🤜🏻 🤛🏻
 - You can check various contents on my blog
 
