@@ -1,5 +1,5 @@
 
-<!-- ![header](https://capsule-render.vercel.app/api?type=wave&text=LeeChaeng!&height=250&fontColor=FFF&color=0:FFCEFF,100:ADCDFF&fontAlignY=35&fontSize=100) -->
+![header](https://capsule-render.vercel.app/api?type=wave&text=LeeChaeng!&height=250&fontColor=FFF&color=0:FFCEFF,100:ADCDFF&fontAlignY=35&fontSize=100)
 
 Hello my friend 🤍  
 I am frontend developer.
@@ -9,17 +9,6 @@ I am frontend developer.
 - You can check various contents on my blog
 
 <br/>
-
-<div style="max-width: 760px">
-
-
-[![GitGarden](https://gitgarden.marshallku.dev/?user_name=chae-young)](https://github.com/marshallku/gitgarden)
-
-
-
-</div>
-
-
 <div>
 
 <h4>ᴄᴏɴᴛᴀᴄᴛ</h4>
@@ -27,19 +16,18 @@ I am frontend developer.
 <a href="mailto:cycy8527@gmail.com" target="_blank"><img src="https://img.shields.io/badge/mail-000?style=flat-square&logo=gmail&logoColor=white"/></a>
 
 <h4>ᴛᴇᴄᴋ</h4>
-<!-- <img src="https://img.shields.io/badge/html5-E34F26?style=flat-square&logo=html5&logoColor=white" >
-<img src="https://img.shields.io/badge/css3-1572B6?style=flat-square&logo=css3&logoColor=white"> -->
+<img src="https://img.shields.io/badge/html5-E34F26?style=flat-square&logo=html5&logoColor=white" >
+<img src="https://img.shields.io/badge/css3-1572B6?style=flat-square&logo=css3&logoColor=white">
 <img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=Next.js&logoColor=white">
-<!-- <img src="https://img.shields.io/badge/javascript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"> -->
+<img src="https://img.shields.io/badge/javascript-F7DF1E?style=flat-square&logo=javascript&logoColor=black">
 <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=black">
+<img src="https://img.shields.io/badge/styled-components-DB7093?style=flat-square&logo=styled-components&logoColor=white">
+
+<img src="https://img.shields.io/badge/tailwindcss-06B6D4?style=flat-square&logo=tailwindcss&logoColor=black">
 <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"> 
-<!-- <img src="https://img.shields.io/badge/styled-components-DB7093?style=flat-square&logo=styled-components&logoColor=white"> -->
-
-<!-- <img src="https://img.shields.io/badge/tailwindcss-06B6D4?style=flat-square&logo=tailwindcss&logoColor=black"> -->
-
-<!-- <img src="https://img.shields.io/badge/recoil-3578E5?style=flat-square&logo=recoil&logoColor=white"">
+<img src="https://img.shields.io/badge/recoil-3578E5?style=flat-square&logo=recoil&logoColor=white"">
 <img src="https://img.shields.io/badge/reactquery-FF4154?style=flat-square&logo=reactquery&logoColor=white"">
-<img src="https://img.shields.io/badge/Redux-764ABC?style=flat-square&logo=Redux&logoColor=white"> -->
+<img src="https://img.shields.io/badge/Redux-764ABC?style=flat-square&logo=Redux&logoColor=white">
 
 <!-- <img src="https://img.shields.io/badge/Webpack-8DD6F9?style=flat-square&logo=Webpack&logoColor=white"> -->
 <!-- <img src="https://img.shields.io/badge/Redux-764ABC?style=flat-square&logo=Redux&logoColor=white">
@@ -53,8 +41,10 @@ I am frontend developer.
 
 </div>
 
+<br/>
+<br/>
 
-<!-- [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=chae-young&layout=compact&theme=dark)](https://github.com/anuraghazra/github-readme-stats) -->
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=chae-young&layout=compact&theme=dark)](https://github.com/anuraghazra/github-readme-stats)
 
 <br/>
 
@@ -64,5 +54,4 @@ I am frontend developer.
 [2025/03/24 - 어댑터 패턴으로 타입 호환하기](https://chaeyoung2.tistory.com/147) <br/>
 [2024/12/31 - HotReload이슈❗️ Cannot update a component (HotReload) while rendering a different component (Unknown).To locate the bad setState() call inside Unknown, follow the stack trace as described in https://reactjs.org/link/setstate-in-render Error Component Stack](https://chaeyoung2.tistory.com/146) <br/>
 [2024/09/19 - 리액트로 마우스 드래그 가로 스크롤 구현하기 (+합성 컴포넌트로 재사용 높이기)](https://chaeyoung2.tistory.com/145) <br/>
-
-<!-- ![header](https://capsule-render.vercel.app/api?type=wave&height=250&fontColor=FFF&color=0:FFCEFF,100:ADCDFF&section=footer) -->
+![header](https://capsule-render.vercel.app/api?type=wave&height=250&fontColor=FFF&color=0:FFCEFF,100:ADCDFF&section=footer)
