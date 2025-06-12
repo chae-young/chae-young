@@ -33,7 +33,6 @@ I am frontend developer.
 <!-- <img src="https://img.shields.io/badge/Webpack-8DD6F9?style=flat-square&logo=Webpack&logoColor=white"> -->
 <!-- <img src="https://img.shields.io/badge/Redux-764ABC?style=flat-square&logo=Redux&logoColor=white">
 
-
 <br/>
 <br/>
 <!-- <h3>I n t e r e s t i n g..❤️ </h3>
