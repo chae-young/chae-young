@@ -50,8 +50,8 @@ I am frontend developer.
 
 <h4>ʟᴀᴛᴇꜱᴛ ʙʟᴏɢ ᴘᴏꜱᴛ</h4>
 
+[2025/06/19 - 튜닝의 끝은 순정이라더니..⭐️ 티스토리 스킨 커스텀후 10개월 써본 후기](https://chaeyoung2.tistory.com/151) <br/>
 [2025/06/10 - [프로그래머스] javascript | Level1 로또의 최고 순위와 최저 순위](https://chaeyoung2.tistory.com/150) <br/>
 [2025/04/28 - requestIdleCallback으로 LCP 개선](https://chaeyoung2.tistory.com/148) <br/>
 [2025/03/24 - 어댑터 패턴으로 타입 호환하기](https://chaeyoung2.tistory.com/147) <br/>
-[2024/12/31 - HotReload이슈❗️ Cannot update a component (HotReload) while rendering a different component (Unknown).To locate the bad setState() call inside Unknown, follow the stack trace as described in https://reactjs.org/link/setstate-in-render Error Component Stack](https://chaeyoung2.tistory.com/146) <br/>
 ![header](https://capsule-render.vercel.app/api?type=wave&height=250&fontColor=FFF&color=0:FFCEFF,100:ADCDFF&section=footer)
