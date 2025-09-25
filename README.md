@@ -50,8 +50,8 @@ I am frontend developer.
 
 <h4>ʟᴀᴛᴇꜱᴛ ʙʟᴏɢ ᴘᴏꜱᴛ</h4>
 
+[2025/09/25 - 웹 성능 최적화를 위한 PageVisibility API 알아보기(CPU/GPU 사용률 감소  )](https://chaeyoung2.tistory.com/154) <br/>
 [2025/09/19 - 공통 컴포넌트를 건드리지 않고 이벤트 제어하기 - 캡처링](https://chaeyoung2.tistory.com/153) <br/>
 [2025/07/17 - 리액트에서 클로저가 어떻게 사용되고 있는가?](https://chaeyoung2.tistory.com/152) <br/>
 [2025/06/19 - 튜닝의 끝은 순정이라더니..⭐️ 티스토리 스킨 커스텀후 10개월 써본 후기](https://chaeyoung2.tistory.com/151) <br/>
-[2025/06/10 - [프로그래머스] javascript | Level1 로또의 최고 순위와 최저 순위](https://chaeyoung2.tistory.com/150) <br/>
 ![header](https://capsule-render.vercel.app/api?type=wave&height=250&fontColor=FFF&color=0:FFCEFF,100:ADCDFF&section=footer)
