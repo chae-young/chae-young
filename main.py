@@ -42,16 +42,6 @@ I am frontend developer.
 
 <br/>
 <br/>
-<!-- <h3>I n t e r e s t i n g..❤️ </h3>
-<a href="https://fixed-rubidium-143.notion.site/a5ecc887af2d412589d290957ee8332d?pvs=4" target="_blank"><img src="https://img.shields.io/badge/figma(보러가기)-fd384a?style=flat-square&logo=Figma&logoColor=white"/></a> -->
-
-
-</div>
-
-<br/>
-<br/>
-
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=chae-young&layout=compact&theme=dark)](https://github.com/anuraghazra/github-readme-stats)
 
 <br/>
 
