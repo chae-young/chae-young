@@ -1,0 +1,25 @@
+{
+  "name": "chae-young",
+  "version": "1.0.0",
+  "description": "![header](https://capsule-render.vercel.app/api?type=wave&text=LeeChaeng!&height=250&fontColor=FFF&color=0:FFCEFF,100:ADCDFF&fontAlignY=35&fontSize=100)",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chae-young/chae-young.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chae-young/chae-young/issues"
+  },
+  "homepage": "https://github.com/chae-young/chae-young#readme",
+  "dependencies": {
+    "rss-parser": "^3.13.0"
+  }
+}

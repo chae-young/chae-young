@@ -1,43 +1,45 @@
-# This workflow will install Python dependencies, run tests and lint with a single version of Python
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+# This is a basic workflow to help you get started with Actions
 
-name: Python application
+name: Readme Update
 
+# Controls when the workflow will run
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
   pull_request:
-    branches: [ "main" ]
-    # 1시간에 1번씩
+    branches: [ main ]
+  # 1시간에 한번씩 아래 스크립트를 실행한다.
   schedule:
-    - cron: "0 10 * * *"
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE20: true
-  
+    - cron: "0 */1 * * *"
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  # This workflow contains a single job called "build"
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python 3.10
-      uses: actions/setup-python@v3
-      with:
-        python-version: "3.10"
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install feedparser
-    - name: Run Update Python Script
-      run: |
-        python main.py
-    - name: Update README.md file
-      run: | 
-        git pull
-        git add .
-        git diff
-        git config --local user.email "cycy8527@gmail.com"
-        git config --local user.name "chae-young"
-        git commit -m "Updating Blog Posts"
-        git push
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: | 
+          npm ci
+          npm install rss-parser
+
+      - name: Update README
+        run: npm start
+
+      - name: Check if there are any changes
+        id: verify_diff
+        run: |
+          git diff --quiet . || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit README
+        if: steps.verify_diff.outputs.changed == 'true'
+        run: |
+          git config --local user.email "본인의 Github 이메일"
+          git config --local user.name "본인의 Github 이름"
+          git add .
+          git commit -m "Update README.md"
+          git push origin main
