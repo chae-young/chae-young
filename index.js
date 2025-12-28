@@ -57,7 +57,7 @@ const parser = new Parser({
 (async () => {
 
     // 피드 목록
-    const feed = await parser.parseURL('https://devpad.tistory.com/rss'); // 본인의 블로그 주소
+    const feed = await parser.parseURL('https://chaeyoung2.tistory.com/rss'); // 본인의 블로그 주소
     
     text += `<ul>`;
     
@@ -70,7 +70,9 @@ const parser = new Parser({
         text += `<li><a href='${link}' target='_blank'>${title}</a></li>`;
     }
 
-    text += `</ul>`;
+    text += `</ul>
+    ![header](https://capsule-render.vercel.app/api?type=wave&height=300&color=0:FFCEFF,100:ADCDFF&section=footer)
+    `;
     
     // README.md 파일 생성
     writeFileSync('README.md', text, 'utf8', (e) => {
