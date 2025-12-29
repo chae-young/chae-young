@@ -2,10 +2,9 @@ import { writeFileSync } from 'node:fs';
 import Parser from "rss-parser";
 
 /**
- * README.MD에 작성될 페이지 텍스트
- * @type {string}
+ * README.MD 헤더 템플릿
  */
-let text = `![header](https://capsule-render.vercel.app/api?type=wave&text=LeeChaeng!&height=250&fontColor=FFF&color=0:FFCEFF,100:ADCDFF&fontAlignY=35&fontSize=100)
+const README_HEADER = `![header](https://capsule-render.vercel.app/api?type=wave&text=LeeChaeng!&height=250&fontColor=FFF&color=0:FFCEFF,100:ADCDFF&fontAlignY=35&fontSize=100)
 
 Hello my friend 🤍  
 I am frontend developer.
@@ -48,37 +47,112 @@ I am frontend developer.
 
 `;
 
-// rss-parser 생성
-const parser = new Parser({
+/**
+ * README.MD 푸터 템플릿
+ */
+const README_FOOTER = `
+
+![header](https://capsule-render.vercel.app/api?type=wave&height=300&color=0:FFCEFF,100:ADCDFF&section=footer)`;
+
+/**
+ * 블로그 설정
+ */
+const BLOG_CONFIG = {
+  rssUrl: 'https://chaeyoung2.tistory.com/rss',
+  maxPosts: 5
+};
+
+/**
+ * RSS 피드에서 최신 포스트를 가져오는 함수
+ * @param {string} rssUrl - RSS URL
+ * @param {number} maxPosts - 최대 포스트 수
+ * @returns {Promise<Array>} 포스트 배열
+ */
+async function getLatestPosts(rssUrl, maxPosts) {
+  const parser = new Parser({
     headers: {
-        Accept: 'application/rss+xml, application/xml, text/xml; q=0.1',
-    }});
+      Accept: 'application/rss+xml, application/xml, text/xml; q=0.1',
+    }
+  });
 
-(async () => {
-
-    // 피드 목록
-    const feed = await parser.parseURL('https://chaeyoung2.tistory.com/rss'); // 본인의 블로그 주소
+  try {
+    console.log('RSS 피드 파싱 중...');
+    const feed = await parser.parseURL(rssUrl);
     
-    text += `<ul>`;
-    
-    // 최신 10개의 글의 제목과 링크를 가져온 후 text에 추가
-    for (let i = 0; i < 5; i++) {
-        const {title, link} = feed.items[i];
-        console.log(`${i + 1}번째 게시물`);
-        console.log(`추가될 제목: ${title}`);
-        console.log(`추가될 링크: ${link}`);
-        text += `<li><a href='${link}' target='_blank'>${title}</a></li>`;
+    if (!feed.items || feed.items.length === 0) {
+      throw new Error('RSS 피드에 항목이 없습니다.');
     }
 
-    text += `</ul>
+    const posts = feed.items.slice(0, maxPosts).map((item, index) => {
+      console.log(`${index + 1}번째 게시물: ${item.title}`);
+      return {
+        title: item.title || '제목 없음',
+        link: item.link || '#'
+      };
+    });
 
+    return posts;
+  } catch (error) {
+    console.error('RSS 파싱 에러:', error.message);
+    throw error;
+  }
+}
+
+/**
+ * 포스트 목록을 HTML 리스트로 변환하는 함수
+ * @param {Array} posts - 포스트 배열
+ * @returns {string} HTML 문자열
+ */
+function generatePostsList(posts) {
+  if (!posts || posts.length === 0) {
+    return '<p>최근 블로그 포스트를 불러올 수 없습니다.</p>';
+  }
+
+  const listItems = posts.map(post => 
+    `<li><a href='${post.link}' target='_blank'>${post.title}</a></li>`
+  ).join('\n');
+
+  return `<ul>\n${listItems}\n</ul>`;
+}
+
+/**
+ * README.md 파일을 생성하는 함수
+ * @param {string} content - README 내용
+ */
+function writeReadmeFile(content) {
+  try {
+    writeFileSync('README.md', content, 'utf8');
+    console.log('✅ README.md 업데이트 완료!');
+  } catch (error) {
+    console.error('❌ 파일 쓰기 에러:', error.message);
+    throw error;
+  }
+}
+
+/**
+ * 메인 실행 함수
+ */
+async function updateReadme() {
+  try {
+    console.log('🚀 README.md 업데이트 시작...');
     
-    ![header](https://capsule-render.vercel.app/api?type=wave&height=300&color=0:FFCEFF,100:ADCDFF&section=footer)
-    `;
+    // 최신 포스트 가져오기
+    const posts = await getLatestPosts(BLOG_CONFIG.rssUrl, BLOG_CONFIG.maxPosts);
     
-    // README.md 파일 생성
-    writeFileSync('README.md', text, 'utf8', (e) => {
-        console.log(e);
-    })
-    console.log('업데이트 완료');
-})();
+    // HTML 리스트 생성
+    const postsList = generatePostsList(posts);
+    
+    // 최종 README 내용 조합
+    const readmeContent = README_HEADER + postsList + README_FOOTER;
+    
+    // 파일 쓰기
+    writeReadmeFile(readmeContent);
+    
+  } catch (error) {
+    console.error('❌ README 업데이트 실패:', error.message);
+    process.exit(1);
+  }
+}
+
+// 스크립트 실행
+updateReadme();
