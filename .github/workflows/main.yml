@@ -44,4 +44,4 @@ jobs:
           git config --local user.name "chae-young"
           git add .
           git commit -m "Update README.md"
-          git push origin main
+          git push origin master
