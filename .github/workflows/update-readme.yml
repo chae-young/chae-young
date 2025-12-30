@@ -1,35 +1,20 @@
-name: Update README with Blog Posts
-
+name: Latest blog post workflow
 on:
-  schedule:
-    - cron: "0 */1 * * *" 
-  push:
-    branches:
-      - master
+  schedule: # Run workflow automatically
+    - cron: '0 * * * *' # Runs every hour, on the hour
+  workflow_dispatch: # Run workflow manually (without waiting for the cron to be called), through the GitHub Actions Workflow page directly
+permissions:
+  contents: write # To write the generated contents to the readme
+
 jobs:
-  update-readme:
+  update-readme-with-blog:
+    name: Update this repo's README with latest blog posts
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Pull in dev.to posts
+        uses: gautamkrishnar/blog-post-workflow@v1
         with:
-          node-version: "16"
-
-      - name: Install dependencies
-        run: npm install rss-parser
-
-      - name: Run update script
-        run: node index.js
-
-      - name: Commit README
-        run: |
-          git config --local user.name "cycy8527@gmail.com"
-          git config --local user.email "chae-young"
-          git add README.md
-          git commit -m "Update README with latest blog posts" || echo "No changes to commit"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          feed_list: "https://chaeyoung2.tistory.com/rss"
+          accept_header: "text/xml"

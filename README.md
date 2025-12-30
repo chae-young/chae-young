@@ -35,16 +35,10 @@ I am frontend developer.
 <br/>
 <br/>
 
-<br/>
+<br/-->
 
 <h4>ʟᴀᴛᴇꜱᴛ ʙʟᴏɢ ᴘᴏꜱᴛ</h4>
 
-<ul>
-<li><a href='https://chaeyoung2.tistory.com/156' target='_blank'>Promise와 setTimeout은 왜 실행 순서가 다를까?</a></li>
-<li><a href='https://chaeyoung2.tistory.com/155' target='_blank'>JS 참조와 복사(깊은복사,얕은복사) feat. 리액트에서의 얕은 비교</a></li>
-<li><a href='https://chaeyoung2.tistory.com/154' target='_blank'>웹 성능 최적화를 위한 PageVisibility API 알아보기(CPU/GPU 사용률 감소  )</a></li>
-<li><a href='https://chaeyoung2.tistory.com/153' target='_blank'>공통 컴포넌트를 건드리지 않고 이벤트 제어하기 - 캡처링</a></li>
-<li><a href='https://chaeyoung2.tistory.com/152' target='_blank'>리액트에서 클로저가 어떻게 사용되고 있는가?</a></li>
-</ul>
-
-![header](https://capsule-render.vercel.app/api?type=wave&height=300&color=0:FFCEFF,100:ADCDFF&section=footer)
+# Tistory
+<!-- BLOG-POST-LIST:START -->
+<!-- BLOG-POST-LIST:END -->
