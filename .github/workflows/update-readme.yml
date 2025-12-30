@@ -22,7 +22,7 @@ jobs:
         run: npm install rss-parser
 
       - name: Run update script
-        run: node readmeUpdate.js
+        run: node index.js
 
       - name: Commit README
         run: |
