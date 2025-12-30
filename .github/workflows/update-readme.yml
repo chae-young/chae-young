@@ -1,0 +1,35 @@
+name: Update README with Blog Posts
+
+on:
+  schedule:
+    - cron: "0 */1 * * *" 
+  push:
+    branches:
+      - master
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+
+      - name: Install dependencies
+        run: npm install rss-parser
+
+      - name: Run update script
+        run: node readmeUpdate.js
+
+      - name: Commit README
+        run: |
+          git config --local user.name "cycy8527@gmail.com"
+          git config --local user.email "chae-young"
+          git add README.md
+          git commit -m "Update README with latest blog posts" || echo "No changes to commit"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
