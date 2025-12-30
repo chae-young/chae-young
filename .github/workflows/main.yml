@@ -5,9 +5,9 @@ name: Readme Update
 # Controls when the workflow will run
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
   # 1시간에 한번씩 아래 스크립트를 실행한다.
   # schedule:
   #   - cron: "0 */1 * * *"
